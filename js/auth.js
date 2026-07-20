@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const formLogin = document.getElementById("formLogin");
     const formRegister = document.getElementById("formRegister");
 
-    // ==========================================
-    // 1. XỬ LÝ LOGIC ĐĂNG KÝ (ĐĂNG KÝ)
-    // ==========================================
+    
+    
+    
     if (formRegister) {
         formRegister.addEventListener("submit", async function (e) {
             e.preventDefault(); 
@@ -68,9 +68,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ==========================================
-    // 2. XỬ LÝ LOGIC ĐĂNG NHẬP (ĐĂNG NHẬP)
-    // ==========================================
+    
+    
+    
     if (formLogin) {
         formLogin.addEventListener("submit", async function (e) {
             e.preventDefault();
@@ -108,17 +108,17 @@ document.addEventListener("DOMContentLoaded", function () {
                         return;
                     }
 
-                    // Lưu thống nhất key 'user' và 'token' cho toàn hệ thống
+                    
                     localStorage.setItem("user", JSON.stringify(data.user));
                     localStorage.setItem("token", data.token);
-                    // Giữ tương thích với code cũ
+                    
                     localStorage.setItem("currentUser", JSON.stringify(data.user));
                     localStorage.setItem("authToken", data.token);
 
                     showGlobalMessage("🎉 Đăng nhập thành công!", "success");
 
                     setTimeout(() => {
-                        // Admin -> trang quản trị, user thường -> trang chủ
+                        
                         if (data.user && data.user.role === 'admin') {
                             window.location.href = "admin.html";
                         } else {
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// Hàm hiển thị thông báo dùng chung
+
 function showGlobalMessage(msg, type) {
     const alertBox = document.createElement("div");
     alertBox.className = `alert alert-${type} alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3`;

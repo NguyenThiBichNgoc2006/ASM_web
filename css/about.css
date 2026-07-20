@@ -1,41 +1,42 @@
 body {
-            background-color: #fcf9f4; /* Nền màu kem nhạt đồng bộ */
+            background-color: #fcf9f4; 
         }
 
-        /* 1. Khối Hero Banner tối màu */
          .about-hero {
             background-color: #001529;
             color: #ffffff;
-            height: 320px; /* Khóa đúng chiều cao 320px theo ảnh đo */
+            height: 320px; 
             text-align: center;
             display: flex;
-            align-items: center; /* Căn giữa nội dung chữ theo chiều dọc */
+            align-items: center; 
             justify-content: center;
 }
 
-            /* 2. Khối nội dung Our Journey */
         .journey-dark-box {
         background-color: #001529;
         border-radius: 12px;
-        width: 596px;       /* Cố định chiều rộng theo Figma */
-        height: 176px;      /* Cố định chiều cao theo Figma */
-        padding: 20px 25px; /* Giảm padding một chút để vừa vặn với chiều cao 176px */
+        width: 100%;
+        max-width: 596px;
+        height: auto;
+        min-height: 176px;
+        padding: 20px 25px; 
         color: #ffffff;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
-        justify-content: center; /* Căn giữa nội dung theo chiều dọc */
+        justify-content: center; 
 }
-      
 
 .pillar-card {
     background-color: #ffffff;
-    width: 384px;        /* Đúng kích thước chiều rộng Figma */
-    height: 326.4px;     /* Đúng kích thước chiều cao Figma */
-    border-radius: 24px; /* Đúng bo góc Radius 24px theo thông số */
-    padding: 40px;       /* Đúng thông số Padding 40px */
+    width: 100%;
+    max-width: 384px;
+    height: auto;
+    min-height: 280px;
+    border-radius: 24px; 
+    padding: 40px;       
     border: 1px solid rgba(0, 21, 41, 0.04);
-    border-bottom: 4px solid #e3001b !important; /* Viền bottom dày 4px màu đỏ đô thương hiệu */
+    border-bottom: 4px solid #e3001b !important; 
     box-shadow: 0 4px 20px rgba(0,0,0,0.015);
     box-sizing: border-box;
     display: flex;
@@ -59,23 +60,22 @@ body {
     margin-bottom: 24px;
 }
 
-       /* 5. Khối Banner Đỏ - Khóa cứng chuẩn kích thước 1367x144 theo Figma */
 .taste-banner {
-    background-color: #e3001b; /* Màu đỏ thương hiệu nguyên bản */
-    height: 144px;             /* Chiều cao cố định chuẩn Figma */
+    background-color: #e3001b; 
+    height: auto;
+    min-height: 120px;
     position: relative;
     overflow: hidden;
-    padding-top: 48px;         /* Padding top 48px */
-    padding-bottom: 48px;      /* Padding bottom 48px */
+    padding: 36px 0;
     box-sizing: border-box;
     display: flex;
     align-items: center;
 }
 .taste-bg-text {
     position: absolute;
-    font-size: 110px;          /* Tăng size chữ to lớn tràn khung */
+    font-size: 110px;          
     font-weight: 900;
-    color: rgba(255, 255, 255, 0.22); /* Màu chữ chìm hồng sáng nổi rõ trên nền đỏ */
+    color: rgba(255, 255, 255, 0.22); 
     white-space: nowrap;
     top: 52%;
     left: 45%;
@@ -97,7 +97,7 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 .btn-locate-store {
-    background-color: #001529 !important; /* Màu xanh Navy tối giống navbar */
+    background-color: #001529 !important; 
     color: #ffffff !important;
     font-weight: 700;
     font-size: 11px;
@@ -105,4 +105,63 @@ body {
     border-radius: 20px !important;
     padding: 10px 24px !important;
     border: none !important;
+}
+
+@media (max-width: 992px) {
+    .about-hero {
+        height: 260px;
+    }
+    .pillar-card {
+        padding: 28px;
+        min-height: 240px;
+    }
+    .taste-bg-text {
+        font-size: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-hero {
+        height: 220px;
+    }
+    .journey-dark-box {
+        padding: 18px 20px;
+    }
+    .pillar-card {
+        padding: 22px;
+        border-radius: 16px;
+        min-height: auto;
+    }
+    .pillar-icon-box {
+        margin-bottom: 16px;
+    }
+    .taste-banner {
+        padding: 28px 0;
+        text-align: center;
+        flex-direction: column;
+    }
+    .taste-bg-text {
+        font-size: 60px;
+    }
+    .btn-view-menu,
+    .btn-locate-store {
+        padding: 8px 18px !important;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-hero {
+        height: 180px;
+    }
+    .pillar-card {
+        padding: 18px;
+        border-radius: 12px;
+    }
+    .taste-banner {
+        padding: 22px 0;
+    }
+    .taste-bg-text {
+        font-size: 44px;
+    }
 }

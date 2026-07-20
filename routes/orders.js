@@ -4,7 +4,7 @@ const Order = require('../models/Order');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
-// Middleware xác thực token (optional - cho phép guest)
+
 const checkAuth = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (authHeader) {
@@ -12,12 +12,12 @@ const checkAuth = (req, res, next) => {
         try {
             const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret');
             req.user = decoded;
-        } catch (e) { /* token không hợp lệ, tiếp tục với guest */ }
+        } catch (e) {  }
     }
     next();
 };
 
-// Middleware bắt buộc auth
+
 const requireAuth = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (!authHeader) return res.status(401).json({ message: 'Không có token xác thực' });
@@ -30,7 +30,7 @@ const requireAuth = (req, res, next) => {
     }
 };
 
-// POST - Tạo đơn hàng mới (cho phép guest)
+
 router.post('/', checkAuth, async (req, res) => {
     try {
         const { customerInfo, items, totalAmount, paymentMethod, pointsUsed } = req.body;
@@ -112,7 +112,7 @@ router.post('/', checkAuth, async (req, res) => {
     }
 });
 
-// GET - Lấy tất cả đơn hàng (admin)
+
 router.get('/', requireAuth, async (req, res) => {
     try {
         const orders = await Order.find({})
@@ -124,7 +124,7 @@ router.get('/', requireAuth, async (req, res) => {
     }
 });
 
-// GET - Lấy đơn hàng của user đang đăng nhập
+
 router.get('/my-orders', requireAuth, async (req, res) => {
     try {
         const orders = await Order.find({ userId: req.user.id }).sort({ createdAt: -1 });
@@ -134,7 +134,7 @@ router.get('/my-orders', requireAuth, async (req, res) => {
     }
 });
 
-// PUT - Cập nhật trạng thái đơn hàng (admin)
+
 router.put('/:id', requireAuth, async (req, res) => {
     try {
         const { status } = req.body;
@@ -143,7 +143,7 @@ router.put('/:id', requireAuth, async (req, res) => {
             return res.status(400).json({ message: 'Trạng thái không hợp lệ' });
         }
 
-        // Lấy đơn hàng trước khi cập nhật để kiểm tra trạng thái cũ
+        
         const oldOrder = await Order.findById(req.params.id);
         if (!oldOrder) return res.status(404).json({ message: 'Không tìm thấy đơn hàng' });
 
@@ -153,7 +153,7 @@ router.put('/:id', requireAuth, async (req, res) => {
             { new: true }
         );
 
-        // ✅ Cộng 10 điểm thưởng khi đơn hàng hoàn thành (chỉ cộng 1 lần)
+        
         if (status === 'completed' && oldOrder.status !== 'completed' && order.userId) {
             const POINTS_PER_ORDER = 10;
             await User.findByIdAndUpdate(

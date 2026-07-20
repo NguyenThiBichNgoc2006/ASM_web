@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-// Tạo avatar ngẫu nhiên từ DiceBear API
+
 function generateRandomAvatar(name) {
     const styles = ['adventurer', 'avataaars', 'big-smile', 'bottts', 'fun-emoji', 'lorelei', 'micah', 'miniavs', 'pixel-art', 'thumbs'];
     const style = styles[Math.floor(Math.random() * styles.length)];
@@ -12,20 +12,20 @@ function generateRandomAvatar(name) {
     return `https://api.dicebear.com/7.x/${style}/svg?seed=${seed}`;
 }
 
-// Register
+
 router.post('/register', async (req, res) => {
     try {
         const { name, email, password } = req.body;
         
-        // Check existing
+        
         let user = await User.findOne({ email });
         if (user) return res.status(400).json({ message: 'Email đã tồn tại' });
 
-        // Hash password
+        
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        // Tạo avatar ngẫu nhiên
+        
         const avatar = generateRandomAvatar(name);
 
         user = new User({
@@ -44,7 +44,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// Login
+
 router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;

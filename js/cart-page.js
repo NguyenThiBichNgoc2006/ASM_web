@@ -24,17 +24,15 @@ function resolveCartItemImage(item) {
     return matchedProduct?.img || "/assets/images/Classic-Pizza.png";
 }
 
-/**
- * Hàm đọc dữ liệu LocalStorage và kết xuất ra giao diện cột trái
- */
+
 function renderCartPageItems() {
     const container = document.getElementById("cartItemsListContainer");
     if (!container) return;
 
-    // Lấy giỏ hàng từ bộ nhớ tạm
+    
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    // TRƯỜNG HỢP 1: Giỏ hàng trống
+    
     if (cart.length === 0) {
         container.innerHTML = `
             <div class="text-center py-5 bg-white rounded-3 shadow-sm border p-4">
@@ -44,11 +42,11 @@ function renderCartPageItems() {
                 <a href="menu.html" class="btn btn-pizzan-red btn-sm fw-bold px-4 text-white mt-2" style="border-radius:20px !important;">CHỌN MÓN NGAY</a>
             </div>
         `;
-        calculateOrderSummary(0); // Đưa các giá trị tiền về $0.00
+        calculateOrderSummary(0); 
         return;
     }
 
-    // TRƯỜNG HỢP 2: Có sản phẩm -> Chạy vòng lặp render
+    
     container.innerHTML = "";
     let tempSubtotal = 0;
 

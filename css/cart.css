@@ -1,5 +1,5 @@
 body {
-            background-color: #fcf9f4; /* Surface Light */
+            background-color: #fcf9f4; 
         }
         .cart-item-card {
             background-color: #ffffff;
@@ -12,7 +12,7 @@ body {
             width: 100px;
             height: 100px;
             object-fit: cover;
-            border-radius: 8px; /* Khối vuông bo góc nhẹ theo thiết kế */
+            border-radius: 8px; 
         }
         .qty-control {
             border: 1px solid rgba(0, 21, 41, 0.15);
@@ -37,9 +37,9 @@ body {
             font-weight: 600;
             outline: none;
         }
-        /* Khối Tóm tắt đơn hàng bên phải */
+        
         .summary-card {
-            background-color: #001529; /* Surface Dark */
+            background-color: #001529; 
             color: #ffffff;
             border-radius: 16px;
             padding: 30px;
@@ -65,7 +65,7 @@ body {
             border-radius: 0 20px 20px 0 !important;
             padding: 0 20px;
         }
-        /* Khối cần trợ giúp */
+        
         .help-box {
             background-color: rgba(223, 0, 27, 0.03);
             border: 1px dashed rgba(223, 0, 27, 0.2);
@@ -73,3 +73,34 @@ body {
             padding: 15px;
             margin-top: 20px;
         }
+
+@media (max-width: 768px) {
+    .cart-item-card {
+        padding: 14px;
+    }
+    .cart-item-card img {
+        width: 70px;
+        height: 70px;
+    }
+    .summary-card {
+        padding: 20px;
+        margin-top: 24px;
+    }
+}
+
+@media (max-width: 576px) {
+    .cart-item-card {
+        padding: 12px;
+    }
+    .cart-item-card img {
+        width: 60px;
+        height: 60px;
+    }
+    .cart-item-card .d-flex {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .summary-card {
+        padding: 16px;
+    }
+}

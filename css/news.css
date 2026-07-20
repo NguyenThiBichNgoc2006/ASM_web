@@ -1,16 +1,15 @@
-/* Ép ảnh trong card tin tức phụ phụ vừa vặn, không bị phóng to che mất hình */
+
         .news-card .position-relative img {
             width: 100% !important;
-            height: 200px !important;     /* Cố định chiều cao vừa vặn theo tỉ lệ card */
-            object-fit: cover !important;  /* Giúp ảnh tự co giãn thông minh không bị méo */
-            object-position: center !important; /* Luôn giữ trọng tâm bức ảnh ở chính giữa */
+            height: 200px !important;     
+            object-fit: cover !important;  
+            object-position: center !important; 
             display: block;
         }
         body {
-            background-color: #fcf9f4; /* Màu nền kem nhạt toàn hệ thống */
+            background-color: #fcf9f4; 
         }
         
-        /* 1. Thanh Search trên Navbar */
         .nav-search-box {
             background-color: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -25,7 +24,6 @@
             color: rgba(255, 255, 255, 0.4);
         }
 
-        /* 2. Hero Banner */
         .news-hero {
             background-image: linear-gradient(to bottom, rgba(0, 21, 41, 0.8), rgba(0, 21, 41, 0.75)), url('assets/images/pizza-bg.png');
             background-size: cover;
@@ -38,7 +36,6 @@
             text-align: center;
         }
 
-        /* 3. Button lọc danh mục tin */
         .news-tab-btn {
             background-color: #eee9e4;
             color: #495057;
@@ -55,7 +52,6 @@
             color: #ffffff !important;
         }
 
-        /* 4. Khối bài viết nổi bật (Featured Post) */
         .featured-post-container {
             background-color: #ffffff;
             border-radius: 12px;
@@ -64,7 +60,6 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.015);
         }
 
-        /* 5. Khối Card tin tức phụ */
         .news-card {
             background-color: #ffffff;
             border-radius: 12px;
@@ -88,7 +83,6 @@
             z-index: 2;
         }
 
-        /* 6. Nút Read More bo viền tròn */
         .btn-read-more {
             border: 1px solid rgba(227, 0, 27, 0.3) !important;
             color: #e3001b !important;
@@ -106,7 +100,6 @@
             color: #ffffff !important;
         }
 
-        /* 7. Phân trang */
         .news-page-link {
             width: 36px;
             height: 36px;
@@ -127,7 +120,6 @@
             border-color: #e3001b !important;
         }
 
-        /* 8. Banner Đăng ký nhận tin */
         .subscribe-news-banner {
             background-color: #001529;
             color: #ffffff;
@@ -156,3 +148,54 @@
             letter-spacing: 0.5px;
             border: none;
         }
+
+@media (max-width: 992px) {
+    .news-hero {
+        height: 260px;
+    }
+    .sub-input {
+        width: 240px;
+    }
+}
+
+@media (max-width: 768px) {
+    .news-hero {
+        height: 220px;
+    }
+    .news-tab-btn {
+        padding: 7px 14px !important;
+        font-size: 10px;
+    }
+    .subscribe-news-banner {
+        padding: 32px 0;
+        text-align: center;
+    }
+    .sub-input {
+        width: 200px;
+        padding: 10px 18px !important;
+    }
+    .sub-btn {
+        padding: 0 18px;
+    }
+    .news-card .position-relative img {
+        height: 160px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .news-hero {
+        height: 180px;
+    }
+    .sub-input {
+        width: 150px;
+        font-size: 13px;
+        padding: 8px 14px !important;
+    }
+    .subscribe-news-banner {
+        padding: 24px 0;
+    }
+    .nav-search-box {
+        width: 130px;
+        font-size: 12px;
+    }
+}

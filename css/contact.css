@@ -1,12 +1,11 @@
 body {
-            background-color: #fcf9f4; /* Màu nền kem nhạt toàn hệ thống */
+            background-color: #fcf9f4; 
         }
-  /* 1. Khối Hero Header - Sửa lại đường dẫn ảnh bánh chính xác */
+  
 .contact-hero {
-    /* Mẹo: Nếu tên file ảnh của bạn là tên khác (ví dụ: homepage-4.png hoặc banner.png), hãy thay thế vào chữ 'pizza-bg.png' dưới đây */
     background-image: linear-gradient(to bottom, rgba(0, 21, 41, 0.7) 0%, rgba(0, 21, 41, 0.5) 100%), url('assets/images/Hero-Background.png');
     background-size: cover;
-    background-position: center 45%; /* Đẩy trọng tâm ảnh lên một chút để lộ rõ chiếc bánh ở cạnh dưới */
+    background-position: center 45%; 
     background-repeat: no-repeat;
     height: 400px;
     color: #ffffff;
@@ -16,7 +15,6 @@ body {
     justify-content: center;
 }
 
-        /* 2. Khối Form gửi tin nhắn */
         .message-card {
             background-color: #ffffff;
             border-radius: 12px;
@@ -32,9 +30,8 @@ body {
             font-size: 14px;
         }
 
-        /* 3. Khối thông tin cơ sở góc phải */
         .info-card-box {
-            background-color: #eee9e4; /* Màu xám kem nhạt bám sát ảnh mẫu */
+            background-color: #eee9e4; 
             border-radius: 12px;
             padding: 30px 25px;
             margin-bottom: 25px;
@@ -53,7 +50,6 @@ body {
             margin-top: 3px;
         }
 
-        /* 4. Khối Bản đồ */
         .map-wrapper-box {
             border-radius: 12px;
             overflow: hidden;
@@ -61,9 +57,8 @@ body {
             position: relative;
         }
 
-        /* 5. Khối Banner Đỏ "Want Secret Deals?" */
         .secret-deals-banner {
-            background-color: #cc0014; /* Màu đỏ rực theo thiết kế */
+            background-color: #cc0014; 
             color: #ffffff;
             padding: 50px 0;
             text-align: center;
@@ -78,7 +73,7 @@ body {
             outline: none;
         }
         .deal-btn {
-            background-color: #001529 !important; /* Nút màu tối Navy */
+            background-color: #001529 !important; 
             color: #ffffff !important;
             font-weight: bold;
             border: none;
@@ -87,3 +82,51 @@ body {
             font-size: 13px;
             letter-spacing: 0.5px;
         }
+
+@media (max-width: 992px) {
+    .contact-hero {
+        height: 300px;
+    }
+    .message-card {
+        padding: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-hero {
+        height: 240px;
+    }
+    .message-card {
+        padding: 22px;
+        margin-bottom: 24px;
+    }
+    .info-card-box {
+        padding: 22px 18px;
+    }
+    .secret-deals-banner {
+        padding: 36px 0;
+    }
+    .deal-input {
+        width: 220px;
+        padding: 10px 18px !important;
+    }
+    .deal-btn {
+        padding: 0 18px;
+    }
+}
+
+@media (max-width: 576px) {
+    .contact-hero {
+        height: 200px;
+    }
+    .message-card {
+        padding: 16px;
+    }
+    .deal-input {
+        width: 160px;
+        font-size: 13px;
+    }
+    .secret-deals-banner {
+        padding: 28px 0;
+    }
+}

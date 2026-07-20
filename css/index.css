@@ -1,9 +1,9 @@
 body {
-            background-color: #fcf9f4; /* Nền kem sáng bám sát bản vẽ */
+            background-color: #fcf9f4; 
             color: #001529;
         }
 
-        /* 2. Hero Section */
+        
         .hero-section {
             background-color: #001529;
             color: #ffffff;
@@ -26,7 +26,7 @@ body {
             font-size: 14px;
         }
 
-        /* 3. Khối About (Nơi tin cậy) */
+        
         .about-features-box {
             display: flex;
             gap: 15px;
@@ -44,7 +44,7 @@ body {
             margin-bottom: 5px;
         }
 
-        /* 4. Khối Món ăn yêu thích nhất (Card Tròn) */
+        
         .popular-round-card {
             border: none;
             background: transparent;
@@ -60,7 +60,7 @@ body {
             margin: 0 auto 15px;
         }
 
-        /* 5. Khối bộ 3 Banner Danh mục phụ */
+        
         .sub-banner-card {
             border-radius: 12px;
             padding: 20px;
@@ -75,20 +75,20 @@ body {
             object-fit: contain;
         }
 
-        /* 6. Khối Banner Lớn Bùng Nổ Vị Ngon */
+        
         .big-promo-banner {
             background-size: cover;
             background-position: center;
             padding: 60px;
             color: #ffffff;
-            border-radius: 0; /* Tràn viền chiều ngang */
+            border-radius: 0; 
         }
 
-        /* 7. Khối Thực đơn nổi bật phân dẹt */
+        
         .menu-row-item {
             background-color: #ffffff;
             border: 1px solid rgba(0, 21, 41, 0.05);
-            border-radius: 40px; /* Bo cong dẹt theo bản vẽ */
+            border-radius: 40px; 
             padding: 10px 25px;
             display: flex;
             align-items: center;
@@ -101,14 +101,14 @@ body {
             border-radius: 50%;
         }
 
-        /* 8. Khối Tải ứng dụng */
+        
         .app-download-section {
             background-color: rgba(0,21,41,0.01);
             padding: 60px 0 0 0;
             overflow: hidden;
         }
 
-        /* 9. Khối Tin tức & Review */
+        
         .news-box-card {
             border: none;
             background-color: #ffffff;
@@ -126,3 +126,156 @@ body {
             border-radius: 12px;
             padding: 25px;
         }
+
+/* ============================================================
+   RESPONSIVE - INDEX PAGE
+   ============================================================ */
+@media (max-width: 992px) {
+    .hero-section {
+        padding: 60px 0;
+    }
+    .hero-section .floating-dish {
+        max-width: 320px;
+    }
+    .sub-banner-card {
+        height: auto;
+        padding: 16px;
+    }
+    .big-promo-banner {
+        padding: 40px 30px;
+    }
+    .app-download-section img {
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 40px 0;
+        text-align: center;
+    }
+    .hero-section .floating-dish {
+        display: none;
+    }
+    .discount-badge {
+        top: 10px;
+        right: 15px;
+        width: 55px;
+        height: 55px;
+        font-size: 12px;
+    }
+    .about-features-box {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    .popular-round-card img {
+        width: 120px;
+        height: 120px;
+    }
+    .sub-banner-card {
+        margin-bottom: 16px;
+    }
+    .big-promo-banner {
+        padding: 30px 20px;
+    }
+    .menu-row-item {
+        padding: 8px 16px;
+        border-radius: 20px;
+    }
+    .news-box-card img {
+        height: 140px;
+    }
+    .app-download-section {
+        text-align: center;
+    }
+    .app-download-section img {
+        max-width: 220px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        padding: 30px 0;
+    }
+    .big-promo-banner {
+        padding: 24px 16px;
+    }
+    .menu-row-item {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+        border-radius: 16px;
+        padding: 14px;
+    }
+    .popular-round-card img {
+        width: 100px;
+        height: 100px;
+    }
+    .about-feature-item {
+        min-width: 70px;
+    }
+}
+.promo-banner-bg-1 {
+    background-image: url('../assets/images/homepage-1.png');
+    background-size: cover;
+    background-position: center;
+    height: 576px;
+}
+.promo-banner-bg-2 {
+    background-image: url('../assets/images/homepage-2.png');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+}
+
+@media (max-width: 992px) {
+    .promo-banner-bg-1 {
+        height: 450px;
+    }
+    .promo-banner-bg-2 {
+        height: 320px;
+    }
+}
+
+@media (max-width: 768px) {
+    .promo-banner-bg-1 {
+        height: 380px;
+    }
+    .promo-banner-bg-2 {
+        height: 280px;
+    }
+    .promo-banner-bg-1 .position-absolute,
+    .promo-banner-bg-2 .position-absolute {
+        left: 20px !important;
+        padding-left: 0 !important;
+        max-width: 80% !important;
+    }
+    .promo-banner-bg-1 h2, .promo-banner-bg-2 h2 {
+        font-size: 24px !important;
+    }
+    .promo-banner-bg-1 p, .promo-banner-bg-2 p {
+        font-size: 12px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .promo-banner-bg-1 {
+        height: 300px;
+    }
+    .promo-banner-bg-2 {
+        height: 220px;
+    }
+    .promo-banner-bg-1 h2, .promo-banner-bg-2 h2 {
+        font-size: 18px !important;
+        margin-bottom: 8px !important;
+    }
+    .promo-banner-bg-1 p {
+        margin-bottom: 15px !important;
+    }
+    .promo-banner-bg-1 .btn {
+        min-width: auto !important;
+        padding: 6px 12px !important;
+    }
+}

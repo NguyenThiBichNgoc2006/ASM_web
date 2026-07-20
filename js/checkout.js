@@ -1,17 +1,17 @@
 let pointsDiscount = 0;
 let pointsUsed = 0;
-// ==========================================================================
-// LOGIC XỬ LÝ TRANG THANH TOÁN (CHECKOUT.JS)
-// Gửi đơn hàng lên MongoDB qua API + lưu localStorage để hiển thị profile
-// ==========================================================================
+
+
+
+
 
 const DELIVERY_FEE = 15000;
 let selectedPayment = 'cod';
 let promoDiscount   = 0;
 
-// ============================
-// 1. HIỂN THỊ TÓM TẮT GIỎ HÀNG
-// ============================
+
+
+
 function initCheckoutSummary() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const listEl = document.getElementById('checkoutItemsList');
@@ -58,9 +58,9 @@ function updateTotals(subtotal) {
     if (el('checkoutTotal'))    el('checkoutTotal').textContent    = fmt(totalVND);
 }
 
-// ============================
-// 2. PRE-FILL THÔNG TIN USER
-// ============================
+
+
+
 function prefillUserInfo() {
     const user = JSON.parse(localStorage.getItem('currentUser'));
     if (!user) return;
@@ -71,9 +71,9 @@ function prefillUserInfo() {
     if (el('checkoutAddress') && user.address) el('checkoutAddress').value = user.address;
 }
 
-// ============================
-// 3. CHỌN PHƯƠNG THỨC THANH TOÁN
-// ============================
+
+
+
 function initPaymentSelection() {
     document.querySelectorAll('#paymentMethodContainer .payment-box').forEach(box => {
         box.addEventListener('click', function() {
@@ -84,9 +84,9 @@ function initPaymentSelection() {
     });
 }
 
-// ============================
-// 4. MÃ GIẢM GIÁ
-// ============================
+
+
+
 function initPromoCode() {
     const btn = document.getElementById('applyPromoBtn');
     if (!btn) return;
@@ -112,9 +112,9 @@ function initPromoCode() {
     });
 }
 
-// ============================
-// 5. XÁC THỰC FORM
-// ============================
+
+
+
 function validateForm() {
     const name    = document.getElementById('checkoutName')?.value.trim();
     const phone   = document.getElementById('checkoutPhone')?.value.trim();
@@ -138,9 +138,9 @@ function validateForm() {
     return true;
 }
 
-// ============================
-// 6. ĐẶT HÀNG
-// ============================
+
+
+
 function initPlaceOrder() {
     const btn = document.getElementById('placeOrderBtn');
     if (!btn) return;
@@ -153,7 +153,7 @@ function initPlaceOrder() {
         }
         if (!validateForm()) return;
 
-        // Tính toán
+        
         const subtotal = cart.reduce((s, i) => s + (Number(i.price || 0) * Number(i.quantity || 1)), 0);
         const total = Math.max(0, (subtotal * 15000) + DELIVERY_FEE - promoDiscount - pointsDiscount);
 
@@ -268,9 +268,9 @@ async function executeOrderSubmit(cart, total) {
     }
 }
 
-// ============================
-// HELPER: Hiển thị thông báo
-// ============================
+
+
+
 function showStatus(msg, type = 'info') {
     const el = document.getElementById('checkoutStatusMsg');
     if (!el) return;
@@ -279,9 +279,9 @@ function showStatus(msg, type = 'info') {
     el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-// ============================
-// KHỞI CHẠY
-// ============================
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
     initCheckoutSummary();
     prefillUserInfo();
@@ -290,9 +290,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initPlaceOrder();
     initPointsRedemption();
 });
-// ============================
-// 7. POINTS REDEMPTION
-// ============================
+
+
+
 function initPointsRedemption() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const container = document.getElementById('pointsRedemptionContainer');
@@ -304,9 +304,9 @@ function initPointsRedemption() {
     if (!container) return;
 
     if (!currentUser || !currentUser.points || currentUser.points <= 0) {
-        // Hide or disable it if user has no points
-        // But for testing purposes, let's keep it visible but disabled, or just return.
-        // The user says "chưa thấy phần dùng x điểm tham gia", so let's show it but with 0.
+        
+        
+        
         container.style.setProperty('display', 'flex', 'important');
         if (display) display.textContent = '0';
         if (checkbox) checkbox.disabled = true;

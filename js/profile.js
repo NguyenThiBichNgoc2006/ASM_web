@@ -1,24 +1,24 @@
-// ==========================================================================
-// LOGIC XỬ LÝ TRANG HỒ SƠ CÁ NHÂN (PROFILE.JS)
-// ==========================================================================
 
-// Dữ liệu đơn hàng mẫu (hiển thị khi chưa có đơn thật)
+
+
+
+
 const SAMPLE_ORDERS = [];
 
-// ============================
-// 1. TẢI THÔNG TIN NGƯỜI DÙNG
-// ============================
+
+
+
 function populateProfileData() {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-    // Nếu chưa đăng nhập -> chuyển về trang login
+    
     if (!currentUser) {
         showGlobalMessage("Vui lòng đăng nhập để truy cập hồ sơ của bạn.", "warning");
         setTimeout(() => { window.location.href = "login.html"; }, 700);
         return;
     }
 
-    // Cập nhật sidebar
+    
     const el = (id) => document.getElementById(id);
     if (el("userNameDisplay")) el("userNameDisplay").textContent = currentUser.name || "Thành Viên";
     if (el("userEmailDisplay")) el("userEmailDisplay").textContent = currentUser.email || "";
@@ -30,7 +30,7 @@ function populateProfileData() {
         el("userAvatar").onerror = function() { this.src = '/assets/images/avatar.jpg'; };
     }
 
-    // Điền vào form thông tin cá nhân
+    
     if (el("profileName"))    el("profileName").value    = currentUser.name    || "";
     if (el("profileEmail"))   el("profileEmail").value   = currentUser.email   || "";
     if (el("profilePhone"))   el("profilePhone").value   = currentUser.phone   || "";
@@ -40,21 +40,21 @@ function populateProfileData() {
         el("profileRole").value = roleMap[currentUser.role] || currentUser.role || "Thành Viên";
     }
 
-    // Lấy điểm thưởng thực từ API
+    
     const token = localStorage.getItem("token") || localStorage.getItem("authToken");
     if (token) {
         fetch('/api/users/me', { headers: { 'Authorization': `Bearer ${token}` } })
             .then(r => r.json())
             .then(data => {
                 const pts = data.points || 0;
-                const money = pts * 10; // 1 điểm = 10đ
+                const money = pts * 10; 
                 if (el("loyaltyPointsDisplay")) {
                     el("loyaltyPointsDisplay").textContent = `${pts.toLocaleString('vi-VN')} Điểm`;
                 }
                 if (el("pointsMoneyValue")) {
                     el("pointsMoneyValue").textContent = `≈ ${money.toLocaleString('vi-VN')}đ`;
                 }
-                // Cập nhật localStorage với điểm mới nhất
+                
                 const updated = { ...currentUser, points: pts, rewardHistory: data.rewardHistory || [] };
                 localStorage.setItem("currentUser", JSON.stringify(updated));
             })
@@ -78,9 +78,9 @@ function populateProfileData() {
     }
 }
 
-// ============================
-// 2. CẬP NHẬT THÔNG TIN CÁ NHÂN
-// ============================
+
+
+
 function setupProfileForm() {
     const form = document.getElementById("formUpdateProfile");
     if (!form) return;
@@ -125,7 +125,7 @@ function setupProfileForm() {
             localStorage.setItem("currentUser", JSON.stringify(updated));
             localStorage.setItem("user", JSON.stringify(updated));
 
-            // Cập nhật hiển thị sidebar
+            
             const nameEl = document.getElementById("userNameDisplay");
             if (nameEl) nameEl.textContent = data.user.name;
 
@@ -448,9 +448,9 @@ async function loadRewardHistory() {
     }
 }
 
-// ============================
-// 7. CHUYỂN TAB SIDEBAR
-// ============================
+
+
+
 function setupTabs() {
     const tabButtons = document.querySelectorAll(".profile-tab-link[data-tab]");
     const panels = document.querySelectorAll(".profile-panel");
@@ -459,26 +459,26 @@ function setupTabs() {
         btn.addEventListener("click", function() {
             const targetId = this.dataset.tab;
 
-            // Deactivate all
+            
             tabButtons.forEach(b => b.classList.remove("active"));
             panels.forEach(p => p.classList.remove("active"));
 
-            // Activate target
+            
             this.classList.add("active");
             const panel = document.getElementById(targetId);
             if (panel) panel.classList.add("active");
 
-            // Load orders khi mở tab đơn hàng
+            
             if (targetId === "tab-orders") loadOrderHistory();
-            // Load lịch sử điểm khi mở tab điểm thưởng
+            
             if (targetId === "tab-points") loadRewardHistory();
         });
     });
 }
 
-// ============================
-// 7. TOGGLE HIỆN/ẨN MẬT KHẨU
-// ============================
+
+
+
 function setupPasswordToggles() {
     document.querySelectorAll(".toggle-pw").forEach(icon => {
         icon.addEventListener("click", function() {
@@ -495,9 +495,9 @@ function setupPasswordToggles() {
     });
 }
 
-// ============================
-// 8. ĐĂNG XUẤT
-// ============================
+
+
+
 function setupLogout() {
     const btn = document.getElementById("btnLogoutAction");
     if (!btn) return;
@@ -512,9 +512,9 @@ function setupLogout() {
     });
 }
 
-// ============================
-// KHỞI CHẠY
-// ============================
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
     populateProfileData();
     setupTabs();
@@ -523,7 +523,7 @@ document.addEventListener("DOMContentLoaded", function() {
     setupPasswordToggles();
     setupAvatarUpload();
     setupLogout();
-    // Load orders mặc định cho tab điểm thưởng (badge count)
+    
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if (currentUser) {
         const storedOrders = JSON.parse(localStorage.getItem("pizzanOrders")) || [];

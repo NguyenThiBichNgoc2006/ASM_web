@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-// Middleware xác thực token
+
 function authMiddleware(req, res, next) {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
@@ -18,7 +18,7 @@ function authMiddleware(req, res, next) {
     }
 }
 
-// GET all users (admin only)
+
 router.get('/', async (req, res) => {
     try {
         const users = await User.find({}).select('-password');
@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// GET thông tin cá nhân của user đang đăng nhập
+
 router.get('/me', authMiddleware, async (req, res) => {
     try {
         const user = await User.findById(req.user.id).select('-password');
@@ -39,7 +39,7 @@ router.get('/me', authMiddleware, async (req, res) => {
     }
 });
 
-// PUT cập nhật thông tin cá nhân của user đang đăng nhập
+
 router.put('/me', authMiddleware, async (req, res) => {
     try {
         const { name, phone, address, avatar, currentPassword, newPassword } = req.body;
@@ -47,13 +47,13 @@ router.put('/me', authMiddleware, async (req, res) => {
         const user = await User.findById(req.user.id);
         if (!user) return res.status(404).json({ message: 'Không tìm thấy người dùng' });
 
-        // Cập nhật các trường thông tin cơ bản
+        
         if (name)    user.name    = name;
         if (phone !== undefined) user.phone   = phone;
         if (address !== undefined) user.address = address;
         if (avatar)  user.avatar  = avatar;
 
-        // Đổi mật khẩu nếu được yêu cầu
+        
         if (newPassword) {
             if (!currentPassword) {
                 return res.status(400).json({ message: 'Vui lòng nhập mật khẩu hiện tại' });
@@ -90,7 +90,7 @@ router.put('/me', authMiddleware, async (req, res) => {
     }
 });
 
-// PUT update user role/status (admin)
+
 router.put('/:id', async (req, res) => {
     try {
         const { role, status } = req.body;
@@ -106,7 +106,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// DELETE user
+
 router.delete('/:id', async (req, res) => {
     try {
         await User.findByIdAndDelete(req.params.id);

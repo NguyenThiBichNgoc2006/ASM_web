@@ -1,6 +1,6 @@
-/* Tùy chỉnh bổ sung riêng cho trang Menu bám sát UI hình ảnh */
+
         .menu-hero {
-            background-color: #001529; /* Surface Dark */
+            background-color: #001529; 
             padding: 60px 0;
             overflow: hidden;
         }
@@ -15,7 +15,7 @@
             transition: all 0.3s ease;
         }
         .filter-btn.active, .filter-btn:hover {
-            background-color: #e3001b !important; /* Primary Red */
+            background-color: #e3001b !important; 
             color: #ffffff !important;
             border-color: #e3001b !important;
         }
@@ -39,7 +39,7 @@
             margin: 0 auto 15px;
             display: block;
         }
-        /* Custom định dạng các tag trạng thái trên góc ảnh */
+        
         .card-badge-tag {
             position: absolute;
             top: 15px;
@@ -54,10 +54,74 @@
         .bg-tag-new { background-color: #ffc107; color: #001529; }
         .bg-tag-hot { background-color: #28a745; }
 
-        /* Khối Newsletter */
+        
         .promo-banner {
             background-color: #e3001b;
             border-radius: 16px;
             padding: 40px;
             color: #ffffff;
         }
+
+/* ============================================================
+   RESPONSIVE - MENU PAGE
+   ============================================================ */
+@media (max-width: 992px) {
+    .menu-hero {
+        padding: 40px 0;
+    }
+    .food-card img {
+        width: 130px;
+        height: 130px;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-hero {
+        padding: 30px 0;
+        text-align: center;
+    }
+    .promo-banner {
+        padding: 28px 20px;
+        text-align: center;
+    }
+    .promo-banner img {
+        max-width: 140px;
+        margin: 16px auto 0;
+        display: block;
+    }
+    #categoryFilterGroup {
+        overflow-x: auto;
+        flex-wrap: nowrap !important;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 6px;
+        scrollbar-width: none;
+    }
+    #categoryFilterGroup::-webkit-scrollbar {
+        display: none;
+    }
+    .filter-btn {
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    .food-card img {
+        width: 110px;
+        height: 110px;
+    }
+}
+
+@media (max-width: 576px) {
+    .menu-hero {
+        padding: 24px 0;
+    }
+    .food-card {
+        padding: 14px;
+    }
+    .food-card img {
+        width: 90px;
+        height: 90px;
+    }
+    .promo-banner {
+        padding: 20px 14px;
+        border-radius: 12px;
+    }
+}

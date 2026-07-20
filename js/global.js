@@ -1,15 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // 1. CẬP NHẬT BIỂU TƯỢNG GIỎ HÀNG (CART BADGE)
+    
     updateGlobalCartBadge();
 
-    // 2. KIỂM TRA TRẠNG THÁI ĐĂNG NHẬP ĐỂ ĐỔI GIAO DIỆN HEADER
+    
     renderAuthHeader();
 });
 
-/**
- * Hàm đọc dữ liệu mảng 'cart' từ LocalStorage để đếm tổng số lượng món ăn
- * và hiển thị lên vòng tròn đỏ trên Header của mọi trang.
- */
 function updateGlobalCartBadge() {
     const cartBadge = document.getElementById("globalCartBadge") || document.querySelector(".cart-badge");
     if (!cartBadge) return;
@@ -22,12 +18,6 @@ function updateGlobalCartBadge() {
     cartBadge.textContent = totalItems;
 }
 
-/**
- * Hàm kiểm tra xem khách hàng đã đăng nhập chưa (bằng cách check key 'currentUser' trong LocalStorage)
- * Nếu đã đăng nhập: Đổi chữ "Login" thành Avatar/Tên người dùng để bấm vào ra trang Profile.
- * Nếu chưa đăng nhập: Giữ nguyên nút Đăng nhập tiêu chuẩn.
- * Nếu là admin: Hiển thị thêm nút "Trang Quản Trị" trong dropdown.
- */
 function renderAuthHeader() {
     const authArea = document.getElementById("globalAuthArea");
     if (!authArea) return;
@@ -38,7 +28,7 @@ function renderAuthHeader() {
         const avatarSrc = currentUser.avatar || "/assets/images/avatar.jpg";
         const isAdmin = currentUser.role === 'admin';
 
-        // Nút vào trang quản trị (chỉ hiển thị nếu là admin)
+        
         const adminMenuHTML = isAdmin ? `
                     <li>
                         <a class="dropdown-menu-item text-warning d-block px-3 py-2 text-decoration-none fw-bold" href="admin.html">
@@ -54,7 +44,7 @@ function renderAuthHeader() {
                     <img src="${avatarSrc}" alt="Avatar" class="rounded-circle" style="width: 30px; height: 30px; object-fit: cover; border: 2px solid var(--primary-red);">
                     <span class="text-white">${currentUser.name || 'Thành viên'}</span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end bg-pizzan-dark border-secondary" aria-labelledby="userDropdown">
+                <ul class="dropdown-menu dropdown-menu-end bg-pizzan-dark border-secondary" aria-labelledby="userDropdown" style="min-width:0;width:auto;white-space:nowrap;">
                     ${adminMenuHTML}
                     <li>
                         <a class="dropdown-menu-item text-white d-block px-3 py-2 text-decoration-none" href="profile.html">

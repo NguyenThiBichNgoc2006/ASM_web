@@ -9,7 +9,7 @@ const orderSchema = new mongoose.Schema({
         note: { type: String }
     },
     items: [{
-        productId: { type: Number, required: true }, // Using the custom ID from Product
+        productId: { type: Number, required: true }, 
         name: { type: String, required: true },
         price: { type: Number, required: true },
         quantity: { type: Number, required: true },

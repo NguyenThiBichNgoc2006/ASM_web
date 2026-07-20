@@ -1,5 +1,5 @@
 .auth-wrapper {
-            background-color: #001529; /* Surface Dark theo PRD */
+            background-color: #001529; 
             min-height: 100vh;
         }
         .auth-bg-column {
@@ -8,7 +8,7 @@
             background-size: cover;
             background-position: center;
         }
-        /* Custom thanh điều hướng giả lập Tab Switcher Đỏ/Xanh theo UI */
+        
         .auth-tabs {
             background-color: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -24,7 +24,7 @@
             transition: all 0.3s ease;
         }
         .auth-tabs .nav-link.active {
-            background-color: #e3001b !important; /* Primary Red */
+            background-color: #e3001b !important; 
             color: #ffffff !important;
         }
         .auth-input-group {
@@ -63,3 +63,31 @@
             background-color: rgba(255, 255, 255, 0.1);
             color: #ffffff;
         }
+
+@media (max-width: 992px) {
+    .auth-bg-column {
+        display: none !important;
+    }
+    .auth-wrapper > .row > [class*="col-"] {
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .auth-wrapper {
+        padding: 0;
+    }
+    .auth-tabs .nav-link {
+        padding: 7px 16px;
+        font-size: 14px;
+    }
+    .auth-input-group .form-control {
+        height: 46px;
+        font-size: 14px;
+    }
+    .btn-sso {
+        height: 42px;
+        font-size: 13px;
+    }
+}

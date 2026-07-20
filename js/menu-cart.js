@@ -1,4 +1,4 @@
-// 1. MẢNG SẢN PHẨM HIỂN THỊ BAN ĐẦU (Dự phòng nếu server chưa chạy)
+
 const INITIAL_PRODUCTS = [
     { id: 1, name: "Garlic Butter Noodles", category: "chicken", price: 12.50, tag: "sale", description: "Wok-fried premium noodles with roasted garlic, butter and fresh herbs.", image: "/assets/images/garlic-noodles.png" },
     { id: 2, name: "Italian Calzone Fold", category: "combo", price: 18.00, tag: "new", description: "Traditional Italian style folded pizza stuffed with mozzarella, ricotta, and ham.", image: "/assets/images/steak-hero.png" },
@@ -14,7 +14,7 @@ let ALL_PIZZAN_PRODUCTS = [];
 
 document.addEventListener("DOMContentLoaded", async function () {
     try {
-        // Cố gắng gọi API lấy dữ liệu từ DB
+        
         const res = await fetch('/api/products');
         if (res.ok) {
             ALL_PIZZAN_PRODUCTS = await res.json();
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     } catch (error) {
         console.warn("⚠️ Không kết nối được tới server MongoDB. Đang dùng dữ liệu cứng dự phòng.");
-        ALL_PIZZAN_PRODUCTS = INITIAL_PRODUCTS; // Fallback
+        ALL_PIZZAN_PRODUCTS = INITIAL_PRODUCTS; 
     }
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     
     const filterGroup = document.getElementById('categoryFilterGroup');
     if (filterGroup) {
-        const uniqueCats = [...new Set(ALL_PIZZAN_PRODUCTS.map(p => p.category))].filter(Boolean);
+        const uniqueCats = [...new Set(ALL_PIZZAN_PRODUCTS.map(p => p.category))].filter(Boolean).filter(c => c.toLowerCase() !== 'all');
         let html = `<button class="btn filter-btn active" onclick="filterCategory('all', this)">Tất Cả</button>`;
         uniqueCats.forEach(c => {
             const cName = formatCategoryGlobal(c);
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const highlightId = urlParams.get("highlight");
     if (highlightId) {
-        // Render all to make sure the item is in the DOM
+        
         renderMenuProducts(ALL_PIZZAN_PRODUCTS);
         
         setTimeout(() => {
@@ -113,7 +113,11 @@ function renderMenuProducts(productsList) {
 
     productsList.forEach(product => {
         let tagHTML = "";
-        if (product.tag && product.tag !== "none") {
+        if (product.isTopPage) {
+            tagHTML = `<div class="card-badge-tag bg-tag-sale">🔥 Đầu trang</div>`;
+        } else if (product.isPopular) {
+            tagHTML = `<div class="card-badge-tag bg-tag-hot">⭐ Nổi bật</div>`;
+        } else if (product.tag && product.tag !== "none") {
             tagHTML = `<div class="card-badge-tag bg-tag-${product.tag}">${product.tag}</div>`;
         }
 
@@ -121,7 +125,7 @@ function renderMenuProducts(productsList) {
             <div class="col" id="product-card-${product.id || product._id}">
                 <div class="card h-100 food-card position-relative">
                     ${tagHTML}
-                    <img src="${product.image}" alt="${product.name}" onerror="this.src='https://placehold.co/160x160?text=PIZZAN'">
+                    <img src="${product.image}" alt="${product.name}" onerror="this.src='https:
                     <div class="card-body p-0 d-flex flex-column justify-content-between">
                         <div>
                             <h5 class="card-title fw-bold text-dark mb-2 fs-6">${product.name}</h5>
@@ -149,7 +153,7 @@ window.triggerLoadMoreDishes = function(btn) {
         btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Đang tải...`;
         
         setTimeout(() => {
-            // Render tất cả món thay vì 8 món
+            
             const productsToRender = CURRENT_CATEGORY === 'all' 
                 ? ALL_PIZZAN_PRODUCTS 
                 : ALL_PIZZAN_PRODUCTS.filter(p => p.category === CURRENT_CATEGORY);
@@ -163,7 +167,7 @@ window.triggerLoadMoreDishes = function(btn) {
 window.filterCategory = function(category, element) {
     CURRENT_CATEGORY = category;
     
-    // Đổi màu nút active
+    
     const buttons = document.querySelectorAll('#categoryFilterGroup .filter-btn');
     if (buttons) {
         buttons.forEach(btn => btn.classList.remove('active'));
@@ -172,14 +176,14 @@ window.filterCategory = function(category, element) {
         element.classList.add('active');
     }
     
-    // Lọc sản phẩm
+    
     const filtered = category === 'all' 
         ? ALL_PIZZAN_PRODUCTS.slice(0, 8) 
         : ALL_PIZZAN_PRODUCTS.filter(p => p.category === category);
         
     renderMenuProducts(filtered);
     
-    // Hiện lại nút tải thêm nếu ở mục 'all' và chưa hiện hết
+    
     const btnLoadMore = document.getElementById("btnLoadMore");
     if (btnLoadMore) {
         if (category === 'all' && ALL_PIZZAN_PRODUCTS.length > 8) {

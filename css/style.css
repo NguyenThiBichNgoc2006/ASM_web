@@ -1,8 +1,8 @@
-/* Import Font chữ Plus Jakarta Sans từ Google Fonts */
+
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
-    /* Khai báo các biến màu và thông số theo PRD hệ thống thiết kế */
+    
     --primary-red: #e3001b;
     --surface-dark: #001529;
     --surface-light: #fcf9f4;
@@ -12,7 +12,7 @@
     --border-radius-standard: 8px;
 }
 
-/* Toàn bộ cấu trúc trang */
+
 body {
     font-family: var(--font-main);
     background-color: var(--surface-light);
@@ -22,7 +22,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Quy chuẩn Typography (Hệ thống kiểu chữ) */
+
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-main);
     font-weight: 700;
@@ -49,12 +49,12 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
 }
 
-/* Bo góc chuẩn 8px cho các phần tử nút, thẻ và ô nhập liệu */
+
 .btn, .card, .form-control, .badge {
     border-radius: var(--border-radius-standard) !important;
 }
 
-/* GHI ĐÈ STYLE CỦA BOOTSTRAP THEO NHẬN DIỆN PIZZAN */
+
 .bg-pizzan-dark {
     background-color: var(--surface-dark) !important;
 }
@@ -63,7 +63,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--primary-red) !important;
 }
 
-/* Định dạng Nút bấm Primary (Màu đỏ đô hành động) */
+
 .btn-pizzan-red {
     background-color: var(--primary-red) !important;
     color: #ffffff !important;
@@ -79,7 +79,7 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 4px 12px rgba(227, 0, 27, 0.3);
 }
 
-/* Định dạng Nút bấm Outline (View Menu) */
+
 .btn-pizzan-outline {
     background-color: transparent !important;
     color: var(--primary-red) !important;
@@ -94,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #ffffff !important;
 }
 
-/* CUSTOM NAVBAR (HEADER DÙNG CHUNG) */
+
 .pizzan-navbar {
     background-color: var(--surface-dark);
     padding: 15px 0;
@@ -112,7 +112,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #ffffff !important;
 }
 
-/* Biểu tượng số lượng giỏ hàng trên Header */
+
 .cart-icon-wrapper {
     position: relative;
     display: inline-block;
@@ -130,9 +130,9 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 50% !important;
 }
 
-/* FOOTER DÙNG CHUNG */
+
 .pizzan-footer {
-    background-color: #000f1e; /* Tối hơn surface dark một chút để tạo chiều sâu */
+    background-color: #000f1e; 
     color: #ffffff;
     font-size: 14px;
 }
@@ -148,11 +148,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-/* ==========================================================================
-   BỔ SUNG CHO HEADER (ICON TRÁI TIM & HIỆU ỨNG HOVER)
-   ========================================================================== */
 
-/* Hiệu ứng hover cho các icon trên header mượt mà hơn */
+
+
 .hover-pizzan-red {
     transition: color 0.3s ease;
 }
@@ -160,37 +158,32 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--primary-red) !important;
 }
 
-/* Tùy chỉnh màu chữ gợi ý (placeholder) trong ô tìm kiếm cho đúng độ mờ thiết kế */
+
 .pizzan-navbar .form-control::placeholder {
     color: rgba(255, 255, 255, 0.4);
     font-size: 13px;
 }
 
-/* ==========================================================================
-   HIỆU ỨNG NHẢY NHẸ (FLOATING) CHO ĐĨA MÌ BANNER KHUYẾN MÃI
-   ========================================================================== */
+
 
 .floating-dish {
-    /* Khai báo chuyển động có tên là 'noodleJump', chạy trong 3 giây, 
-       nhịp điệu mượt mà (ease-in-out) và lặp lại vô tận (infinite) */
+    
     animation: noodleJump 3s ease-in-out infinite;
 }
 
 @keyframes noodleJump {
     0% {
-        transform: translateY(0); /* Vị trí ban đầu */
+        transform: translateY(0); 
     }
     50% {
-        transform: translateY(-15px); /* Nhảy lên trên 15px ở giữa chu kỳ */
+        transform: translateY(-15px); 
     }
     100% {
-        transform: translateY(0); /* Trở về vị trí ban đầu */
+        transform: translateY(0); 
     }
 }
 
-/* ==========================================================================
-   HIỆU ỨNG TOAST THÔNG BÁO TỰ ĐỘNG ẨN
-   ========================================================================== */
+
 .animate-toast {
     animation: slideInRight 0.3s ease-in-out forwards;
 }
@@ -204,4 +197,81 @@ h1, h2, h3, h4, h5, h6 {
         transform: translateX(0);
         opacity: 1;
     }
+}
+
+/* ============================================================
+   RESPONSIVE - USER-FACING PAGES
+   ============================================================ */
+
+/* Tablet (≤ 992px) */
+@media (max-width: 992px) {
+    .large-headline {
+        font-size: 36px;
+    }
+    .medium-headline {
+        font-size: 26px;
+    }
+    .pizzan-navbar {
+        padding: 10px 0;
+    }
+}
+
+/* Mobile (≤ 768px) */
+@media (max-width: 768px) {
+    .large-headline {
+        font-size: 28px;
+    }
+    .medium-headline {
+        font-size: 22px;
+    }
+    .body-large {
+        font-size: 15px;
+    }
+    .btn-pizzan-red,
+    .btn-pizzan-outline {
+        padding: 8px 18px;
+        font-size: 14px;
+    }
+    .pizzan-navbar {
+        padding: 8px 0;
+    }
+    .pizzan-navbar .form-control {
+        width: 130px !important;
+    }
+    .pizzan-footer {
+        text-align: left;
+    }
+    .pizzan-footer .d-flex.gap-3 {
+        justify-content: flex-start !important;
+    }
+}
+
+/* Small mobile (≤ 576px) */
+@media (max-width: 576px) {
+    .large-headline {
+        font-size: 22px;
+        line-height: 1.3;
+    }
+    .medium-headline {
+        font-size: 18px;
+    }
+    .pizzan-navbar .form-control {
+        display: none !important;
+    }
+    .btn-pizzan-red,
+    .btn-pizzan-outline {
+        padding: 7px 14px;
+        font-size: 13px;
+    }
+}
+
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.order-filter-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.order-filter-btn.active {
+    background-color: #e3001b !important;
+    color: #ffffff !important;
 }

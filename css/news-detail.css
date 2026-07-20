@@ -1,6 +1,5 @@
 body { background-color: #fcf9f4; }
         
-        /* 1. Thanh Search trên Navbar */
         .nav-search-box {
             background-color: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -13,12 +12,10 @@ body { background-color: #fcf9f4; }
         }
         .nav-search-box::placeholder { color: rgba(255, 255, 255, 0.4); }
 
-        /* 2. Khối trích dẫn văn bản đặc biệt (Blockquote) */
         .custom-blockquote {
             background-color: #fff0f1; border-left: 4px solid #e3001b; padding: 20px; border-radius: 4px; font-style: italic; color: #333333; font-weight: 600;
         }
 
-        /* 3. Hộp Sidebar phía bên phải */
         .sidebar-box {
             background-color: #ffffff; border-radius: 12px; padding: 25px; border: 1px solid rgba(0, 21, 41, 0.03); box-shadow: 0 4px 15px rgba(0,0,0,0.01); margin-bottom: 30px;
         }
@@ -26,7 +23,6 @@ body { background-color: #fcf9f4; }
             border-radius: 6px !important; border: 1px solid rgba(0,21,41,0.1) !important; background-color: #fcf9f4 !important; padding: 10px 15px; font-size: 13px;
         }
         
-        /* 4. Định dạng danh sách bài viết phổ biến (Popular Posts Clickable) */
         .popular-post-item {
             display: flex;
             align-items: center;
@@ -37,10 +33,60 @@ body { background-color: #fcf9f4; }
         .popular-post-item:hover { opacity: 0.8; }
         .popular-post-item img { width: 60px; height: 60px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
 
-        /* 5. Định dạng ảnh bài viết tránh lỗi to vỡ hình */
         .article-main-img { width: 100%; height: 420px; object-fit: cover; object-position: center; border-radius: 12px; }
         .article-body-img { width: 100%; height: 340px; object-fit: cover; object-position: center; border-radius: 12px; }
         
-        /* 6. Khối bài viết liên quan (Related Posts) */
         .related-card { background-color: #ffffff; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 21, 41, 0.03); box-shadow: 0 4px 15px rgba(0,0,0,0.015); height: 100%; display: flex; flex-direction: column; }
         .related-card img { width: 100%; height: 180px; object-fit: cover; object-position: center; }
+
+@media (max-width: 992px) {
+    .article-main-img {
+        height: 320px;
+    }
+    .article-body-img {
+        height: 260px;
+    }
+    .sidebar-box {
+        margin-top: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .article-main-img {
+        height: 240px;
+        border-radius: 8px;
+    }
+    .article-body-img {
+        height: 200px;
+        border-radius: 8px;
+    }
+    .sidebar-box {
+        padding: 18px;
+    }
+    .custom-blockquote {
+        padding: 14px;
+        font-size: 14px;
+    }
+    .related-card img {
+        height: 150px;
+    }
+    .nav-search-box {
+        width: 120px;
+    }
+}
+
+@media (max-width: 576px) {
+    .article-main-img {
+        height: 190px;
+    }
+    .article-body-img {
+        height: 160px;
+    }
+    .popular-post-item img {
+        width: 48px;
+        height: 48px;
+    }
+    .sidebar-box {
+        padding: 14px;
+    }
+}

@@ -3,7 +3,7 @@ const router = express.Router();
 const Contact = require('../models/Contact');
 const jwt = require('jsonwebtoken');
 
-// Middleware bắt buộc auth
+
 const requireAuth = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (!authHeader) return res.status(401).json({ message: 'Không có token xác thực' });
@@ -16,7 +16,7 @@ const requireAuth = (req, res, next) => {
     }
 };
 
-// Middleware admin
+
 const requireAdmin = (req, res, next) => {
     if (!req.user || req.user.role !== 'admin') {
         return res.status(403).json({ message: 'Từ chối truy cập. Chỉ dành cho admin.' });
@@ -24,7 +24,7 @@ const requireAdmin = (req, res, next) => {
     next();
 };
 
-// 1. Get all contacts (Admin only)
+
 router.get('/', requireAuth, requireAdmin, async (req, res) => {
     try {
         const contacts = await Contact.find().sort({ createdAt: -1 });
@@ -34,7 +34,7 @@ router.get('/', requireAuth, requireAdmin, async (req, res) => {
     }
 });
 
-// 2. Submit a new contact (Public)
+
 router.post('/', async (req, res) => {
     try {
         const { name, email, subject, message } = req.body;
@@ -46,7 +46,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-// 3. Update contact status / reply (Admin only)
+
 router.put('/:id', requireAuth, requireAdmin, async (req, res) => {
     try {
         const { status, reply } = req.body;
@@ -61,7 +61,7 @@ router.put('/:id', requireAuth, requireAdmin, async (req, res) => {
     }
 });
 
-// 4. Delete a contact (Admin only)
+
 router.delete('/:id', requireAuth, requireAdmin, async (req, res) => {
     try {
         await Contact.findByIdAndDelete(req.params.id);
