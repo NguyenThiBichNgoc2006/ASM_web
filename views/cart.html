@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng - PIZZAN Restaurant</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/cart.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg pizzan-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-white fs-3" href="index.html">
+                <span class="text-pizzan-red">PIZ</span>ZAN
+            </a>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto gap-2">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Trang Chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Giới Thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menu.html">Thực Đơn</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">Tin Tức</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Liên Hệ</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <form action="menu.html" method="get" class="position-relative d-none d-xl-block" style="width: 180px;">
+                        <input type="text" name="q" class="form-control bg-dark border-secondary text-white form-control-sm ps-4" placeholder="Tìm kiếm pizza..." style="border-radius: 20px !important;">
+                        <i class="fa-solid fa-magnifying-glass position-absolute start-0 top-50 translate-middle-y ms-2 text-white-50" style="font-size: 12px;"></i>
+                    </form>
+                    <a href="menu.html" class="text-white fs-5 px-1 hover-pizzan-red"><i class="fa-regular fa-heart"></i></a>
+                    <a href="cart.html" class="text-white position-relative cart-icon-wrapper fs-5 px-1 me-2">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                        <span id="globalCartBadge" class="cart-badge">0</span>
+                    </a>
+                    <div id="globalAuthArea" class="me-2">
+                        <a href="login.html" class="text-white text-decoration-none small fw-bold">Đăng Nhập</a>
+                    </div>
+                    <a href="menu.html" class="btn btn-pizzan-red btn-sm fw-bold px-3 py-2 text-uppercase text-white" style="border-radius: 20px !important; font-size: 13px;">
+                        ĐẶT HÀNG NGAY
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+   <div class="container mt-4 mb-5">
+        <div class="mb-4">
+            <h1 class="fw-bold text-pizzan-red m-0">Giỏ Hàng Của Tôi</h1>
+            <p class="text-muted small">Kiểm tra lại lựa chọn của bạn trước khi thanh toán.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12 col-lg-8">
+                <div class="d-grid gap-3" id="cartItemsListContainer">
+                    </div>
+
+                <div class="mt-4">
+                    <a href="menu.html" class="text-pizzan-red fw-bold text-decoration-none small hover-underline">
+                        <i class="fa-solid fa-arrow-left me-2"></i> Tiếp Tục Mua Sắm
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="summary-card shadow-sm">
+                    <h4 class="fw-bold mb-4">Tóm Tắt Đơn Hàng</h4>
+                    
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="text-white-50">Tổng phụ</span>
+                        <span class="fw-semibold" id="summarySubtotal">$0.00</span>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="text-white-50">Thuế dự tính (8%)</span>
+                        <span class="fw-semibold" id="summaryTax">$0.00</span>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="text-white-50">Phí giao hàng</span>
+                        <span class="text-warning fw-bold">MIỄN PHÍ</span>
+                    </div>
+                    
+                    <div class="summary-divider"></div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <span class="fs-5 fw-bold">Tổng cộng</span>
+                        <span class="fs-4 fw-bold text-white" id="summaryTotal">$0.00</span>
+                    </div>
+
+
+                    <button class="btn btn-pizzan-red w-100 py-3 fw-bold text-uppercase text-white d-flex align-items-center justify-content-center gap-2 shadow" style="border-radius: 25px !important;" onclick="handleProceedToCheckout()">
+                        Thanh Toán <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                    <div class="text-center mt-4 text-white-50 fs-4 d-flex justify-content-center gap-3 opacity-50">
+                        <i class="fa-brands fa-cc-visa"></i>
+                        <i class="fa-brands fa-cc-mastercard"></i>
+                        <i class="fa-brands fa-cc-paypal"></i>
+                    </div>
+                </div>
+
+                <div class="help-box text-center text-md-start">
+                    <span class="small text-muted d-block mb-1">Cần hỗ trợ về đơn hàng?</span>
+                    <a href="contact.html" class="text-pizzan-red fw-bold small text-decoration-none d-inline-flex align-items-center gap-2">
+                        <i class="fa-solid fa-headset"></i> Trò chuyện với chuyên gia ẩm thực của chúng tôi
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="pizzan-footer py-5 mt-5">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">PIZZAN</h5>
+                    <p class="text-white-50 small">Chế tác những chiếc pizza tuyệt hảo nhất thế giới từ 1995. Nguyên liệu tươi mới, đầu bếp đam mê và tình yêu với truyền thống nước Ý.</p>
+                    <div class="d-flex gap-3 fs-5 mt-3">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Liên Kết Nhanh</h5>
+                    <ul class="list-unstyled d-grid gap-2">
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">Câu Chuyện</a></li>
+                        <li><a href="contact.html">Nhượng Quyền</a></li>
+                        <li><a href="news.html">Tuyển Dụng</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Hỗ Trợ</h5>
+                    <ul class="list-unstyled d-grid gap-2">
+                        <li><a href="contact.html">Chính Sách Bảo Mật</a></li>
+                        <li><a href="contact.html">Điều Khoản Dịch Vụ</a></li>
+                        <li><a href="contact.html">Thông Tin Giao Hàng</a></li>
+                        <li><a href="contact.html">Câu Hỏi Thường Gặp</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Vị Trí</h5>
+                    <p class="text-white-50 m-0"><i class="fa-solid fa-location-dot me-2 text-pizzan-red"></i>123 Đường Pepperoni,<br>Thung Lũng Pizza, CA 90210</p>
+                    <p class="text-white-50 mt-2"><i class="fa-solid fa-phone me-2 text-pizzan-red"></i>+1 (555) PIZZAN-0</p>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25">
+            <div class="text-center text-white-50 small mt-3">
+                © 2026 PIZZAN Restaurant. Đã đăng ký bản quyền.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/global.js"></script>
+    <script src="../js/cart-page.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - PIZZAN Restaurant</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/register.css">
+</head>
+<body>
+
+    <div class="container-fluid auth-wrapper p-0">
+        <div class="row g-0 vh-100 position-relative">
+            <a href="index.html" class="text-white fw-bold text-decoration-none position-absolute" style="top: 20px; left: 30px; font-size: 24px; z-index: 10; letter-spacing: 2px;">PIZZAN</a>
+            
+            <div class="col-md-6 d-none d-md-flex auth-bg-column align-items-end p-5" style="background-image: url('../assets/images/auth_hero.png'); background-size: cover; background-position: center; position: relative;">
+<div style="position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); z-index: 0;"></div>
+                <div class="text-white mb-4 z-1">
+                    <h1 class="display-4 fw-bold mb-3">PIZZAN</h1>
+                    <p class="body-large text-white-50 mb-4">
+                        Experience the ultimate culinary vitality. From our wood-fired oven to your doorstep, every slice is a masterpiece of flavor and passion.
+                    </p>
+                    <div class="d-flex gap-4 border-top border-secondary pt-3">
+                        <div>
+                            <span class="h4 fw-bold">20k+</span>
+                            <p class="small text-white-50 m-0">HAPPY FOODIES</p>
+                        </div>
+                        <div class="border-start border-secondary ps-4">
+                            <span class="h4 fw-bold">4.9/5</span>
+                            <p class="small text-white-50 m-0">USER RATING</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 d-flex align-items-center justify-content-center p-4 p-md-5 h-100" style="overflow-y: auto;">
+                <div class="w-100" style="max-width: 450px;">
+                    
+                    <div class="mb-4">
+                        <h2 class="fw-bold text-white mb-1">Tạo Tài Khoản</h2>
+                        <p class="text-white-50 small">Hãy điền thông tin để bắt đầu hành trình ẩm thực của bạn.</p>
+                    </div>
+
+                    <ul class="nav nav-pills auth-tabs nav-justified mb-4">
+                        <li class="nav-item">
+                            <a class="nav-link text-center" href="login.html">ĐĂNG NHẬP</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-center" href="register.html">ĐĂNG KÝ</a>
+                        </li>
+                    </ul>
+
+                    <form id="formRegister" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label text-white-50 small text-uppercase fw-bold">Họ và Tên</label>
+                            <div class="auth-input-group">
+                                <i class="fa-regular fa-user"></i>
+                                <input type="text" id="regName" class="form-control" placeholder="Nguyễn Văn A" required>
+                            </div>
+                            <div class="text-danger small mt-1 d-none" id="errorRegName">Họ và tên phải có ít nhất 3 ký tự.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white-50 small text-uppercase fw-bold">Địa chỉ Email</label>
+                            <div class="auth-input-group">
+                                <i class="fa-regular fa-envelope"></i>
+                                <input type="email" id="regEmail" class="form-control" placeholder="rossi.pizzan@example.com" required>
+                            </div>
+                            <div class="text-danger small mt-1 d-none" id="errorRegEmail">Invalid email format.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white-50 small text-uppercase fw-bold">Mật khẩu</label>
+                            <div class="auth-input-group">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" id="regPassword" class="form-control" placeholder="Ít nhất 6 ký tự" required>
+                            </div>
+                            <div class="text-danger small mt-1 d-none" id="errorRegPassword">Mật khẩu phải có ít nhất 6 ký tự.</div>
+                        </div>
+                        <button type="submit" class="btn btn-pizzan-red w-100 py-3 mt-2">TẠO TÀI KHOẢN</button>
+                    </form>
+
+                    <div class="position-relative text-center my-4">
+                        <hr class="border-secondary opacity-25">
+                        <span class="position-absolute top-50 start-50 translate-middle bg-pizzan-dark px-3 text-white-50 small" style="font-size: 11px;">HOẶC TIẾP TỤC VỚI</span>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <button class="btn btn-sso w-100" type="button" onclick="showGlobalMessage('Tính năng Google SSO đang được phát triển.', 'info')">
+                                <img src="https://e7.pngegg.com/pngimages/56/318/png-clipart-google-logo-logo-logo-company-text.png" alt="Google" style="width: 18px;"> Google
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-sso w-100" type="button" onclick="showGlobalMessage('Tính năng Facebook SSO đang được phát triển.', 'info')">
+                                <i class="fa-brands fa-facebook text-primary fs-5"></i> Facebook
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-5 text-white-50" style="font-size: 11px; letter-spacing: 0.5px;">
+                        © 2026 PIZZAN RESTAURANT GROUP. CULINARY VITALITY.
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/global.js"></script>
+    <script src="../js/auth.js"></script>
+</body>
+</html>

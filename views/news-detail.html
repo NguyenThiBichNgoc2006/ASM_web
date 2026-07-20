@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">News Detail - PIZZAN</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/news-detail.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg pizzan-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-white fs-3" href="index.html"><span class="text-pizzan-red">PIZ</span>ZAN</a>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><i class="fa-solid fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto gap-2">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Trang Chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Giới Thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menu.html">Thực Đơn</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="news.html" style="border-bottom: 2px solid #e3001b;">Tin Tức</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Liên Hệ</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <form action="menu.html" method="get" class="position-relative d-none d-xl-block">
+                        <input type="text" name="q" class="nav-search-box" placeholder="Tìm kiếm pizza...">
+                        <i onclick="this.closest('form').submit()" style="cursor: pointer;" class="fa-solid fa-magnifying-glass position-absolute end-0 top-50 translate-middle-y me-3" style="font-size: 11px; color: rgba(255,255,255,0.4);"></i>
+                    </form>
+                    <a href="#" class="text-white fs-5 px-1 hover-pizzan-red"><i class="fa-regular fa-heart"></i></a>
+                    <a href="cart.html" class="text-white position-relative cart-icon-wrapper fs-5 px-1 me-2">
+                        <i class="fa-solid fa-basket-shopping"></i><span id="globalCartBadge" class="cart-badge">0</span>
+                    </a>
+                    <div id="globalAuthArea" class="me-2"><a href="login.html" class="text-white text-decoration-none small fw-bold">Đăng Nhập</a></div>
+                    <a href="menu.html" class="btn btn-pizzan-red btn-sm fw-bold px-3 py-2 text-uppercase text-white" style="border-radius: 20px !important; font-size: 13px;">ĐẶT HÀNG</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4 pt-2">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb small m-0 mb-3">
+                <li class="breadcrumb-item"><a href="index.html" class="text-muted text-decoration-none">Trang Chủ</a></li>
+                <li class="breadcrumb-item"><a href="news.html" class="text-muted text-decoration-none">Tin Tức</a></li>
+                <li class="breadcrumb-item text-dark active" id="breadcrumbTitle">Loading...</li>
+            </ol>
+        </nav>
+        
+        <span class="badge bg-danger text-uppercase fw-bold mb-2" id="articleBadge" style="font-size: 9px; padding: 5px 10px; background-color: #e3001b !important;">RECIPES</span>
+        <h1 class="fw-bold text-dark lh-sm mb-3" id="articleTitle" style="font-size: 32px; max-width: 800px;">Loading Title...</h1>
+        
+        <div class="d-flex align-items-center gap-3 text-muted small pb-4" style="border-bottom: 1px solid rgba(0,21,41,0.05);">
+            <span id="articleDate"><i class="fa-regular fa-calendar me-1"></i> --/--/----</span>
+            <span id="articleAuthor"><i class="fa-regular fa-user me-1"></i> By PIZZAN Chef</span>
+        </div>
+    </div>
+
+        <div class="container my-4">
+        <div class="row g-4">
+            <div class="col-12 col-lg-8" id="mainArticleContent"></div>
+
+            <div class="col-12 col-lg-4">
+                
+                <div class="sidebar-box text-white" style="background-color: #001529;">
+                    <h5 class="fw-bold mb-2" style="font-size: 16px;">Đăng Ký Nhận Tin</h5>
+                    <p class="text-white-50 small mb-4">Nhận ưu đãi đặc biệt và công thức làm pizza mới nhất qua email.</p>
+                    <input type="email" class="form-control sidebar-sub-input mb-2" placeholder="Địa chỉ Email của bạn">
+                    <button class="btn btn-danger w-100 fw-bold text-uppercase py-2 small" style="background-color: #e3001b; border: none; font-size: 12px; border-radius: 6px !important;">Đăng Ký Ngay</button>
+                </div>
+
+                <div class="sidebar-box">
+                    <h5 class="fw-bold text-dark mb-4 pb-2" style="font-size: 16px; border-bottom: 2px solid #e3001b; display: inline-block;">Bài Viết Phổ Biến</h5>
+                    <div class="d-flex flex-column gap-3" id="popularPostsContainer">
+                        </div>
+                </div>
+
+                <div class="sidebar-box">
+                    <h5 class="fw-bold text-dark mb-4 pb-2" style="font-size: 16px; border-bottom: 2px solid #e3001b; display: inline-block;">Danh Mục</h5>
+                    <div class="d-flex flex-column gap-2 small">
+                        <div class="d-flex justify-content-between align-items-center py-1 text-secondary"><span>Công Thức</span> <span class="badge rounded-circle bg-light text-dark border">12</span></div>
+                        <div class="d-flex justify-content-between align-items-center py-1 text-secondary"><span>Sự Kiện</span> <span class="badge rounded-circle bg-light text-dark border">6</span></div>
+                        <div class="d-flex justify-content-between align-items-center py-1 text-secondary"><span>Khuyến Mãi</span> <span class="badge rounded-circle bg-light text-dark border">8</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <section class="container my-5 py-3" style="border-top: 1px solid rgba(0,21,41,0.05);">
+        <h4 class="fw-bold text-center text-dark mb-4" style="font-size: 22px;">Bài Viết Liên Quan</h4>
+        <div class="row g-4 justify-content-center" id="relatedPostsContainer">
+            </div>
+    </section>
+
+       <footer class="pizzan-footer py-5 mt-5">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">PIZZAN</h5>
+                    <p class="text-white-50 small">Chế tác những chiếc pizza tuyệt hảo nhất thế giới từ 1995. Nguyên liệu tươi mới, đầu bếp đam mê và tình yêu với truyền thống nước Ý.</p>
+                    <div class="d-flex gap-3 fs-5 mt-3">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Liên Kết Nhanh</h5>
+                    <ul class="list-unstyled d-grid gap-2">
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">Câu Chuyện</a></li>
+                        <li><a href="#">Nhượng Quyền</a></li>
+                        <li><a href="news.html">Tuyển Dụng</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Hỗ Trợ</h5>
+                    <ul class="list-unstyled d-grid gap-2">
+                        <li><a href="#">Chính Sách Bảo Mật</a></li>
+                        <li><a href="#">Điều Khoản Dịch Vụ</a></li>
+                        <li><a href="#">Thông Tin Giao Hàng</a></li>
+                        <li><a href="#">Câu Hỏi Thường Gặp</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Vị Trí</h5>
+                    <p class="text-white-50 m-0"><i class="fa-solid fa-location-dot me-2 text-pizzan-red"></i>123 Đường Pepperoni,<br>Thung Lũng Pizza, CA 90210</p>
+                    <p class="text-white-50 mt-2"><i class="fa-solid fa-phone me-2 text-pizzan-red"></i>+1 (555) PIZZAN-0</p>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25">
+            <div class="text-center text-white-50 small mt-3">
+                © 2026 PIZZAN Restaurant. Đã đăng ký bản quyền.
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/global.js"></script>
+    <script>
+        // Hàm xử lý kết xuất trang chi tiết động dựa theo tham số ID trên URL
+        async function renderPageContent() {
+            const urlParams = new URLSearchParams(window.location.search);
+            let id = urlParams.get('id');
+
+            let activeArticle = null;
+            let allArticles = [];
+
+            try {
+                // Fetch tất cả bài viết để hiển thị related posts
+                const resAll = await fetch('/api/articles');
+                if (resAll.ok) {
+                    allArticles = await resAll.json();
+                }
+                
+                // Nếu không có ID, dùng bài đầu tiên
+                if (!id && allArticles.length > 0) id = allArticles[0]._id;
+
+                const res = await fetch('/api/articles/' + id);
+                if (res.ok) {
+                    activeArticle = await res.json();
+                }
+            } catch (error) {
+                console.error("Lỗi:", error);
+            }
+
+            if (!activeArticle) {
+                document.getElementById('mainArticleContent').innerHTML = "<p>Không tìm thấy bài viết.</p>";
+                return;
+            }
+
+            // 1. Cập nhật chữ tiêu đề và nhãn badge
+            document.getElementById('pageTitle').innerText = activeArticle.title + ' - PIZZAN';
+            document.getElementById('breadcrumbTitle').innerText = activeArticle.title;
+            document.getElementById('articleTitle').innerText = activeArticle.title;
+            document.getElementById('articleBadge').innerText = formatCategoryGlobal(activeArticle.category || 'news');
+            document.getElementById('articleDate').innerHTML = `<i class="fa-regular fa-calendar me-1"></i> ${activeArticle.date}`;
+            document.getElementById('articleAuthor').innerHTML = `<i class="fa-regular fa-user me-1"></i> PIZZAN Chef`;
+
+            // 2. Render nội dung văn bản & hình ảnh cột trái bài viết
+            document.getElementById('mainArticleContent').innerHTML = `
+                <img src="${activeArticle.image}" alt="Main Image" class="article-main-img mb-4 w-100" style="object-fit:cover; height:400px; border-radius:12px;">
+                <h4 class="fw-bold text-dark mb-3" style="font-size: 20px;">Tổng quan</h4>
+                <div class="text-secondary small lh-base mb-4" style="text-align: justify; font-size: 14px;">${activeArticle.excerpt}</div>
+                <div class="text-secondary small lh-base mb-4" style="text-align: justify; font-size: 14px;">${activeArticle.content || 'Nội dung chi tiết đang được cập nhật...'}</div>
+            `;
+
+            // 3. Render danh sách Popular Posts ở thanh bên phải (Loại trừ bài đang đọc)
+            const popularContainer = document.getElementById('popularPostsContainer');
+            popularContainer.innerHTML = '';
+            
+            allArticles.slice(0, 3).forEach(item => {
+                if (item._id !== id) {
+                    popularContainer.innerHTML += `
+                        <a href="news-detail.html?id=${item._id}" class="popular-post-item text-decoration-none">
+                            <img src="${item.image}" alt="Popular thumbnail" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; margin-right: 10px; float: left;">
+                            <div>
+                                <h6 class="fw-bold text-dark m-0 small" style="line-height: 1.3;">${item.title}</h6>
+                                <span class="text-muted" style="font-size: 10px;">${item.date}</span>
+                            </div>
+                            <div style="clear:both;"></div>
+                        </a>
+                    `;
+                }
+            });
+
+            // 4. Render danh sách Related Posts ở biên đáy (Loại trừ bài đang đọc)
+            const relatedContainer = document.getElementById('relatedPostsContainer');
+            relatedContainer.innerHTML = '';
+
+            let count = 0;
+            allArticles.forEach(item => {
+                if (item._id !== id && count < 3) {
+                    const relatedCardHTML = `
+                        <div class="col-12 col-md-4 d-flex align-items-stretch">
+                            <div class="related-card w-100">
+                                <img src="${item.image}" alt="Related Image" style="width: 100%; height: 180px; object-fit: cover; object-position: center; border-radius: 8px;">
+                                <div class="p-4 d-flex flex-column flex-grow-1">
+                                    <span class="text-danger fw-bold d-block mb-1" style="font-size: 10px; color: #e3001b !important; text-transform: uppercase;">${formatCategoryGlobal(item.category)}</span>
+                                    <h6 class="fw-bold text-dark mb-2" style="font-size: 15px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 40px; line-height: 1.3;">${item.title}</h6>
+                                    <a href="news-detail.html?id=${item._id}" class="text-danger fw-bold small text-decoration-none mt-auto hover-pizzan-red" style="font-size: 11px; color: #e3001b !important;">Đọc tiếp ➔</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    relatedContainer.insertAdjacentHTML('beforeend', relatedCardHTML);
+                    count++;
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", renderPageContent);
+    </script>
+</body>
+</html>

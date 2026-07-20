@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - PIZZAN Restaurant</title>
+    <!-- Nhúng Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Nhúng FontAwesome Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Nhúng file CSS hệ thống -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/about.css">
+</head>
+<body>
+
+    <!-- ========================================== -->
+    <!-- 1. NAVBAR ĐIỀU HƯỚNG DÙNG CHUNG -->
+    <!-- ========================================== -->
+    <nav class="navbar navbar-expand-lg pizzan-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-white fs-3" href="index.html"><span class="text-pizzan-red">PIZ</span>ZAN</a>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><i class="fa-solid fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto gap-2">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Trang Chủ</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">Giới Thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menu.html">Thực Đơn</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">Tin Tức</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Liên Hệ</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <form action="menu.html" method="get" class="position-relative d-none d-xl-block" style="width: 180px;">
+                        <input type="text" name="q" class="form-control bg-dark border-secondary text-white form-control-sm ps-4" placeholder="Tìm kiếm pizza..." style="border-radius: 20px !important;">
+                        <i onclick="this.closest('form').submit()" style="cursor: pointer;" class="fa-solid fa-magnifying-glass position-absolute start-0 top-50 translate-middle-y ms-2 text-white-50" style="font-size: 12px;"></i>
+                    </form>
+                    <a href="#" class="text-white fs-5 px-1 hover-pizzan-red"><i class="fa-regular fa-heart"></i></a>
+                    <a href="cart.html" class="text-white position-relative cart-icon-wrapper fs-5 px-1 me-2">
+                        <i class="fa-solid fa-basket-shopping"></i><span id="globalCartBadge" class="cart-badge">0</span>
+                    </a>
+                    <div id="globalAuthArea" class="me-2"><a href="login.html" class="text-white text-decoration-none small fw-bold">Đăng Nhập</a></div>
+                    <a href="menu.html" class="btn btn-pizzan-red btn-sm fw-bold px-3 py-2 text-uppercase text-white" style="border-radius: 20px !important; font-size: 13px;">ĐẶT HÀNG</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========================================== -->
+    <!-- 2. KHỐI HERO BANNER (ABOUT OUR PASSION) -->
+    <!-- ========================================== -->
+   <header class="about-hero">
+    <div class="container">
+        <span class="text-danger small text-uppercase fw-bold" style="font-size: 11px; letter-spacing: 2px; color: #e3001b !important;">HÀNH TRÌNH CỦA CHÚNG TÔI</span>
+        <h1 class="fw-bold mt-2 mb-2" style="letter-spacing: 0.5px; font-size: 32px;">Về Niềm Đam Mê</h1>
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center m-0 small">
+                <li class="breadcrumb-item"><a href="index.html" class="text-white-50 text-decoration-none">Trang Chủ</a></li>
+                <li class="breadcrumb-item text-danger active" aria-current="page" style="color: #e3001b !important;">About Us</li>
+            </ol>
+        </nav>
+    </div>
+</header>
+
+    <!-- ========================================== -->
+    <!-- 3. KHỐI NỘI DUNG HÀNH TRÌNH CHIA ĐÔI ĐẸP MẮT -->
+   <main class="container-fluid" style="background-color: #fcf9f4; padding-top: 60px; padding-bottom: 60px;">
+    <div class="container" style="max-width: 1240px;">
+        <div class="row align-items-center justify-content-center g-5">
+            
+            <div class="col-12 col-xl-6 d-flex justify-content-center">
+                <div style="
+                    width: 576px; 
+                    min-height: 489px; 
+                    display: flex; 
+                    flex-direction: column; 
+                    justify-content: center;
+                    box-sizing: border-box;
+                ">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <span style="display: inline-block; width: 30px; height: 2px; background-color: #e3001b;"></span>
+                        <span style="color: #e3001b; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">THỨC ĂN NHANH CHẤT LƯỢNG</span>
+                    </div>
+                    
+                    <h2 class="fw-bold text-dark mb-4" style="font-size: 32px; line-height: 1.25; letter-spacing: -0.5px;">
+                        Chúng Tôi Tin Vào Pizza Chuẩn Vị, Làm Bằng Trái Tim.
+                    </h2>
+                    
+                    <p class="text-secondary mb-3" style="font-size: 13.5px; line-height: 1.6; text-align: justify;">
+                        Được thành lập trong một căn bếp nhỏ với giấc mơ lớn, PIZZAN ra đời từ một nhận thức đơn giản: đồ ăn nhanh không đồng nghĩa với chất lượng thấp. Chúng tôi bắt đầu sứ mệnh kết hợp kỹ thuật làm pizza thủ công với tốc độ và sự tiện lợi của phong cách ăn uống hiện đại.
+                    </p>
+                    <p class="text-secondary mb-4" style="font-size: 13.5px; line-height: 1.6; text-align: justify;">
+                        Mỗi khối bột đều được kéo tay, nước sốt ninh nhừ hàng giờ, và topping được lấy từ nông trại địa phương. Chúng tôi không chỉ bán những lát bánh; chúng tôi mang đến trải nghiệm tiếp thêm năng lượng và làm say đắm tâm hồn bạn.
+                    </p>
+                    
+                    <div>
+                        <a href="menu.html" class="btn btn-danger text-white fw-semibold px-4 py-2 d-inline-flex align-items-center gap-2" style="background-color: #b00012; border: none; border-radius: 25px !important; font-size: 13px; padding-top: 10px !important; padding-bottom: 10px !important;">
+                            Khám Phá Thực Đơn <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-xl-6 position-relative text-center d-flex justify-content-center align-items-center" style="min-height: 350px;">
+                <div class="position-relative d-inline-flex align-items-center justify-content-center gap-4">
+                    <img src="../assets/images/steak-hero.png" alt="Steak" class="img-fluid rounded-circle" style="width: 220px; height: 220px; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+                    
+                    <div class="position-relative">
+                        <img src="../assets/images/Gourmet-Pizza-close-up.png" alt="Pizza Thượng Hạng" class="img-fluid rounded-circle" style="width: 200px; height: 200px; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+                        
+                        <div class="bg-danger text-white rounded-circle d-flex flex-column align-items-center justify-content-center border border-4 border-white shadow" style="
+                            width: 95px; 
+                            height: 95px; 
+                            position: absolute; 
+                            bottom: -10px; 
+                            right: -15px; 
+                            background-color: #e3001b !important;
+                            z-index: 10;
+                            line-height: 1.1;
+                        ">
+                            <span style="font-size: 16px; font-weight: 800; display: block;">10+</span>
+                            <span style="font-size: 8px; font-weight: 700; letter-spacing: 0.3px; text-align: center; opacity: 0.95;">NĂM<br>KINH NGHIỆM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+    <!-- ========================================== -->
+    <!-- 4. KHỐI TRIẾT LÝ (THE PILLARS OF PIZZAN) -->
+    <!-- ========================================== -->
+   <section class="container-fluid py-5" style="background-color: #F0EDE9;">
+    
+    <div class="container text-center mb-5">
+        <span class="text-danger small text-uppercase fw-bold" style="font-size: 11px; letter-spacing: 1.5px; color: #e3001b !important;">TRIẾT LÝ CỦA CHÚNG TÔI</span>
+        <h2 class="fw-bold text-dark mt-1" style="font-size: 26px; letter-spacing: 0.5px;">Nền Tảng Của PIZZAN</h2>
+    </div>
+    
+    <div class="container">
+        <div class="d-flex flex-wrap justify-content-center align-items-center" style="gap: 15.4px;">
+            
+            <div class="pillar-card">
+                <div class="pillar-icon-box">
+                    <i class="fa-solid fa-utensils"></i>
+                </div>
+                <h5 class="fw-bold text-dark mb-2" style="font-size: 16px; letter-spacing: 0.3px;">Hương Vị Tuyệt Đỉnh</h5>
+                <p class="text-muted m-0 lh-base" style="font-size: 13px; text-align: justify; opacity: 0.9;">
+                    Sự kết hợp gia vị bí mật và công thức đế bánh đặc trưng của chúng tôi được tạo ra để kích hoạt sự bùng nổ hương vị trong từng vết cắn. Chúng tôi không bao giờ bằng lòng với từ 'tạm ổn'.
+                </p>
+            </div>
+
+            <div class="pillar-card" style="border-bottom-color: #ff9800 !important;">
+                <div class="pillar-icon-box" style="background-color: #fff9f0; color: #ff9800;">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+                <h5 class="fw-bold text-dark mb-2" style="font-size: 16px; letter-spacing: 0.3px;">Luôn Tươi Mới</h5>
+                <p class="text-muted m-0 lh-base" style="font-size: 13px; text-align: justify; opacity: 0.9;">
+                    Không có tủ đông ở đây. Từ những quả cà chua chín mọng đến bột được nhào nặn mỗi ngày, độ tươi mới là trái tim không thể thỏa hiệp trong căn bếp của chúng tôi.
+                </p>
+            </div>
+
+            <div class="pillar-card" style="border-bottom-color: #0b6623 !important;">
+                <div class="pillar-icon-box" style="background-color: #f0f7f2; color: #0b6623;">
+                    <i class="fa-solid fa-tags"></i>
+                </div>
+                <h5 class="fw-bold text-dark mb-2" style="font-size: 16px; letter-spacing: 0.3px;">Giá Tốt</h5>
+                <p class="text-muted m-0 lh-base" style="font-size: 13px; text-align: justify; opacity: 0.9;">
+                    Chất lượng thượng hạng không có nghĩa là đắt đỏ. Chúng tôi đã tối ưu hóa quy trình để mang lại trải nghiệm ăn uống cao cấp với giá trị mỗi ngày.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <!-- ========================================== -->
+    <!-- 4.6. KHÔNG GIAN NHÀ HÀNG -->
+    <!-- ========================================== -->
+    <section class="container-fluid py-5" style="background-color: #001529;">
+        <div class="container py-3">
+            <div class="row align-items-center g-5">
+                <div class="col-md-5 pe-lg-5">
+                    <span class="text-pizzan-red small text-uppercase fw-bold" style="font-size: 11px; letter-spacing: 1.5px;">TRẢI NGHIỆM</span>
+                    <h2 class="fw-bold text-white mt-1 mb-3" style="font-size: 36px; line-height: 1.3; letter-spacing: 0.5px;">Không Gian<br>Sang Trọng & Ấm Cúng</h2>
+                    <p class="text-white-50 mb-5 lh-base" style="font-size: 14.5px; text-align: justify; padding-right: 15px;">
+                        Nhà hàng PIZZAN mang đến một không gian đậm chất cổ điển pha trộn hiện đại. Từ ánh đèn vàng ấm áp đến những bàn gỗ mộc mạc, mọi thứ đều được thiết kế tỉ mỉ để tạo ra bầu không khí hoàn hảo cho những bữa tối lãng mạn, buổi tụ họp gia đình hay gặp gỡ bạn bè.
+                    </p>
+                    <a href="contact.html" class="btn btn-outline-light px-4 py-2 text-uppercase fw-bold" style="border-radius: 25px !important; font-size: 12px; letter-spacing: 1px;">Đặt Bàn Ngay</a>
+                </div>
+                <div class="col-md-7">
+                    <div class="row g-3">
+                        <div class="col-6 mt-4">
+                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="Restaurant Interior" class="img-fluid rounded shadow-sm w-100" style="height: 320px; object-fit: cover;">
+                        </div>
+                        <div class="col-6">
+                            <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=600&q=80" alt="Restaurant Table" class="img-fluid rounded shadow-sm w-100" style="height: 320px; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 4.5. ĐỘI NGŨ ĐẦU BẾP -->
+    <!-- ========================================== -->
+    <section class="container py-5 mt-4 mb-4">
+        <div class="text-center mb-5">
+            <span class="text-danger small text-uppercase fw-bold" style="font-size: 11px; letter-spacing: 1.5px; color: #e3001b !important;">ĐỘI NGŨ CHUYÊN GIA</span>
+            <h2 class="fw-bold text-dark mt-1" style="font-size: 26px; letter-spacing: 0.5px;">Gặp Gỡ Các Siêu Đầu Bếp</h2>
+            <p class="text-muted mx-auto mt-3" style="max-width: 600px; font-size: 14px;">Những người thổi hồn vào từng món ăn, mang đến trải nghiệm nghệ thuật ẩm thực chuẩn phong cách Ý.</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <!-- Chef 1 -->
+            <div class="col-md-4 col-lg-3 text-center">
+                <div class="position-relative mb-3 d-inline-block rounded-circle overflow-hidden shadow-sm border border-4 border-white" style="width: 200px; height: 200px;">
+                    <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&q=80" alt="Chef Mario" class="img-fluid w-100 h-100" style="object-fit: cover;">
+                </div>
+                <h5 class="fw-bold text-dark mb-1">Mario Rossi</h5>
+                <p class="text-pizzan-red fw-bold small text-uppercase mb-2" style="letter-spacing: 1px;">Bếp Trưởng Điều Hành</p>
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                    <a href="#" class="text-muted hover-pizzan-red transition-colors"><i class="fa-brands fa-facebook fs-5"></i></a>
+                    <a href="#" class="text-muted hover-pizzan-red transition-colors"><i class="fa-brands fa-instagram fs-5"></i></a>
+                </div>
+            </div>
+            <!-- Chef 2 -->
+            <div class="col-md-4 col-lg-3 text-center">
+                <div class="position-relative mb-3 d-inline-block rounded-circle overflow-hidden shadow-sm border border-4 border-white" style="width: 200px; height: 200px;">
+                    <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=400&q=80" alt="Chef Luigi" class="img-fluid w-100 h-100" style="object-fit: cover;">
+                </div>
+                <h5 class="fw-bold text-dark mb-1">Luigi Bianco</h5>
+                <p class="text-pizzan-red fw-bold small text-uppercase mb-2" style="letter-spacing: 1px;">Chuyên Gia Bánh Pizza</p>
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                    <a href="#" class="text-muted hover-pizzan-red transition-colors"><i class="fa-brands fa-twitter fs-5"></i></a>
+                    <a href="#" class="text-muted hover-pizzan-red transition-colors"><i class="fa-brands fa-instagram fs-5"></i></a>
+                </div>
+            </div>
+            <!-- Chef 3 -->
+            <div class="col-md-4 col-lg-3 text-center">
+                <div class="position-relative mb-3 d-inline-block rounded-circle overflow-hidden shadow-sm border border-4 border-white" style="width: 200px; height: 200px;">
+                    <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=400&q=80" alt="Chef Anna" class="img-fluid w-100 h-100" style="object-fit: cover;">
+                </div>
+                <h5 class="fw-bold text-dark mb-1">Anna Ferrari</h5>
+                <p class="text-pizzan-red fw-bold small text-uppercase mb-2" style="letter-spacing: 1px;">Chuyên Gia Bánh Ngọt</p>
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                    <a href="#" class="text-muted hover-pizzan-red transition-colors"><i class="fa-brands fa-facebook fs-5"></i></a>
+                    <a href="#" class="text-muted hover-pizzan-red transition-colors"><i class="fa-brands fa-instagram fs-5"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================================== -->
+<!-- 5. BANNER ĐỎ: TASTE AUTHENTIC (ĐÃ FIX CHUẨN ĐÉT KÍCH THƯỚC 1367x144 FIGMA) -->
+<!-- ========================================================================== -->
+<section class="container-fluid taste-banner m-0 p-0">
+    <div class="taste-bg-text">TASTE AUTHENTIC</div>
+    <div class="container" style="max-width: 1240px; position: relative; z-index: 5;">
+        <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+            <h4 class="fw-bold text-white m-0" style="font-size: 20px; letter-spacing: 0.3px;">
+                Thèm Chiếc Pizza Ngon Nhất Thị Trấn?
+            </h4>
+            <div class="d-flex align-items-center gap-3">
+                <a href="menu.html" class="btn btn-view-menu text-uppercase">XEM THỰC ĐƠN</a>
+                <a href="contact.html" class="btn btn-locate-store text-uppercase">TÌM CỬA HÀNG</a>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- ========================================== -->
+    <!-- 6. FOOTER CHÂN TRANG DÙNG CHUNG HỆ THỐNG -->
+    <!-- ========================================== -->
+<footer class="pizzan-footer py-5 mt-0" style="background-color: #001529;">
+    <div class="container text-white small">
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">PIZZAN</h5>
+                    <p class="text-white-50 small">Chế tác những chiếc pizza tuyệt hảo nhất thế giới từ 1995. Nguyên liệu tươi mới, đầu bếp đam mê và tình yêu với truyền thống nước Ý.</p>
+                    <div class="d-flex gap-3 fs-5 mt-3">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Liên Kết Nhanh</h5>
+                    <ul class="list-unstyled d-grid gap-2">
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">Câu Chuyện</a></li>
+                        <li><a href="#">Nhượng Quyền</a></li>
+                        <li><a href="news.html">Tuyển Dụng</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Hỗ Trợ</h5>
+                    <ul class="list-unstyled d-grid gap-2">
+                        <li><a href="#">Chính Sách Bảo Mật</a></li>
+                        <li><a href="#">Điều Khoản Dịch Vụ</a></li>
+                        <li><a href="#">Thông Tin Giao Hàng</a></li>
+                        <li><a href="#">Câu Hỏi Thường Gặp</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Vị Trí</h5>
+                    <p class="text-white-50 m-0"><i class="fa-solid fa-location-dot me-2 text-pizzan-red"></i>123 Đường Pepperoni,<br>Thung Lũng Pizza, CA 90210</p>
+                    <p class="text-white-50 mt-2"><i class="fa-solid fa-phone me-2 text-pizzan-red"></i>+1 (555) PIZZAN-0</p>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25">
+           <div class="text-center text-white-50 small mt-4 pt-4" style="border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px;">
+            © 2026 PIZZAN Restaurant. Đã đăng ký bản quyền.
+        </div>
+    </div>
+        </div>
+    </footer>
+
+    <!-- Nhúng JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/global.js"></script>
+</body>
+</html>

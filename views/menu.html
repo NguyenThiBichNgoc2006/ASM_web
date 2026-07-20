@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - PIZZAN Restaurant</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/menu.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg pizzan-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-white fs-3" href="index.html" style="letter-spacing: 1px;">
+                <span class="text-pizzan-red">PIZ</span>ZAN
+            </a>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto gap-2">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Trang Chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Giới Thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="menu.html">Thực Đơn</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">Tin Tức</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Liên Hệ</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+    
+                    <form action="menu.html" method="get" class="position-relative d-none d-xl-block" style="width: 180px;">
+                        <input type="text" name="q" class="form-control bg-dark border-secondary text-white form-control-sm ps-4" placeholder="Tìm kiếm pizza..." style="border-radius: 20px !important; background-color: rgba(255,255,255,0.05) !important;">
+                        <i onclick="this.closest('form').submit()" style="cursor: pointer;" class="fa-solid fa-magnifying-glass position-absolute start-0 top-50 translate-middle-y ms-2 text-white-50" style="font-size: 12px;"></i>
+                    </form>
+
+                    <a href="#" class="text-white fs-5 px-1 hover-pizzan-red" onclick="showGlobalMessage('Tính năng wishlist đang được phát triển.', 'info')">
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+
+                    <a href="cart.html" class="text-white position-relative cart-icon-wrapper fs-5 px-1 me-2">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                        <span id="globalCartBadge" class="cart-badge">0</span>
+                    </a>
+
+                    <div id="globalAuthArea" class="me-2">
+                        <a href="login.html" class="text-white text-decoration-none small fw-bold">Đăng Nhập</a>
+                    </div>
+
+                    <a href="menu.html" class="btn btn-pizzan-red btn-sm fw-bold px-3 py-2 text-uppercase text-white" style="border-radius: 20px !important; font-size: 13px; letter-spacing: 0.5px;">
+                        ĐẶT HÀNG NGAY
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="menu-hero text-white mb-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <span class="text-pizzan-red small text-uppercase fw-bold tracking-wider" style="letter-spacing: 2px;">Thực Đơn Đích Thực Của Chúng Tôi</span>
+                    <h1 class="large-headline fw-bold mt-2 mb-3">Khám phá Hương vị Đích thực của <span class="text-pizzan-red">Pizzan</span></h1>
+                    <p class="body-large text-white-50 mb-4">Làm thủ công với nguyên liệu tươi mới, nướng trong lò truyền thống và giao hàng bằng đam mê. Hãy khám phá lát bánh yêu thích mới của bạn ngay hôm nay.</p>
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
+                        <i class="fa-solid fa-star text-warning"></i>
+                        <i class="fa-solid fa-star text-warning"></i>
+                        <i class="fa-solid fa-star text-warning"></i>
+                        <i class="fa-solid fa-star text-warning"></i>
+                        <i class="fa-solid fa-star text-warning"></i>
+                        <span class="small text-white-50 ms-2">(Hơn 500 Đánh Giá Tốt)</span>
+                    </div>
+                </div>
+                <div class="col-md-6 d-none d-md-block text-center position-relative">
+                    <img src="../assets/images/steak-hero.png" alt="Featured Dish" class="img-fluid rounded-circle shadow-lg" style="max-width: 400px; border: 8px solid rgba(255,255,255,0.05);">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="container mb-5">
+        <div class="d-flex flex-wrap justify-content-center gap-2" id="categoryFilterGroup">
+        <button class="btn filter-btn active" onclick="filterCategory('all', this)">Tất Cả</button>
+    </div>
+    </section>
+
+    <main class="container mb-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4" id="menuProductGrid">
+            </div>
+        
+       <div class="text-center mt-5">
+    <button id="btnLoadMore" class="btn btn-outline-danger px-4 py-2 fw-bold" style="border-radius: 20px !important;" onclick="triggerLoadMoreDishes(this)">
+        TẢI THÊM MÓN ĂN
+    </button>
+</div>
+    </main>
+
+    <section class="container mb-5">
+    <div class="promo-banner shadow position-relative" style="background-color: #e3001b; border-radius: 16px; padding: 50px;">
+        <div class="row align-items-center">
+            
+            <div class="col-12 col-md-7 text-center text-md-start text-white">
+                <h2 class="fw-bold display-6 mb-2">Đơn Hàng Đầu Tiên Giảm 20%</h2>
+                <p class="mb-4 text-white-50" style="max-width: 450px;">Đăng ký nhận bản tin của chúng tôi và nhận mã giảm giá cho lần mua đầu tiên. Cập nhật những hương vị mới nhất!</p>
+                
+                <form class="d-flex flex-column flex-sm-row gap-2" style="max-width: 420px;" onsubmit="event.preventDefault(); showGlobalMessage('🎉 Cảm ơn bạn! Mã giảm giá 20% đã được gửi vào email của bạn.', 'success'); this.reset();">
+                    <input type="email" class="form-control bg-white text-dark py-2 border-0 ps-3" placeholder="Nhập email của bạn" required style="border-radius: 25px !important; height: 46px;">
+                    <button type="submit" class="btn btn-dark px-4 fw-bold text-uppercase" style="border-radius: 25px !important; background-color: #001529; height: 46px; border: none; min-width: 130px;">
+                        Đăng Ký
+                    </button>
+                </form>
+            </div>
+
+           <div class="col-12 col-md-5 d-none d-md-block text-center text-md-end">
+            <img src="../assets/images/garlic-noodles.png" alt="Promo Dish" class="img-fluid floating-dish" style="max-height: 240px; object-fit: contain;">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <footer class="pizzan-footer py-5 mt-5">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">PIZZAN</h5>
+                    <p class="text-white-50 small">Chế tác những chiếc pizza tuyệt hảo nhất thế giới từ 1995. Nguyên liệu tươi mới, đầu bếp đam mê và tình yêu với truyền thống nước Ý.</p>
+                    <div class="d-flex gap-3 fs-5 mt-3">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Liên Kết Nhanh</h5>
+                    <ul class="list-unstyled d-grid gap-2">
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">Câu Chuyện</a></li>
+                        <li><a href="#">Nhượng Quyền</a></li>
+                        <li><a href="news.html">Tuyển Dụng</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Hỗ Trợ</h5>
+                    <ul class="list-unstyled d-grid gap-2">
+                        <li><a href="#">Chính Sách Bảo Mật</a></li>
+                        <li><a href="#">Điều Khoản Dịch Vụ</a></li>
+                        <li><a href="#">Thông Tin Giao Hàng</a></li>
+                        <li><a href="#">Câu Hỏi Thường Gặp</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Vị Trí</h5>
+                    <p class="text-white-50 m-0"><i class="fa-solid fa-location-dot me-2 text-pizzan-red"></i>123 Đường Pepperoni,<br>Thung Lũng Pizza, CA 90210</p>
+                    <p class="text-white-50 mt-2"><i class="fa-solid fa-phone me-2 text-pizzan-red"></i>+1 (555) PIZZAN-0</p>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25">
+            <div class="text-center text-white-50 small mt-3">
+                © 2026 PIZZAN Restaurant. Đã đăng ký bản quyền.
+            </div>
+        </div>
+    </footer>
+
+    <div id="customToast" class="position-fixed bottom-0 end-0 m-4 p-3 rounded-3 shadow text-white fw-bold d-none animate-toast" style="z-index: 9999; background-color: #e3001b; min-width: 250px;">
+    <div class="d-flex align-items-center gap-2">
+        <i class="fa-solid fa-circle-check fs-5"></i>
+        <span id="toastNội Dung Tin Nhắn">Thêm vào giỏ hàng thành công!</span>
+    </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/global.js"></script>
+    <script src="../js/menu-cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News - PIZZAN Restaurant</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/news.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg pizzan-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-white fs-3" href="index.html"><span class="text-pizzan-red">PIZ</span>ZAN</a>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><i class="fa-solid fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto gap-2">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Trang Chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Giới Thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menu.html">Thực Đơn</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="news.html" style="border-bottom: 2px solid #e3001b;">Tin Tức</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Liên Hệ</a></li>
+                </ul>
+                
+                <div class="d-flex align-items-center gap-3">
+                    <form action="menu.html" method="get" class="position-relative d-none d-xl-block">
+                        <input type="text" name="q" class="nav-search-box" placeholder="Tìm kiếm pizza...">
+                        <i onclick="this.closest('form').submit()" style="cursor: pointer; font-size: 12px;" class="fa-solid fa-magnifying-glass position-absolute start-0 top-50 translate-middle-y ms-2 text-white-50"></i>
+                    </form>
+                    <a href="#" class="text-white fs-5 px-1 hover-pizzan-red"><i class="fa-regular fa-heart"></i></a>
+                    <a href="cart.html" class="text-white position-relative cart-icon-wrapper fs-5 px-1 me-2">
+                        <i class="fa-solid fa-basket-shopping"></i><span id="globalCartBadge" class="cart-badge">3</span>
+                    </a>
+                    <div id="globalAuthArea" class="me-2"><a href="login.html" class="text-white text-decoration-none small fw-bold">Đăng Nhập</a></div>
+                    <a href="menu.html" class="btn btn-pizzan-red btn-sm fw-bold px-3 py-2 text-uppercase text-white" style="border-radius: 20px !important; font-size: 13px;">ĐẶT HÀNG</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="news-hero" style="background: linear-gradient(rgba(10, 11, 16, 0.6), rgba(10, 11, 16, 0.9)), url('../assets/images/news_banner_bg.png') no-repeat center center / cover; padding: 120px 0 80px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="container text-center">
+            <span class="text-danger small text-uppercase fw-bold" style="font-size: 11px; letter-spacing: 2px; color: #e3001b !important; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">CẬP NHẬT MỚI NHẤT</span>
+            <h1 class="display-5 fw-bold mt-2 mb-3" style="letter-spacing: 0.5px; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Câu Chuyện Ẩm Thực</h1>
+            <p class="mx-auto text-white-50 small m-0" style="max-width: 580px; line-height: 1.6; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
+                Khám phá bí mật đằng sau lớp bột bánh, niềm đam mê của các đầu bếp và những tin tức mới nhất từ gian bếp PIZZAN.
+            </p>
+        </div>
+    </header>
+
+    <div class="container py-4 mt-3" style="position:relative; z-index:1;">
+        <div class="d-flex justify-content-center flex-wrap gap-2" id="newsTabsContainer">
+            <button class="news-tab-btn active" onclick="filterNewsMenu('all', this)">TẤT CẢ TIN TỨC</button>
+        </div>
+    </div>
+
+    <div class="container py-2" id="featuredPostSection" style="position:relative; z-index:1;"></div>
+
+    <div class="container py-4" style="position:relative; z-index:1;">
+        <div class="row g-4 justify-content-center" id="newsCardsGrid"></div>
+    </div>
+
+    <div class="container mb-5 pt-2">
+        <div class="d-flex justify-content-center align-items-center gap-2" id="paginationContainer">
+            <!-- Pagination items will be injected here -->
+        </div>
+    </div>
+
+    <section class="container-fluid subscribe-news-banner m-0">
+        <div class="container">
+            <div class="row align-items-center g-4">
+                <div class="col-12 col-lg-7">
+                    <h4 class="fw-bold text-white mb-2" style="font-size: 22px;">Đừng Bỏ Lỡ Bất Kỳ Tin Tức Nào</h4>
+                    <p class="text-white-50 small m-0">Đăng ký nhận bản tin của chúng tôi và nhận giảm giá 20% cho đơn hàng đầu tiên cùng những cập nhật độc quyền.</p>
+                </div>
+                <div class="col-12 col-lg-5 d-flex justify-content-lg-end">
+                    <div class="d-flex w-100 justify-content-md-start justify-content-lg-end" style="max-width: 450px;">
+                        <input type="email" class="form-control sub-input" placeholder="Địa chỉ Email của bạn">
+                        <button class="btn sub-btn text-uppercase" type="button">ĐĂNG KÝ NGAY</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12 text-lg-end text-white-50" style="font-size: 10px; opacity: 0.4; padding-right: 15px;">
+                    Bằng cách bấm Đăng ký, bạn đồng ý với Chính sách Bảo mật của chúng tôi.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <script>
+        let ALL_NEWS_ARTICLES = [];
+
+        async function fetchArticles() {
+            try {
+                const res = await fetch('/api/articles');
+                if (res.ok) {
+                    ALL_NEWS_ARTICLES = await res.json();
+                    generateNewsTabs();
+                } else {
+                    console.error("Lỗi khi tải bài viết từ máy chủ");
+                }
+            } catch (error) {
+                console.error("Lỗi kết nối MongoDB:", error);
+            }
+        }
+
+        let CURRENT_PAGE = 1;
+        const ITEMS_PER_PAGE = 6;
+        let FILTERED_ARTICLES = [];
+
+        
+        function generateNewsTabs() {
+            const tabsContainer = document.getElementById('newsTabsContainer');
+            if (!tabsContainer) return;
+            const uniqueCats = [...new Set(ALL_NEWS_ARTICLES.map(a => a.category))].filter(Boolean);
+            let html = `<button class="news-tab-btn active" onclick="filterNewsMenu('all', this)">TẤT CẢ TIN TỨC</button>`;
+            uniqueCats.forEach(c => {
+                const cName = formatCategoryGlobal(c).toUpperCase();
+                html += `<button class="news-tab-btn" onclick="filterNewsMenu('${c}', this)">${cName}</button>`;
+            });
+            tabsContainer.innerHTML = html;
+        }
+
+        function filterNewsMenu(category, element) {
+            // 1. Đổi active màu đỏ cho nút tab được chọn
+            const tabs = document.querySelectorAll('#newsTabsContainer .news-tab-btn');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            if(element) element.classList.add('active');
+
+            // 2. Xử lý ẩn/hiện khối Bài viết Nổi bật lớn (Chỉ hiển thị ở tab ALL NEWS)
+            const featuredSection = document.getElementById('featuredPostSection');
+            if (category === 'all') {
+                featuredSection.style.display = 'block';
+                featuredSection.innerHTML = `
+                    <div class="featured-post-container">
+                        <div class="row g-0 align-items-center">
+                            <div class="col-12 col-lg-7">
+                                <img src="../assets/images/Blog-2.png" alt="Featured" class="w-100" style="height: 400px; object-fit: cover;">
+                            </div>
+                            <div class="col-12 col-lg-5 p-5">
+                                <div class="d-flex align-items-center gap-3 mb-2">
+                                    <span class="badge bg-danger text-uppercase fw-bold" style="font-size: 9px; padding: 5px 10px; background-color: #e3001b !important;">NỔI BẬT</span>
+                                    <span class="text-muted small"><i class="fa-regular fa-calendar me-1"></i> 15 Tháng 5, 2024</span>
+                                </div>
+                                <h3 class="fw-bold text-dark mb-3" style="font-size: 24px; line-height: 1.3;">Nghệ thuật của lớp vỏ hoàn hảo: Trải qua 72 giờ</h3>
+                                <p class="text-secondary small lh-base mb-4" style="text-align: justify;">Tìm hiểu tại sao quá trình lên men của chúng tôi là thành phần bí mật giúp bột PIZZAN xốp hơn, giòn hơn và ngon hơn bất kỳ nơi nào khác.</p>
+                                <a href="news-detail.html" class="fw-bold text-decoration-none small text-danger d-inline-flex align-items-center gap-1" style="color: #e3001b;">ĐỌC ĐẦY ĐỦ <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                featuredSection.innerHTML = '';
+                featuredSection.style.display = 'none'; 
+            }
+
+            // 3. Lọc danh sách bài viết phụ theo danh mục
+            FILTERED_ARTICLES = category === 'all' ? ALL_NEWS_ARTICLES : ALL_NEWS_ARTICLES.filter(art => art.category === category);
+            CURRENT_PAGE = 1;
+            renderNewsPage();
+        }
+
+        function renderNewsPage() {
+            const gridContainer = document.getElementById('newsCardsGrid');
+            gridContainer.innerHTML = '';
+
+            const startIdx = (CURRENT_PAGE - 1) * ITEMS_PER_PAGE;
+            const endIdx = startIdx + ITEMS_PER_PAGE;
+            const itemsToShow = FILTERED_ARTICLES.slice(startIdx, endIdx);
+
+            itemsToShow.forEach(item => {
+                let badgeStyle = item.badge === 'LIVE' || item.badge === 'HOT' ? 'background-color: #e3001b;' : 'background-color: #ff9800;';
+                if(item.badge === 'ECO') badgeStyle = 'background-color: #0b6623;';
+
+                const cardHTML = `
+                    <div class="col-12 col-md-4">
+                        <div class="news-card">
+                            <div class="position-relative">
+                                <img src="${item.image || item.img}" alt="News image" class="w-100" style="height: 200px; object-fit: cover; object-position: center;">
+                                ${item.badge ? `<span class="card-badge-tag" style="${badgeStyle}">${item.badge}</span>` : ''}
+                            </div>
+                            <div class="p-4 d-flex flex-column flex-grow-1">
+                                <span class="text-muted small mb-2 d-block" style="font-size: 11px;">${item.date}</span>
+                                <h5 class="fw-bold text-dark mb-2" style="font-size: 16px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 44px;">${item.title}</h5>
+                                <p class="text-muted small lh-sm mb-4" style="text-align: justify; flex-grow: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">${item.excerpt}</p>
+                                <div class="text-center mt-auto">
+                                    <a href="news-detail.html?id=${item._id || item.id}" class="btn-read-more">ĐỌC TIẾP ➔</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                gridContainer.insertAdjacentHTML('beforeend', cardHTML);
+            });
+
+            renderPagination();
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(FILTERED_ARTICLES.length / ITEMS_PER_PAGE);
+            const container = document.getElementById('paginationContainer');
+            container.innerHTML = '';
+            
+            if(totalPages <= 1) return;
+
+            let html = `<a href="#" onclick="changeNewsPage(event, ${CURRENT_PAGE - 1})" class="news-page-link ${CURRENT_PAGE === 1 ? 'disabled' : ''}"><i class="fa-solid fa-chevron-left" style="font-size: 10px;"></i></a>`;
+            for(let i = 1; i <= totalPages; i++) {
+                html += `<a href="#" onclick="changeNewsPage(event, ${i})" class="news-page-link ${CURRENT_PAGE === i ? 'active' : ''}">${i}</a>`;
+            }
+            html += `<a href="#" onclick="changeNewsPage(event, ${CURRENT_PAGE + 1})" class="news-page-link ${CURRENT_PAGE === totalPages ? 'disabled' : ''}"><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i></a>`;
+            
+            container.innerHTML = html;
+        }
+
+        function changeNewsPage(e, page) {
+            e.preventDefault();
+            const totalPages = Math.ceil(FILTERED_ARTICLES.length / ITEMS_PER_PAGE);
+            if(page < 1 || page > totalPages) return;
+            CURRENT_PAGE = page;
+            renderNewsPage();
+            const section = document.getElementById('featuredPostSection').style.display !== 'none' 
+                            ? document.getElementById('featuredPostSection') 
+                            : document.getElementById('newsCardsGrid');
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Tự động tải bài viết và khởi chạy nạp tab ALL NEWS ngay khi mở trang
+        document.addEventListener("DOMContentLoaded", async function() {
+            await fetchArticles();
+            filterNewsMenu('all', document.querySelector('#newsTabsContainer .active'));
+        });
+    </script>
+
+
+    <footer class="pizzan-footer py-5" style="background-color: #001529; border-top: 1px solid rgba(255,255,255,0.02);">
+       <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">PIZZAN</h5>
+                    <p class="text-white-50 small">Chế tác những chiếc pizza tuyệt hảo nhất thế giới từ 1995. Nguyên liệu tươi mới, đầu bếp đam mê và tình yêu với truyền thống nước Ý.</p>
+                    <div class="d-flex gap-3 fs-5 mt-3">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Liên Kết Nhanh</h5>
+                    <ul class="list-unstyled d-grid gap-2">
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">Câu Chuyện</a></li>
+                        <li><a href="#">Nhượng Quyền</a></li>
+                        <li><a href="news.html">Tuyển Dụng</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Hỗ Trợ</h5>
+                    <ul class="list-unstyled d-grid gap-2">
+                        <li><a href="#">Chính Sách Bảo Mật</a></li>
+                        <li><a href="#">Điều Khoản Dịch Vụ</a></li>
+                        <li><a href="#">Thông Tin Giao Hàng</a></li>
+                        <li><a href="#">Câu Hỏi Thường Gặp</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Vị Trí</h5>
+                    <p class="text-white-50 m-0"><i class="fa-solid fa-location-dot me-2 text-pizzan-red"></i>123 Đường Pepperoni,<br>Thung Lũng Pizza, CA 90210</p>
+                    <p class="text-white-50 mt-2"><i class="fa-solid fa-phone me-2 text-pizzan-red"></i>+1 (555) PIZZAN-0</p>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25">
+            <div class="text-center text-white-50 small mt-3">
+                © 2026 PIZZAN Restaurant. Đã đăng ký bản quyền.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/global.js"></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+/* Ép ảnh trong card tin tức phụ phụ vừa vặn, không bị phóng to che mất hình */
+        .news-card .position-relative img {
+            width: 100% !important;
+            height: 200px !important;     /* Cố định chiều cao vừa vặn theo tỉ lệ card */
+            object-fit: cover !important;  /* Giúp ảnh tự co giãn thông minh không bị méo */
+            object-position: center !important; /* Luôn giữ trọng tâm bức ảnh ở chính giữa */
+            display: block;
+        }
+        body {
+            background-color: #fcf9f4; /* Màu nền kem nhạt toàn hệ thống */
+        }
+        
+        /* 1. Thanh Search trên Navbar */
+        .nav-search-box {
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 6px 15px;
+            color: #ffffff;
+            font-size: 13px;
+            outline: none;
+            width: 180px;
+        }
+        .nav-search-box::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* 2. Hero Banner */
+        .news-hero {
+            background-image: linear-gradient(to bottom, rgba(0, 21, 41, 0.8), rgba(0, 21, 41, 0.75)), url('assets/images/pizza-bg.png');
+            background-size: cover;
+            background-position: center;
+            height: 320px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* 3. Button lọc danh mục tin */
+        .news-tab-btn {
+            background-color: #eee9e4;
+            color: #495057;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border-radius: 20px !important;
+            padding: 8px 20px !important;
+            border: none;
+            transition: all 0.2s ease;
+        }
+        .news-tab-btn.active {
+            background-color: #e3001b !important;
+            color: #ffffff !important;
+        }
+
+        /* 4. Khối bài viết nổi bật (Featured Post) */
+        .featured-post-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 21, 41, 0.03);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.015);
+        }
+
+        /* 5. Khối Card tin tức phụ */
+        .news-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 21, 41, 0.03);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.015);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-badge-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            color: #ffffff;
+            z-index: 2;
+        }
+
+        /* 6. Nút Read More bo viền tròn */
+        .btn-read-more {
+            border: 1px solid rgba(227, 0, 27, 0.3) !important;
+            color: #e3001b !important;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 20px !important;
+            padding: 8px 25px !important;
+            background: none;
+            transition: all 0.2s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn-read-more:hover {
+            background-color: #e3001b !important;
+            color: #ffffff !important;
+        }
+
+        /* 7. Phân trang */
+        .news-page-link {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50% !important;
+            border: 1px solid rgba(0,21,41,0.06);
+            color: #001529;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            background-color: #ffffff;
+        }
+        .news-page-link.active {
+            background-color: #e3001b !important;
+            color: #ffffff !important;
+            border-color: #e3001b !important;
+        }
+
+        /* 8. Banner Đăng ký nhận tin */
+        .subscribe-news-banner {
+            background-color: #001529;
+            color: #ffffff;
+            padding: 45px 0;
+        }
+        .sub-input {
+            border-radius: 25px 0 0 25px !important;
+            border: 1px solid rgba(255,255,255,0.1) !important;
+            background-color: rgba(255,255,255,0.05) !important;
+            padding: 12px 25px !important;
+            color: #ffffff !important;
+            font-size: 14px;
+            width: 320px;
+            outline: none;
+        }
+        .sub-input::placeholder {
+            color: rgba(255,255,255,0.3);
+        }
+        .sub-btn {
+            background-color: #e3001b !important;
+            color: #ffffff !important;
+            font-weight: bold;
+            border-radius: 0 25px 25px 0 !important;
+            padding: 0 25px;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            border: none;
+        }

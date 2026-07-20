@@ -1,0 +1,108 @@
+body {
+            background-color: #fcf9f4; /* Nền màu kem nhạt đồng bộ */
+        }
+
+        /* 1. Khối Hero Banner tối màu */
+         .about-hero {
+            background-color: #001529;
+            color: #ffffff;
+            height: 320px; /* Khóa đúng chiều cao 320px theo ảnh đo */
+            text-align: center;
+            display: flex;
+            align-items: center; /* Căn giữa nội dung chữ theo chiều dọc */
+            justify-content: center;
+}
+
+            /* 2. Khối nội dung Our Journey */
+        .journey-dark-box {
+        background-color: #001529;
+        border-radius: 12px;
+        width: 596px;       /* Cố định chiều rộng theo Figma */
+        height: 176px;      /* Cố định chiều cao theo Figma */
+        padding: 20px 25px; /* Giảm padding một chút để vừa vặn với chiều cao 176px */
+        color: #ffffff;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Căn giữa nội dung theo chiều dọc */
+}
+      
+
+.pillar-card {
+    background-color: #ffffff;
+    width: 384px;        /* Đúng kích thước chiều rộng Figma */
+    height: 326.4px;     /* Đúng kích thước chiều cao Figma */
+    border-radius: 24px; /* Đúng bo góc Radius 24px theo thông số */
+    padding: 40px;       /* Đúng thông số Padding 40px */
+    border: 1px solid rgba(0, 21, 41, 0.04);
+    border-bottom: 4px solid #e3001b !important; /* Viền bottom dày 4px màu đỏ đô thương hiệu */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.015);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: transform 0.2s ease;
+}
+.pillar-card:hover {
+    transform: translateY(-5px);
+}
+.pillar-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background-color: #fff0f1;
+    color: #e3001b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 24px;
+}
+
+       /* 5. Khối Banner Đỏ - Khóa cứng chuẩn kích thước 1367x144 theo Figma */
+.taste-banner {
+    background-color: #e3001b; /* Màu đỏ thương hiệu nguyên bản */
+    height: 144px;             /* Chiều cao cố định chuẩn Figma */
+    position: relative;
+    overflow: hidden;
+    padding-top: 48px;         /* Padding top 48px */
+    padding-bottom: 48px;      /* Padding bottom 48px */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+.taste-bg-text {
+    position: absolute;
+    font-size: 110px;          /* Tăng size chữ to lớn tràn khung */
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.22); /* Màu chữ chìm hồng sáng nổi rõ trên nền đỏ */
+    white-space: nowrap;
+    top: 52%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    letter-spacing: 2px;
+    pointer-events: none;
+    user-select: none;
+    font-family: 'Arial Black', Impact, sans-serif;
+}
+.btn-view-menu {
+    background-color: #ffffff !important;
+    color: #e3001b !important;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    border-radius: 20px !important;
+    padding: 10px 24px !important;
+    border: none !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.btn-locate-store {
+    background-color: #001529 !important; /* Màu xanh Navy tối giống navbar */
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    border-radius: 20px !important;
+    padding: 10px 24px !important;
+    border: none !important;
+}

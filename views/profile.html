@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ Sơ Cá Nhân - PIZZAN Restaurant</title>
+    <meta name="description" content="Quản lý thông tin tài khoản, lịch sử đơn hàng và điểm thưởng của bạn tại PIZZAN.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <style>
+        /* Tab menu sidebar */
+        .profile-tab-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 16px;
+            border-radius: 10px;
+            color: #555;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+        }
+        .profile-tab-link:hover { background: #f5f5f5; color: #e3001b; }
+        .profile-tab-link.active { background: #fff0f1; color: #e3001b; }
+        .profile-tab-link i { width: 18px; text-align: center; }
+
+        /* Section panels */
+        .profile-panel { display: none; }
+        .profile-panel.active { display: block; }
+
+        /* Form inputs */
+        .profile-form-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #888;
+            margin-bottom: 6px;
+        }
+        .profile-form-control {
+            border: 1.5px solid #e8e8e8;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+            background: #fafafa;
+        }
+        .profile-form-control:focus {
+            border-color: #e3001b;
+            box-shadow: 0 0 0 3px rgba(227,0,27,0.08);
+            background: #fff;
+        }
+        .profile-form-control:disabled {
+            background: #f0f0f0;
+            color: #aaa;
+            cursor: not-allowed;
+        }
+        .btn-save-profile {
+            background: #e3001b;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 11px 32px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .btn-save-profile:hover { background: #b8001a; color: #fff; transform: translateY(-1px); }
+        .btn-save-profile:active { transform: translateY(0); }
+
+        /* Avatar upload */
+        .avatar-wrapper { position: relative; display: inline-block; margin-bottom: 12px; }
+        .avatar-img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid #e3001b; }
+        .avatar-edit-btn {
+            position: absolute; bottom: 2px; right: 2px;
+            width: 28px; height: 28px; border-radius: 50%;
+            background: #e3001b; color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px; cursor: pointer;
+            border: 2px solid #fff;
+            transition: background 0.2s;
+        }
+        .avatar-edit-btn:hover { background: #b8001a; }
+        #avatarFileInput { display: none; }
+
+        /* Password toggle */
+        .password-input-wrapper { position: relative; }
+        .password-input-wrapper .toggle-pw {
+            position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+            cursor: pointer; color: #aaa; font-size: 14px;
+            transition: color 0.2s;
+        }
+        .password-input-wrapper .toggle-pw:hover { color: #e3001b; }
+
+        /* Status badge */
+        .status-badge { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; }
+        .status-delivered { background: #e6f9f0; color: #1a9e5a; }
+        .status-inprogress { background: #fff5e0; color: #e07a00; }
+        .status-cancelled { background: #ffeaea; color: #e3001b; }
+
+        /* Order history items */
+        .order-history-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        .order-history-item:last-child { border-bottom: none; }
+        .order-item-img { width: 56px; height: 56px; border-radius: 10px; object-fit: cover; }
+
+        /* Points card */
+        .points-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #3d0a0a 100%);
+            border-radius: 18px; padding: 28px; color: #fff;
+            position: relative; overflow: hidden;
+        }
+        .points-card::before {
+            content: ''; position: absolute; top: -30px; right: -30px;
+            width: 120px; height: 120px; border-radius: 50%;
+            background: rgba(227,0,27,0.15);
+        }
+        .member-card { background: #fff; border-radius: 18px; padding: 24px; border: 1.5px solid #f0f0f0; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .gold-star-icon { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg,#f5c518,#e8a000); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; margin-bottom: 12px; }
+        .btn-redeem { background: #fff; color: #e3001b; border: none; border-radius: 8px; padding: 8px 22px; font-weight: 700; font-size: 13px; transition: background 0.2s; }
+        .btn-redeem:hover { background: #ffe8ea; }
+        .btn-order-action { background: #f5f5f5; color: #333; border: none; border-radius: 8px; padding: 7px 16px; font-size: 12px; font-weight: 700; white-space: nowrap; transition: background 0.2s; }
+        .btn-order-action:hover { background: #ebebeb; }
+        .btn-order-track { background: #fff5e0; color: #e07a00; }
+        .btn-order-track:hover { background: #ffe9b0; }
+
+        /* Section card */
+        .profile-section-card { background: #fff; border-radius: 18px; padding: 28px; border: 1.5px solid #f0f0f0; margin-bottom: 24px; }
+        .section-title { font-size: 20px; font-weight: 800; letter-spacing: -0.3px; color: #111; margin-bottom: 20px; }
+
+        /* Divider */
+        .form-divider { border: none; border-top: 1.5px solid #f0f0f0; margin: 20px 0; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg pizzan-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-white fs-3" href="index.html"><span class="text-pizzan-red">PIZ</span>ZAN</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto gap-2">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Trang Chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Giới Thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menu.html">Thực Đơn</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">Tin Tức</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Liên Hệ</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <form action="menu.html" method="get" class="position-relative d-none d-xl-block" style="width: 180px;">
+                        <input type="text" name="q" class="form-control bg-dark border-secondary text-white form-control-sm ps-4" placeholder="Tìm kiếm pizza..." style="border-radius: 20px !important;">
+                        <i onclick="this.closest('form').submit()" style="cursor: pointer;" class="fa-solid fa-magnifying-glass position-absolute start-0 top-50 translate-middle-y ms-2 text-white-50"></i>
+                    </form>
+                    <a href="#" class="text-white fs-5 px-1"><i class="fa-regular fa-heart"></i></a>
+                    <a href="cart.html" class="text-white position-relative fs-5 px-1 me-2">
+                        <i class="fa-solid fa-basket-shopping"></i><span id="globalCartBadge" class="cart-badge">0</span>
+                    </a>
+                    <div id="globalAuthArea" class="me-2">
+                        <a href="login.html" class="text-white text-decoration-none small fw-bold">Đăng Nhập</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5 py-2" style="max-width: 1240px; min-height: 700px;">
+        <div class="row g-4">
+
+            <!-- SIDEBAR -->
+            <div class="col-12 col-lg-3">
+                <div class="profile-sidebar text-center">
+                    <!-- Avatar -->
+                    <div class="avatar-wrapper">
+                        <img src="../assets/images/avatar.jpg" alt="Ảnh đại diện" class="avatar-img" id="userAvatar">
+                        <div class="avatar-edit-btn" id="avatarEditBtn" title="Đổi ảnh đại diện">
+                            <i class="fa-solid fa-pencil"></i>
+                        </div>
+                    </div>
+                    <input type="file" id="avatarFileInput" accept="image/*">
+                    <h5 class="fw-bold text-dark m-0 mb-1" id="userNameDisplay">Thành Viên</h5>
+                    <p class="text-muted small mb-4" id="userEmailDisplay">member@pizzan.com</p>
+
+                    <!-- Navigation tabs -->
+                    <div class="text-start pt-2">
+                        <button class="profile-tab-link active" data-tab="tab-info">
+                            <i class="fa-regular fa-user"></i> Thông Tin Cá Nhân
+                        </button>
+                        <button class="profile-tab-link" data-tab="tab-orders">
+                            <i class="fa-solid fa-box-open"></i> Lịch Sử Đơn Hàng
+                        </button>
+                        <button class="profile-tab-link" data-tab="tab-points">
+                            <i class="fa-regular fa-star"></i> Điểm Thưởng
+                        </button>
+                        <button class="profile-tab-link" data-tab="tab-password">
+                            <i class="fa-solid fa-lock"></i> Đổi Mật Khẩu
+                        </button>
+                        <hr style="color: rgba(0,0,0,0.06); margin: 16px 0;">
+                        <button class="profile-tab-link text-danger" id="btnLogoutAction">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng Xuất
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <div class="col-12 col-lg-9">
+
+                <!-- ===== TAB: THÔNG TIN CÁ NHÂN ===== -->
+                <div class="profile-panel active" id="tab-info">
+                    <div class="profile-section-card">
+                        <h4 class="section-title"><i class="fa-regular fa-user me-2 text-pizzan-red"></i>Thông Tin Cá Nhân</h4>
+                        <form id="formUpdateProfile">
+                            <div class="row g-3">
+                                <div class="col-12 col-md-6">
+                                    <label class="profile-form-label">Họ và Tên <span class="text-danger">*</span></label>
+                                    <input type="text" id="profileName" class="form-control profile-form-control" placeholder="Nhập họ và tên" required>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="profile-form-label">Email</label>
+                                    <input type="email" id="profileEmail" class="form-control profile-form-control" disabled>
+                                    <small class="text-muted" style="font-size:11px;">Email không thể thay đổi</small>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="profile-form-label">Số Điện Thoại</label>
+                                    <input type="tel" id="profilePhone" class="form-control profile-form-control" placeholder="Ví dụ: 0901234567">
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="profile-form-label">Vai Trò</label>
+                                    <input type="text" id="profileRole" class="form-control profile-form-control" disabled>
+                                </div>
+                                <div class="col-12">
+                                    <label class="profile-form-label">Địa Chỉ Giao Hàng</label>
+                                    <textarea id="profileAddress" class="form-control profile-form-control" rows="2" placeholder="Nhập địa chỉ giao hàng của bạn"></textarea>
+                                </div>
+                            </div>
+                            <div class="mt-4 d-flex align-items-center gap-3">
+                                <button type="submit" class="btn-save-profile">
+                                    <i class="fa-solid fa-floppy-disk me-2"></i>Lưu Thay Đổi
+                                </button>
+                                <span id="profileSaveStatus" class="small text-muted"></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- ===== TAB: LỊCH SỬ ĐƠN HÀNG ===== -->
+                <div class="profile-panel" id="tab-orders">
+                    <div class="profile-section-card">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <h4 class="section-title m-0"><i class="fa-solid fa-box-open me-2 text-pizzan-red"></i>Lịch Sử Đơn Hàng</h4>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-light rounded-pill px-3 py-1 text-muted order-filter-btn active" data-filter="all" style="font-size: 11px; font-weight: 700;">Tất cả</button>
+                                <button class="btn btn-light rounded-pill px-3 py-1 text-muted order-filter-btn" data-filter="delivered" style="font-size: 11px; font-weight: 700;">Đã giao</button>
+                                <button class="btn btn-light rounded-pill px-3 py-1 text-muted order-filter-btn" data-filter="inprogress" style="font-size: 11px; font-weight: 700;">Đang giao</button>
+                            </div>
+                        </div>
+                        <div id="orderHistoryListContainer">
+                            <p class="text-center text-muted small py-4">Đang tải lịch sử đơn hàng...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== TAB: ĐIỂM THƯỞNG ===== -->
+                <div class="profile-panel" id="tab-points">
+                    <div class="row g-4 mb-4">
+                        <div class="col-12 col-md-7">
+                            <div class="points-card">
+                                <span class="small fw-semibold text-white-50 text-uppercase d-block" style="font-size: 10px; letter-spacing: 1px;">SỐ ĐIỂM HIỆN TẠI</span>
+                                <h2 class="fw-bold my-2" style="font-size: 32px;" id="loyaltyPointsDisplay">0 Điểm</h2>
+                                <p class="mb-1" id="pointsMoneyValue" style="font-size:15px;color:#ffb3b3;font-weight:600;">≈ 0đ</p>
+                                <p class="small text-white-50 mb-4" style="max-width: 320px; line-height: 1.4;">
+                                    Mỗi đơn hàng hoàn thành → <strong class="text-white">+10 điểm</strong>. 1 điểm ≡ 10đ.
+                                </p>
+                                <button class="btn btn-redeem" onclick="window.location.href='menu.html'">
+                                    <i class="fa-solid fa-gift me-2"></i>Sử Dụng Điểm Khi Thanh Toán
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-5">
+                            <div class="member-card text-center">
+                                <div class="gold-star-icon"><i class="fa-solid fa-star"></i></div>
+                                <h6 class="fw-bold text-dark m-0 mb-2" style="font-size: 15px;">Quy Đổi Điểm</h6>
+                                <div class="d-grid gap-2 w-100" style="font-size:13px;">
+                                    <div class="d-flex justify-content-between px-2 py-1" style="background:#f9f9f9;border-radius:8px;">
+                                        <span class="text-muted">Đặt đơn thành công</span>
+                                        <span class="fw-bold text-danger">+10 điểm</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between px-2 py-1" style="background:#f9f9f9;border-radius:8px;">
+                                        <span class="text-muted">1 điểm =</span>
+                                        <span class="fw-bold text-success">10đ</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between px-2 py-1" style="background:#f9f9f9;border-radius:8px;">
+                                        <span class="text-muted">10 điểm =</span>
+                                        <span class="fw-bold text-success">100đ</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-section-card">
+                        <h5 class="fw-bold mb-3" style="font-size:15px;"><i class="fa-solid fa-clock-rotate-left me-2 text-pizzan-red"></i>Lịch Sử Tích Điểm</h5>
+                        <div id="rewardHistoryContainer">
+                            <p class="text-center text-muted small py-3">Mở tab để tải lịch sử tích điểm...</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- ===== TAB: ĐỔI MẬT KHẨU ===== -->
+                <div class="profile-panel" id="tab-password">
+                    <div class="profile-section-card">
+                        <h4 class="section-title"><i class="fa-solid fa-lock me-2 text-pizzan-red"></i>Đổi Mật Khẩu</h4>
+                        <form id="formChangePassword" style="max-width: 480px;">
+                            <div class="mb-3">
+                                <label class="profile-form-label">Mật Khẩu Hiện Tại <span class="text-danger">*</span></label>
+                                <div class="password-input-wrapper">
+                                    <input type="password" id="currentPassword" class="form-control profile-form-control" placeholder="Nhập mật khẩu hiện tại">
+                                    <i class="fa-regular fa-eye toggle-pw" data-target="currentPassword"></i>
+                                </div>
+                            </div>
+                            <hr class="form-divider">
+                            <div class="mb-3">
+                                <label class="profile-form-label">Mật Khẩu Mới <span class="text-danger">*</span></label>
+                                <div class="password-input-wrapper">
+                                    <input type="password" id="newPassword" class="form-control profile-form-control" placeholder="Tối thiểu 6 ký tự">
+                                    <i class="fa-regular fa-eye toggle-pw" data-target="newPassword"></i>
+                                </div>
+                                <small class="text-muted" style="font-size:11px;">Mật khẩu phải có ít nhất 6 ký tự.</small>
+                            </div>
+                            <div class="mb-4">
+                                <label class="profile-form-label">Xác Nhận Mật Khẩu Mới <span class="text-danger">*</span></label>
+                                <div class="password-input-wrapper">
+                                    <input type="password" id="confirmNewPassword" class="form-control profile-form-control" placeholder="Nhập lại mật khẩu mới">
+                                    <i class="fa-regular fa-eye toggle-pw" data-target="confirmNewPassword"></i>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <button type="submit" class="btn-save-profile">
+                                    <i class="fa-solid fa-shield-check me-2"></i>Cập Nhật Mật Khẩu
+                                </button>
+                                <span id="passwordSaveStatus" class="small text-muted"></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div><!-- end col-lg-9 -->
+        </div><!-- end row -->
+    </main>
+
+    <footer class="pizzan-footer py-5 mt-5">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">PIZZAN</h5>
+                    <p class="text-white-50 small">Chế tác những chiếc pizza tuyệt hảo nhất thế giới từ 1995. Nguyên liệu tươi mới, đầu bếp đam mê và tình yêu với truyền thống nước Ý.</p>
+                    <div class="d-flex gap-3 fs-5 mt-3">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Liên Kết Nhanh</h5>
+                    <ul class="list-unstyled d-grid gap-2">
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">Câu Chuyện</a></li>
+                        <li><a href="#">Nhượng Quyền</a></li>
+                        <li><a href="news.html">Tuyển Dụng</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Hỗ Trợ</h5>
+                    <ul class="list-unstyled d-grid gap-2">
+                        <li><a href="#">Chính Sách Bảo Mật</a></li>
+                        <li><a href="#">Điều Khoản Dịch Vụ</a></li>
+                        <li><a href="#">Thông Tin Giao Hàng</a></li>
+                        <li><a href="#">Câu Hỏi Thường Gặp</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Vị Trí</h5>
+                    <p class="text-white-50 m-0"><i class="fa-solid fa-location-dot me-2 text-pizzan-red"></i>123 Đường Pepperoni,<br>Thung Lũng Pizza, CA 90210</p>
+                    <p class="text-white-50 mt-2"><i class="fa-solid fa-phone me-2 text-pizzan-red"></i>+1 (555) PIZZAN-0</p>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25">
+            <div class="text-center text-white-50 small mt-3">
+                © 2026 PIZZAN Restaurant. Đã đăng ký bản quyền.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/global.js"></script>
+    <script src="../js/profile.js"></script>
+</body>
+</html>

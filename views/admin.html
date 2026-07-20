@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIZZAN Admin - Bảng Điều Khiển</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<!-- ================================= -->
+     SIDEBAR
+â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â•  -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeMobileSidebar()"></div>
+
+<aside class="admin-sidebar" id="adminSidebar">
+    <div class="sidebar-logo">
+        <h2><span>PIZ</span>ZAN</h2>
+        <p>Admin Dashboard</p>
+    </div>
+
+    <nav class="sidebar-nav">
+        <div class="nav-section-label">Tổng Quan</div>
+        <button class="sidebar-link active" onclick="switchTab('overview')" id="nav-overview">
+            <i class="fa-solid fa-chart-pie"></i> Tổng quan
+        </button>
+
+        <div class="nav-section-label">Quản Lý</div>
+        <button class="sidebar-link" onclick="switchTab('users')" id="nav-users">
+            <i class="fa-solid fa-users"></i> Người dùng
+        </button>
+        <button class="sidebar-link" onclick="switchTab('products')" id="nav-products">
+            <i class="fa-solid fa-box-open"></i> Sản phẩm
+        </button>
+        <button class="sidebar-link" onclick="switchTab('news')" id="nav-news">
+            <i class="fa-solid fa-newspaper"></i> Tin tức
+        </button>
+        <button class="sidebar-link" onclick="switchTab('orders')" id="nav-orders">
+            <i class="fa-solid fa-clipboard-list"></i> Đơn Hàng
+            <span class="badge-dot" id="orderDot" style="display:none"></span>
+        </button>
+        <button class="sidebar-link" onclick="switchTab('contact')" id="nav-contact">
+            <i class="fa-solid fa-envelope"></i> Liên hệ
+            <span class="badge-dot" id="contactDot" style="display:none"></span>
+        </button>
+
+        <div class="nav-section-label">Hệ Thống</div>
+        <a href="index.html" class="sidebar-link" target="_blank">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Xem Website
+        </a>
+    </nav>
+
+    <div class="sidebar-footer">
+        <div style="font-size:10px;color:var(--text-muted);text-align:center;padding:4px 0;letter-spacing:.5px">© 2026 PIZZAN Admin</div>
+    </div>
+</aside>
+
+<!-- ================================= -->
+     HEADER
+â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â•  -->
+<header class="admin-header">
+    <div style="display:flex;align-items:center;gap:12px">
+        <button class="btn-admin btn-admin-ghost mobile-sidebar-btn" onclick="openMobileSidebar()" style="padding:6px 10px">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div style="font-size:11px;font-weight:700;color:#818cf8;text-transform:uppercase;letter-spacing:1px">Bảng điều khiển PIZZAN</div>
+    </div>
+    <div class="header-right">
+        
+        <span class="header-time" id="adminClock"></span>
+        <div style="position:relative">
+            <button class="notif-btn" onclick="showAdminToast('Chưa có thông báo mới.','info')" title="Thông báo">
+                <i class="fa-solid fa-bell" style="font-size:14px"></i>
+                <span class="notif-badge" id="notifBadge" style="display:none">0</span>
+            </button>
+        </div>
+        <button class="btn-admin btn-admin-danger" onclick="adminLogout()" style="font-size:11px;padding:6px 12px">
+            <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
+        </button>
+    </div>
+</header>
+
+<!-- ================================= -->
+     MAIN CONTENT
+â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â•  -->
+<main class="admin-main">
+<div class="admin-content">
+
+<!-- ================================= -->
+<section class="admin-tab active" id="tab-overview">
+    <div class="section-header">
+        <h1>Tổng Quan Bảng Điều Khiển</h1>
+        <p>Báo cáo doanh thu, người dùng và các chỉ số kinh doanh quan trọng.</p>
+    </div>
+
+    <!-- Stat Cards -->
+    <div class="stat-grid" id="statGrid">
+        <div class="stat-card">
+            <div class="stat-top">
+                <div>
+                    <div class="label">Tổng Doanh Thu</div>
+                    <div class="value" id="statRevenue">-</div>
+                </div>
+                <div class="icon-box icon-indigo"><i class="fa-solid fa-dollar-sign"></i></div>
+            </div>
+            <div><span class="stat-badge badge-up"><i class="fa-solid fa-arrow-trend-up"></i> Đang tính...</span></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-top">
+                <div>
+                    <div class="label">Người Dùng</div>
+                    <div class="value" id="statUsers">-</div>
+                </div>
+                <div class="icon-box icon-emerald"><i class="fa-solid fa-users"></i></div>
+            </div>
+            <div><span class="stat-badge badge-up"><i class="fa-solid fa-arrow-trend-up"></i> Đã đăng ký</span></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-top">
+                <div>
+                    <div class="label">Sản Phẩm</div>
+                    <div class="value" id="statProducts">-</div>
+                </div>
+                <div class="icon-box icon-amber"><i class="fa-solid fa-box-open"></i></div>
+            </div>
+            <div><span class="stat-badge badge-neutral">Trong kho</span></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-top">
+                <div>
+                    <div class="label">Bài Viết</div>
+                    <div class="value" id="statArticles">-</div>
+                </div>
+                <div class="icon-box icon-rose"><i class="fa-solid fa-newspaper"></i></div>
+            </div>
+            <div><span class="stat-badge badge-neutral">Đã đăng</span></div>
+        </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="charts-grid">
+        <!-- Line Chart -->
+        <div class="chart-card">
+            <div class="chart-title"><i class="fa-solid fa-chart-line" style="color:#818cf8"></i> Xu Hướng Doanh Thu</div>
+            <div class="chart-sub">Tổng quan doanh thu theo tháng (giả lập)</div>
+            <div style="position:relative;height:220px;margin-top:16px">
+                <svg id="lineChart" viewBox="0 0 600 200" style="width:100%;height:100%;overflow:visible" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#6366f1" stop-opacity="0.18"/>
+                            <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- drawn by JS -->
+                </svg>
+            </div>
+        </div>
+        <!-- Donut Chart -->
+        <div class="chart-card" style="display:flex;flex-direction:column">
+            <div class="chart-title"><i class="fa-solid fa-chart-donut" style="color:#818cf8"></i> Cơ Cấu Sản Phẩm</div>
+            <div class="chart-sub">Phân bổ danh mục theo số lượng</div>
+            <div style="display:flex;align-items:center;justify-content:center;flex:1;padding:10px 0">
+                <svg id="donutChart" viewBox="0 0 200 200" style="width:140px;height:140px"></svg>
+            </div>
+            <div id="donutLegend" style="margin-top:8px;display:flex;flex-direction:column;gap:4px"></div>
+        </div>
+    </div>
+
+    <!-- Recent Products Table -->
+    <div class="admin-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+            <div>
+                <div style="font-size:13px;font-weight:700;color:white">Sản Phẩm Mới Nhất</div>
+                <div style="font-size:11px;color:var(--text-muted)">5 sản phẩm vừa được thêm vào hệ thống</div>
+            </div>
+            <button class="btn-admin btn-admin-ghost" onclick="switchTab('products')" style="font-size:11px">
+                Quản lý sản phẩm <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+        <div class="admin-table-wrapper">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Danh mục</th>
+                        <th>Giá</th>
+                        <th>Nổi bật</th>
+                            <th>Đầu trang</th>
+                    </tr>
+                </thead>
+                <tbody id="overviewProductsTable">
+                    <tr><td colspan="4" style="text-align:center;padding:30px;color:var(--text-muted)"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ================================= -->
+<section class="admin-tab" id="tab-users">
+    <div class="section-header">
+        <h1>Quản Lý Người Dùng</h1>
+        <p>Xem, tìm kiếm và quản lý tài khoản đã đăng ký trong hệ thống.</p>
+    </div>
+
+    <div class="filter-bar">
+        <div class="search-wrap">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="userSearch" placeholder="Tìm theo tên, email..." oninput="filterUsers()" style="padding-left:28px">
+        </div>
+        <div class="filter-tabs">
+            <button class="filter-tab active" onclick="setUserFilter('all', this)">Tất cả</button>
+            <button class="filter-tab" onclick="setUserFilter('active', this)">Hoạt động</button>
+            <button class="filter-tab" onclick="setUserFilter('admin', this)">Admin</button>
+        </div>
+    </div>
+
+    <div class="admin-card">
+        <div class="admin-table-wrapper">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Người dùng</th>
+                        <th>Email</th>
+                        <th>Vai trò</th>
+                        <th>Ngày đăng ký</th>
+                        <th style="text-align:right">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTable">
+                    <tr><td colspan="6" style="text-align:center;padding:30px;color:var(--text-muted)"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ================================= -->
+
+<section class="admin-tab" id="tab-products">
+    <div class="section-header">
+        <h1>Danh Mục & Kiểm Soát Kho</h1>
+        <p>Thêm, sửa, xóa sản phẩm và quản lý danh mục thực đơn.</p>
+    </div>
+
+    <div class="filter-bar">
+        <div class="search-wrap">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="productSearch" placeholder="Tìm tên sản phẩm..." oninput="filterProducts()" style="padding-left:28px">
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <select id="productCategoryFilter" onchange="filterProducts()" style="background:var(--bg-card-2);border:1px solid var(--border-col);border-radius:8px;color:var(--text-primary);font-size:12px;padding:6px 10px;outline:none">
+                                <option value="">Tất cả danh mục</option>
+                <option value="pizza">Pizza</option>
+                <option value="drinks">Đồ uống</option>
+                <option value="sides">Món phụ</option>
+                <option value="pasta">Mì Ý</option>
+                <option value="dessert">Tráng miệng</option>
+                <option value="chicken">Gà</option>
+                <option value="combo">Combo</option>
+                <option value="veggie">Chay</option>
+            </select>
+            <button class="btn-admin btn-admin-primary" onclick="openProductModal()">
+                <i class="fa-solid fa-plus"></i> Thêm sản phẩm
+            </button>
+        </div>
+    </div>
+
+    <div class="admin-card">
+        <div class="admin-table-wrapper">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Danh mục</th>
+                        <th>Giá</th>
+                        <th>Nổi bật</th>
+                            <th>Đầu trang</th>
+                        <th style="text-align:right">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="productsTable">
+                    <tr><td colspan="6" style="text-align:center;padding:30px;color:var(--text-muted)"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════ TAB: TIN TỨC ══════════ -->
+<section class="admin-tab" id="tab-news">
+    <div class="section-header">
+        <h1>Quản Lý Bài Viết Tin Tức</h1>
+        <p>Đăng bài, chỉnh sửa và xóa các bài viết trong mục tin tức.</p>
+    </div>
+
+    <div class="filter-bar">
+        <div class="search-wrap">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="newsSearch" placeholder="Tìm tiêu đề bài viết..." oninput="filterNews()" style="padding-left:28px">
+        </div>
+        <button class="btn-admin btn-admin-primary" onclick="openNewsModal()">
+            <i class="fa-solid fa-plus"></i> Đăng bài viết
+        </button>
+    </div>
+
+    <div class="admin-card">
+        <div class="admin-table-wrapper">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Tiêu đề</th>
+                        <th>Danh mục</th>
+                        <th>Ngày đăng</th>
+                        <th style="text-align:right">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="newsTable">
+                    <tr><td colspan="4" style="text-align:center;padding:30px;color:var(--text-muted)"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section class="admin-tab" id="tab-contact">
+    <div class="section-header">
+        <h1>Hộp Thư Tin Nhắn & Góp Ý</h1>
+        <p>Quản lý tin nhắn liên hệ, phản hồi góp ý từ khách hàng.</p>
+    </div>
+
+    <div class="inbox-split">
+        <!-- Left: List -->
+        <div>
+            <div class="admin-card" style="padding:14px;margin-bottom:14px">
+                <div class="search-wrap" style="position:relative">
+                    <i class="fa-solid fa-magnifying-glass" style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:11px"></i>
+                    <input type="text" id="msgSearch" placeholder="Tìm người gửi, tiêu đề..." oninput="filterMessages()" style="width:100%;padding:7px 10px 7px 28px;background:var(--bg-card-2);border:1px solid var(--border-col);border-radius:8px;color:var(--text-primary);font-size:12px;outline:none">
+                </div>
+                <div style="display:flex;gap:6px;margin-top:10px">
+                    <button class="filter-tab active" onclick="setMsgFilter('all',this)">Tất cả</button>
+                    <button class="filter-tab" onclick="setMsgFilter('unread',this)">Chưa đọc</button>
+                    <button class="filter-tab" onclick="setMsgFilter('read',this)">Đã đọc</button>
+                    <button class="filter-tab" onclick="setMsgFilter('replied',this)">Đã trả lời</button>
+                </div>
+            </div>
+
+            <div class="inbox-list" id="msgList">
+                <div style="text-align:center;padding:40px;color:var(--text-muted);font-size:12px">
+                    <i class="fa-solid fa-inbox fa-2x" style="display:block;margin-bottom:8px;opacity:.4"></i>
+                    Chưa có tin nhắn nào.
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Reading Pane -->
+        <div class="reading-pane" id="readingPane">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-muted)">
+                <i class="fa-regular fa-envelope-open fa-3x" style="margin-bottom:12px;opacity:.3"></i>
+                <div style="font-size:13px;font-weight:600;color:var(--text-secondary)">Chi tiết tin nhắn</div>
+                <div style="font-size:11px;margin-top:4px;text-align:center;max-width:260px">Chọn một tin nhắn bên trái để xem nội dung và soạn phản hồi.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================================= -->
+<section class="admin-tab" id="tab-orders">
+    <div class="section-header">
+        <h1>Quản Lý Đơn Hàng</h1>
+        <p>Xem, tìm kiếm và cập nhật trạng thái tất cả đơn hàng của khách hàng.</p>
+    </div>
+
+    <div class="filter-bar">
+        <div class="search-wrap">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="orderSearch" placeholder="Tìm mã đơn, tên khách, email..." oninput="filterOrders()" style="padding-left:28px">
+        </div>
+        <div class="filter-tabs">
+            <button class="filter-tab active" onclick="setOrderFilter('all', this)">Tất cả</button>
+            <button class="filter-tab" onclick="setOrderFilter('pending', this)">Chờ xử lý</button>
+            <button class="filter-tab" onclick="setOrderFilter('processing', this)">Đang xử lý</button>
+            <button class="filter-tab" onclick="setOrderFilter('completed', this)">Hoàn thành</button>
+            <button class="filter-tab" onclick="setOrderFilter('cancelled', this)">Đã hủy</button>
+        </div>
+    </div>
+
+    <div class="admin-card">
+        <div class="admin-table-wrapper">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Mã Đơn</th>
+                        <th>Khách Hàng</th>
+                        <th>Sản Phẩm</th>
+                        <th>Tổng Tiền</th>
+                        <th>Thanh Toán</th>
+                        <th>Trạng Thái</th>
+                        <th>Ngày Đặt</th>
+                        <th style="text-align:right">Thao Tác</th>
+                    </tr>
+                </thead>
+                <tbody id="ordersTable">
+                    <tr><td colspan="8" style="text-align:center;padding:30px;color:var(--text-muted)"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+</div><!-- /admin-content -->
+</main><!-- /admin-main -->
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     MODALS
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+
+<!-- Product Modal -->
+<div class="modal-overlay" id="productModal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeProductModal()"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-title" id="productModalTitle">Thêm Sản Phẩm Mới</div>
+        <input type="hidden" id="editProductId">
+        <div class="form-group">
+            <label class="form-label">Tên sản phẩm *</label>
+            <input type="text" class="form-control-admin" id="pName" placeholder="VD: Pizza Margherita">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="form-group">
+                <label class="form-label">Giá (VND) *</label>
+                <input type="number" class="form-control-admin" id="pPrice" placeholder="VD: 150000">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Danh mục *</label>
+                                <div style="display:flex; gap:8px;">
+        <select class="form-control-admin" id="pCategory">
+                    <option value="all">Tất cả</option>
+                    <option value="pizza">Pizza</option>
+                    <option value="drinks">Đồ uống</option>
+                    <option value="sides">Món phụ</option>
+                    <option value="pasta">Mì Ý</option>
+                    <option value="dessert">Tráng miệng</option>
+                    <option value="chicken">Gà</option>
+                    <option value="combo">Combo</option>
+                    <option value="veggie">Chay</option>
+                </select>
+        <button type="button" class="btn-admin btn-admin-outline" onclick="addNewCategory('pCategory')" style="padding:0 12px; white-space:nowrap; border-color:var(--border-col); background:var(--bg-card-2); color:var(--text-primary)"><i class="fa-solid fa-plus"></i> Thêm</button>
+                    <button type="button" class="btn-admin" onclick="deleteCategory('pCategory')" style="padding:0 12px; white-space:nowrap; background-color:#e3001b; color:white; border:none;"><i class="fa-solid fa-trash"></i> Xóa</button>
+    </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Mô tả</label>
+            <textarea class="form-control-admin" id="pDescription" placeholder="Mô tả ngắn về sản phẩm..."></textarea>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Đường dẫn hình ảnh</label>
+            <input type="text" class="form-control-admin" id="pImage" placeholder="/assets/images/pizza.png">
+        </div>
+        <div class="form-group" style="display:flex;align-items:center;gap:10px">
+            <input type="checkbox" id="pPopular" style="width:14px;height:14px;accent-color:var(--accent)">
+            <label for="pPopular" style="font-size:12px;color:var(--text-secondary);cursor:pointer">Đánh dấu là sản phẩm nổi bật</label>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;margin-top:8px">
+                    <input type="checkbox" id="pTopPage" style="width:14px;height:14px;accent-color:var(--accent)">
+                    <label for="pTopPage" style="font-size:12px;color:var(--text-secondary);cursor:pointer">Đánh dấu là sản phẩm đầu trang</label>
+        </div>
+        <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:18px">
+            <button class="btn-admin btn-admin-ghost" onclick="closeProductModal()">Hủy</button>
+            <button class="btn-admin btn-admin-primary" onclick="saveProduct()"><i class="fa-solid fa-floppy-disk"></i> Lưu</button>
+        </div>
+    </div>
+</div>
+
+<!-- News Modal -->
+<div class="modal-overlay" id="newsModal">
+    <div class="modal-box" style="max-width:600px">
+        <button class="modal-close" onclick="closeNewsModal()"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-title" id="newsModalTitle">Äăng Bài Viết Mới</div>
+        <input type="hidden" id="editNewsId">
+        <div class="form-group">
+            <label class="form-label">Tiêu đá» bài viết *</label>
+            <input type="text" class="form-control-admin" id="nTitle" placeholder="Tiêu đá» hấp dẫn...">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="form-group">
+                <label class="form-label">Danh mục</label>
+                                <div style="display:flex; gap:8px;">
+                    <select class="form-control-admin" id="nCategory">
+                    <option value="all">Tất cả</option>
+                        <option value="news">Tin tức</option>
+                        <option value="recipes">Công thức</option>
+                        <option value="tips">Mẹo vặt</option>
+                        <option value="events">Sự kiện</option>
+                        <option value="promotions">Khuyến mãi</option>
+                        <option value="community">Cộng đồng</option>
+                    </select>
+                    <button type="button" class="btn-admin btn-admin-outline" onclick="addNewCategory('nCategory')" style="padding:0 12px; white-space:nowrap; border-color:var(--border-col); background:var(--bg-card-2); color:var(--text-primary)"><i class="fa-solid fa-plus"></i> Thêm</button>
+                    <button type="button" class="btn-admin" onclick="deleteCategory('nCategory')" style="padding:0 12px; white-space:nowrap; background-color:#e3001b; color:white; border:none;"><i class="fa-solid fa-trash"></i> Xóa</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Thẻ (tags)</label>
+                <input type="text" class="form-control-admin" id="nTags" placeholder="VD: pizza, ẩm thực, mẹo hay">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Hình ảnh đại diện (URL)</label>
+            <input type="text" class="form-control-admin" id="nImage" placeholder="https://...">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Mô tả ngắn *</label>
+            <textarea class="form-control-admin" id="nSummary" rows="2" placeholder="Tóm tắt nội dung bài viết..."></textarea>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Nội dung bài viết *</label>
+            <textarea class="form-control-admin" id="nContent" rows="5" placeholder="Nhập nội dung chi tiết..."></textarea>
+        </div>
+        <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:18px">
+            <button class="btn-admin btn-admin-ghost" onclick="closeNewsModal()">Hủy</button>
+            <button class="btn-admin btn-admin-primary" onclick="saveNews()"><i class="fa-solid fa-floppy-disk"></i> Lưu bài viết</button>
+        </div>
+    </div>
+</div>
+
+<!-- Confirm Delete Modal -->
+<div class="modal-overlay" id="confirmModal">
+    <div class="modal-box" style="max-width:380px;text-align:center">
+        <div style="font-size:36px;margin-bottom:12px">âš ️</div>
+        <div class="modal-title" id="confirmTitle">Xác nhận xóa?</div>
+        <p style="font-size:12px;color:var(--text-muted);margin-bottom:20px" id="confirmMsg">Hành động này không thể hoàn tác.</p>
+        <div style="display:flex;gap:10px;justify-content:center">
+            <button class="btn-admin btn-admin-ghost" onclick="closeConfirm()">Hủy bỏ</button>
+            <button class="btn-admin btn-admin-danger" id="confirmOkBtn">Xác nhận xóa</button>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Container -->
+<div id="adminToastContainer"></div>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     JAVASCRIPT
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<script>
+// -----------------------------------
+let allUsers     = [];
+let allProducts  = [];
+let allArticles  = [];
+let allMessages  = [];
+let msgFilter    = 'all';
+let userFilter   = 'all';
+let selectedMsg  = null;
+let currentUser  = null;
+
+// -----------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+    checkAdminAuth();
+    startClock();
+    loadAllData();
+});
+
+
+const categoryMap = {
+    'pizza': 'Pizza',
+    'drinks': 'Đồ uống',
+    'sides': 'Món phụ',
+    'pasta': 'Mì Ý',
+    'dessert': 'Tráng miệng',
+    'chicken': 'Gà',
+    'combo': 'Combo',
+    'veggie': 'Chay',
+    'news': 'Tin tức',
+    'recipes': 'Công thức',
+    'tips': 'Mẹo vặt',
+    'events': 'Sự kiện',
+    'promotions': 'Khuyến mãi',
+    'community': 'Cộng đồng',
+    'all': 'Tất cả'
+};
+function formatCategory(cat) {
+    if (!cat) return '';
+    return categoryMap[cat.toLowerCase()] || cat;
+}
+
+function checkAdminAuth() {
+    const token = localStorage.getItem('token');
+    const user  = JSON.parse(localStorage.getItem('user') || '{}');
+    currentUser = user;
+    if (!token || user.role !== 'admin') {
+        window.location.href = 'login.html';
+        return;
+    }
+}
+
+function adminLogout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.location.href = 'login.html';
+}
+
+function startClock() {
+    const el = document.getElementById('adminClock');
+    const tick = () => {
+        const now = new Date();
+        el.textContent = now.toLocaleString('vi-VN', { hour12: false }) + ' (ICT)';
+    };
+    tick();
+    setInterval(tick, 1000);
+}
+
+// -----------------------------------
+async function loadAllData() {
+    const token = localStorage.getItem('token');
+    const headers = { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' };
+    
+    try {
+        const [usersRes, productsRes, articlesRes, ordersRes] = await Promise.all([
+            fetch('/api/users', { headers }),
+            fetch('/api/products', { headers }),
+            fetch('/api/articles', { headers }),
+            fetch('/api/orders', { headers })
+        ]);
+        allUsers    = await usersRes.json()    || [];
+        allProducts = await productsRes.json() || [];
+        allArticles = await articlesRes.json() || [];
+        allOrders   = await ordersRes.json()   || [];
+
+        // Load saved messages from localStorage (demo)
+        allMessages = JSON.parse(localStorage.getItem('adminMessages') || '[]');
+
+        updateStats();
+        renderOverviewProducts();
+
+        // Populate dynamic custom categories for products
+        const pSelect = document.getElementById('pCategory');
+        const pFilter = document.getElementById('productCategoryFilter');
+        let existingPCats = Array.from(pSelect.options).map(o => o.value.toLowerCase());
+        allProducts.forEach(p => {
+            if (p.category && !existingPCats.includes(p.category.toLowerCase())) {
+                const catName = formatCategory(p.category);
+                existingPCats.push(p.category.toLowerCase());
+                pSelect.add(new Option(catName, p.category));
+                if(pFilter) pFilter.add(new Option(catName, p.category));
+            }
+        });
+
+        // Populate dynamic custom categories for news
+        const nSelect = document.getElementById('nCategory');
+        let existingNCats = Array.from(nSelect.options).map(o => o.value.toLowerCase());
+        allArticles.forEach(a => {
+            if (a.category && !existingNCats.includes(a.category.toLowerCase())) {
+                const catName = formatCategory(a.category);
+                existingNCats.push(a.category.toLowerCase());
+                nSelect.add(new Option(catName, a.category));
+            }
+        });
+
+        renderLineChart();
+        renderDonutChart();
+        renderUsers();
+        renderProducts();
+        renderNews();
+        renderMessages();
+        renderOrders();
+        updateContactDot();
+        updateOrderDot();
+    } catch(e) { console.error(e); 
+        showAdminToast('Không thể tải dữ liệu. Kiểm tra kết nối server.', 'error');
+    }
+}
+
+// -----------------------------------
+function updateStats() {
+    const fmt = v => v.toLocaleString('vi-VN') + 'đ';
+    const revenue = (allOrders || []).filter(o => o.status === 'completed').reduce((s, o) => s + (o.totalAmount || 0), 0);
+    document.getElementById('statRevenue').textContent  = fmt(revenue);
+    document.getElementById('statUsers').textContent    = allUsers.length;
+    document.getElementById('statProducts').textContent = allProducts.length;
+    document.getElementById('statArticles').textContent = allArticles.length;
+}
+
+// ===== ĐƠN HÀNG =====
+let allOrders = [];
+let currentOrderFilter = 'all';
+
+const orderStatusMap = {
+    pending:    { label: 'Chờ xử lý',  cls: 'status-badge',  style: 'background:rgba(251,191,36,.15);color:#fbbf24;border-color:rgba(251,191,36,.3)' },
+    processing: { label: 'Đang xử lý', cls: 'status-badge',  style: 'background:rgba(99,102,241,.15);color:#818cf8;border-color:rgba(99,102,241,.3)' },
+    completed:  { label: 'Hoàn thành',   cls: 'status-badge',  style: 'background:rgba(16,185,129,.15);color:#10b981;border-color:rgba(16,185,129,.3)' },
+    cancelled:  { label: 'Đã hủy',      cls: 'status-badge',  style: 'background:rgba(239,68,68,.15);color:#f87171;border-color:rgba(239,68,68,.3)' }
+};
+const paymentMap = { cod: 'COD - Tiền mặt', bank: 'Chuyển khoản' };
+
+function renderOrders(list) {
+    const data = list !== undefined ? list : allOrders;
+    const tbody = document.getElementById('ordersTable');
+    if (!tbody) return;
+    if (!data.length) {
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:30px;color:var(--text-muted)">Không có đơn hàng nào.</td></tr>`;
+        return;
+    }
+    tbody.innerHTML = data.map(o => {
+        const st = orderStatusMap[o.status] || orderStatusMap['pending'];
+        const items = (o.items || []).map(i => i.name).join(', ') || '-';
+        const date = o.createdAt ? new Date(o.createdAt).toLocaleDateString('vi-VN', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' }) : '-';
+        const customerName = o.customerInfo?.name || '-';
+        const customerPhone = o.customerInfo?.phone || '';
+        const payment = paymentMap[o.paymentMethod] || o.paymentMethod || 'COD';
+        const shortId = String(o._id).slice(-6).toUpperCase();
+        return `
+        <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--accent)">#${shortId}</td>
+            <td>
+                <span style="font-weight:600;color:var(--text-primary)">${customerName}</span>
+                ${customerPhone ? `<span style="display:block;font-size:11px;color:var(--text-muted)">${customerPhone}</span>` : ''}
+            </td>
+            <td style="font-size:12px;color:var(--text-secondary);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${items}">${items}</td>
+            <td style="font-weight:700;color:#10b981">${(o.totalAmount || 0).toLocaleString('vi-VN')}đ</td>
+            <td style="font-size:11px;color:var(--text-muted)">${payment}</td>
+            <td><span class="${st.cls}" style="${st.style}">${st.label}</span></td>
+            <td style="font-size:11px;color:var(--text-muted)">${date}</td>
+            <td style="text-align:right">
+                <select onchange="updateOrderStatus('${o._id}', this.value, this)" 
+                    style="background:var(--bg-card-2);border:1px solid var(--border-col);border-radius:6px;color:var(--text-primary);font-size:11px;padding:4px 8px;outline:none;cursor:pointer">
+                    <option value="pending"   ${o.status==='pending'   ? 'selected':''}>Chờ xử lý</option>
+                    <option value="processing" ${o.status==='processing' ? 'selected':''}>Đang xử lý</option>
+                    <option value="completed"  ${o.status==='completed'  ? 'selected':''}>Hoàn thành</option>
+                    <option value="cancelled"  ${o.status==='cancelled'  ? 'selected':''}>Đã hủy</option>
+                </select>
+            </td>
+        </tr>`;
+    }).join('');
+}
+
+async function updateOrderStatus(orderId, newStatus, selectEl) {
+    const token = localStorage.getItem('token');
+    try {
+        const res = await fetch(`/api/orders/${orderId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+            body: JSON.stringify({ status: newStatus })
+        });
+        if (res.ok) {
+            const idx = allOrders.findIndex(o => o._id === orderId);
+            if (idx !== -1) allOrders[idx].status = newStatus;
+            showAdminToast('Cập nhật trạng thái đơn hàng thành công!', 'success');
+            filterOrders();
+            updateOrderDot();
+        } else {
+            showAdminToast('Lỗi cập nhật trạng thái', 'error');
+        }
+    } catch(e) {
+        showAdminToast('Lỗi kết nối server', 'error');
+    }
+}
+
+function filterOrders() {
+    const q = (document.getElementById('orderSearch')?.value || '').toLowerCase();
+    let filtered = allOrders;
+    if (currentOrderFilter !== 'all') filtered = filtered.filter(o => o.status === currentOrderFilter);
+    if (q) filtered = filtered.filter(o => {
+        const id = String(o._id).toLowerCase();
+        const name = (o.customerInfo?.name || '').toLowerCase();
+        const phone = (o.customerInfo?.phone || '').toLowerCase();
+        return id.includes(q) || name.includes(q) || phone.includes(q);
+    });
+    renderOrders(filtered);
+}
+
+function setOrderFilter(status, btn) {
+    currentOrderFilter = status;
+    document.querySelectorAll('#tab-orders .filter-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filterOrders();
+}
+
+function updateOrderDot() {
+    const pendingCount = allOrders.filter(o => o.status === 'pending').length;
+    const dot = document.getElementById('orderDot');
+    if (dot) dot.style.display = pendingCount > 0 ? 'inline-block' : 'none';
+}
+
+// -----------------------------------
+function renderLineChart() {
+    const salesData = [
+        { month: 'T1', val: 8200000 }, { month: 'T2', val: 9500000 },
+        { month: 'T3', val: 7800000 }, { month: 'T4', val: 11200000 },
+        { month: 'T5', val: 13400000 }, { month: 'T6', val: 12100000 },
+        { month: 'T7', val: 15600000 }
+    ];
+    const svg = document.getElementById('lineChart');
+    const W = 600, H = 200, pX = 40, pY = 20;
+    const maxV = Math.max(...salesData.map(d => d.val));
+    const minV = Math.min(...salesData.map(d => d.val)) * 0.85;
+    const gx = i => pX + i * (W - pX*2) / (salesData.length - 1);
+    const gy = v => H - pY - ((v - minV) / (maxV - minV)) * (H - pY*2);
+
+    // Grid
+    let gridLines = '';
+    [0, 0.25, 0.5, 0.75, 1].forEach((r, i) => {
+        const y = pY + r * (H - pY*2);
+        gridLines += `<line x1="${pX}" y1="${y}" x2="${W-pX}" y2="${y}" stroke="#17203b" stroke-width="1" stroke-dasharray="4 4"/>`;
+    });
+
+    // Path
+    const pts = salesData.map((d, i) => `${gx(i)},${gy(d.val)}`);
+    const linePath = `M ${pts.join(' L ')}`;
+    const areaPath = `${linePath} L ${gx(salesData.length-1)},${H-pY} L ${gx(0)},${H-pY} Z`;
+
+    // Points & Labels
+    let circles = '';
+    salesData.forEach((d, i) => {
+        circles += `
+            <circle cx="${gx(i)}" cy="${gy(d.val)}" r="4" fill="white" stroke="#4f46e5" stroke-width="2.5"/>
+            <text x="${gx(i)}" y="${H-3}" text-anchor="middle" fill="#64748b" font-size="10">${d.month}</text>`;
+    });
+
+    // Y labels
+    const fmtM = v => Math.round(v/1000000) + 'M';
+    const yLabels = `
+        <text x="${pX-6}" y="${pY+4}" text-anchor="end" fill="#64748b" font-size="10">${fmtM(maxV)}</text>
+        <text x="${pX-6}" y="${H/2+4}" text-anchor="end" fill="#64748b" font-size="10">${fmtM((maxV+minV)/2)}</text>
+        <text x="${pX-6}" y="${H-pY+4}" text-anchor="end" fill="#64748b" font-size="10">${fmtM(minV)}</text>`;
+
+    svg.innerHTML = `
+        <defs><linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#6366f1" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+        </linearGradient></defs>
+        ${gridLines}${yLabels}
+        <path d="${areaPath}" fill="url(#areaGrad)"/>
+        <path d="${linePath}" fill="none" stroke="#6366f1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        ${circles}`;
+}
+
+// -----------------------------------
+function renderDonutChart() {
+    const cats = {};
+    allProducts.forEach(p => { cats[formatCategory(p.category)] = (cats[formatCategory(p.category)] || 0) + 1; });
+    const colors = ['#6366f1','#10b981','#f59e0b','#f43f5e','#8b5cf6'];
+    const total  = Object.values(cats).reduce((a,b) => a+b, 0) || 1;
+    const items  = Object.entries(cats).map(([name, val], i) => ({name, val, pct: Math.round(val/total*100), color: colors[i % colors.length]}));
+
+    const svg = document.getElementById('donutChart');
+    const legend = document.getElementById('donutLegend');
+    const r = 65, sw = 18, cx = 100, cy = 100;
+
+    let circles = `<circle cx="${cx}" cy="${cy}" r="${r-sw/2-2}" fill="#0f162d"/>`;
+    let acc = 0;
+    items.forEach(item => {
+        const pct = item.pct;
+        circles += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="transparent" stroke="${item.color}" stroke-width="${sw}" stroke-dasharray="${pct} ${100-pct}" stroke-dashoffset="${-acc}" pathLength="100" style="transition:stroke-width .2s"/>`;
+        acc += pct;
+    });
+    circles += `<text x="${cx}" y="${cy-4}" text-anchor="middle" fill="#94a3b8" font-size="9" font-weight="700">Tá»”NG</text>
+                <text x="${cx}" y="${cy+14}" text-anchor="middle" fill="white" font-size="14" font-weight="800">100%</text>`;
+    svg.innerHTML = circles;
+
+    legend.innerHTML = items.map(item => `
+        <div class="donut-legend-item">
+            <div style="display:flex;align-items:center;gap:8px">
+                <span class="donut-dot" style="background:${item.color}"></span>
+                <span style="color:var(--text-secondary);font-size:11px">${item.name}</span>
+            </div>
+            <span style="color:white;font-weight:700;font-size:11px">${item.pct}%</span>
+        </div>`).join('');
+}
+
+// -----------------------------------
+function renderOverviewProducts() {
+    const tbody = document.getElementById('overviewProductsTable');
+    const recent = [...allProducts].slice(-5).reverse();
+    if (!recent.length) {
+        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;padding:24px;color:var(--text-muted)">Chưa có sản phẩm nào.</td></tr>`;
+        return;
+    }
+    tbody.innerHTML = recent.map(p => `
+        <tr>
+            <td><div style="display:flex;align-items:center;gap:10px">
+                <img src="${p.image || '/assets/images/Classic-Pizza.png'}" class="prod-thumb" onerror="this.src='/assets/images/Classic-Pizza.png'">
+                <span style="color:var(--text-primary);font-weight:600">${p.name}</span>
+            </div></td>
+            <td>${formatCategory(p.category)}</td>
+            <td style="color:white;font-weight:600">${(Number(p.price)*15000).toLocaleString('vi-VN')}d‘</td>
+            <td>${p.isPopular ? '<span class="status-badge status-active">⭐ Nổi bật</span>' : '<span style="color:var(--text-muted);font-size:11px">-</span>'}</td>
+            <td>${p.isTopPage ? '<span class="status-badge" style="background:#e3001b;color:white;border:none">🔥 Đầu trang</span>' : '<span style="color:var(--text-muted);font-size:11px">-</span>'}</td>
+        </tr>`).join('');
+}
+
+// -----------------------------------
+function switchTab(tabId) {
+    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+    document.getElementById('tab-' + tabId).classList.add('active');
+    const navBtn = document.getElementById('nav-' + tabId);
+    if (navBtn) navBtn.classList.add('active');
+    closeMobileSidebar();
+}
+
+// -----------------------------------
+function renderUsers(list) {
+    const data = list || allUsers;
+    const tbody = document.getElementById('usersTable');
+    if (!data.length) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:24px;color:var(--text-muted)">Không có người dùng nào.</td></tr>`;
+        return;
+    }
+    tbody.innerHTML = data.map(u => {
+        const initial = (u.name||'U').charAt(0).toUpperCase();
+        const roleClass = u.role === 'admin' ? 'status-admin' : 'status-active';
+        const roleLabel = u.role === 'admin' ? 'Admin' : 'Thành viên';
+        const date = u.createdAt ? new Date(u.createdAt).toLocaleDateString('vi-VN') : '-';
+        return `
+        <tr>
+            <td><div style="display:flex;align-items:center;gap:10px">
+                <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:white">${initial}</div>
+                <span style="color:var(--text-primary);font-weight:600">${u.name || '-'}</span>
+            </div></td>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:11px">${u.email}</td>
+            <td><span class="status-badge ${roleClass}">${roleLabel}</span></td>
+            <td>${date}</td>
+            <td style="text-align:right">
+                ${(currentUser && currentUser._id === u._id) || u.role === 'admin' ? '<span style="font-size:11px;color:var(--text-muted)">Không thể xóa</span>' : 
+                `<button class="btn-admin btn-admin-danger" style="font-size:11px;padding:5px 10px" onclick="confirmDelete('user','${u._id}','${u.name}')">
+                    <i class="fa-solid fa-trash"></i>
+                </button>`}
+            </td>
+        </tr>`;
+    }).join('');
+}
+
+function filterUsers() {
+    const q = document.getElementById('userSearch').value.toLowerCase();
+    let filtered = allUsers.filter(u =>
+        (u.name||'').toLowerCase().includes(q) ||
+        (u.email||'').toLowerCase().includes(q)
+    );
+    if (userFilter === 'active') filtered = filtered.filter(u => u.role !== 'admin');
+    if (userFilter === 'admin')  filtered = filtered.filter(u => u.role === 'admin');
+    renderUsers(filtered);
+}
+
+function setUserFilter(f, btn) {
+    userFilter = f;
+    document.querySelectorAll('#tab-users .filter-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filterUsers();
+}
+
+// -----------------------------------
+function renderProducts(list) {
+    const data = list || allProducts;
+    const tbody = document.getElementById('productsTable');
+    if (!data.length) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:24px;color:var(--text-muted)">Không có sản phẩm nào.</td></tr>`;
+        return;
+    }
+    tbody.innerHTML = data.map(p => `
+        <tr>
+            <td><div style="display:flex;align-items:center;gap:10px">
+                <img src="${p.image || '/assets/images/Classic-Pizza.png'}" class="prod-thumb" onerror="this.src='/assets/images/Classic-Pizza.png'">
+                <span style="color:var(--text-primary);font-weight:600">${p.name}</span>
+            </div></td>
+            <td>${formatCategory(p.category)}</td>
+            <td style="color:white;font-weight:600">${(Number(p.price)*15000).toLocaleString('vi-VN')}d‘</td>
+            <td>${p.isPopular ? '<span class="status-badge status-active">⭐ Nổi bật</span>' : '-'}</td>
+            <td>${p.isTopPage ? '<span class="status-badge" style="background:#e3001b;color:white;border:none">🔥 Đầu trang</span>' : '-'}</td>
+            <td style="text-align:right;display:flex;gap:6px;justify-content:flex-end">
+                <button class="btn-admin btn-admin-ghost" style="font-size:11px;padding:5px 10px" onclick="openEditProduct('${p._id}')">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+                <button class="btn-admin btn-admin-danger" style="font-size:11px;padding:5px 10px" onclick="confirmDelete('product','${p._id}','${p.name}')">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </td>
+        </tr>`).join('');
+}
+
+function filterProducts() {
+    const q = document.getElementById('productSearch').value.toLowerCase();
+    const cat = document.getElementById('productCategoryFilter').value;
+    const filtered = allProducts.filter(p =>
+        (p.name||'').toLowerCase().includes(q) &&
+        (!cat || p.category === cat)
+    );
+    renderProducts(filtered);
+}
+
+
+function addNewCategory(selectId) {
+    const newCat = prompt("Nhập tên danh mục mới:");
+    if (newCat && newCat.trim()) {
+        const val = newCat.trim();
+        const select = document.getElementById(selectId);
+        
+        // Check if already exists
+        const existing = Array.from(select.options).map(o => o.value.toLowerCase());
+        if(existing.includes(val.toLowerCase())) {
+            showAdminToast("Danh mục đã tồn tại", "warning");
+            select.value = Array.from(select.options).find(o => o.value.toLowerCase() === val.toLowerCase()).value;
+            return;
+        }
+
+        const option = document.createElement("option");
+        option.value = val;
+        option.textContent = val;
+        select.appendChild(option);
+        select.value = val;
+        
+        if(selectId === 'pCategory') {
+            const filter = document.getElementById('productCategoryFilter');
+            if(filter) {
+                const opt2 = document.createElement("option");
+                opt2.value = val;
+                opt2.textContent = val;
+                filter.appendChild(opt2);
+            }
+        }
+    }
+}
+
+function openProductModal() {
+    document.getElementById('productModalTitle').textContent = 'Thêm Sản Phẩm Mới';
+    document.getElementById('editProductId').value = '';
+    ['pName','pPrice','pDescription','pImage'].forEach(fid => { const el = document.getElementById(fid); if(el) el.value = ''; });
+    document.getElementById('pCategory').value = 'Pizza';
+    document.getElementById('pPopular').checked = false;
+    document.getElementById('pTopPage').checked = false;
+    // Reset image preview
+    const preview = document.getElementById('pImagePreview');
+    const placeholder = document.getElementById('imageUploadPlaceholder');
+    if (preview) { preview.style.display='none'; preview.src=''; }
+    if (placeholder) placeholder.style.display='block';
+    if (document.getElementById('pImageFile')) document.getElementById('pImageFile').value='';
+    document.getElementById('productModal').classList.add('open');
+}
+
+function openEditProduct(id) {
+    const p = allProducts.find(x => x._id === id);
+    if (!p) return;
+    document.getElementById('productModalTitle').textContent = 'Chỉnh Sửa Sản Phẩm';
+    document.getElementById('editProductId').value = p._id;
+    document.getElementById('pName').value = p.name || '';
+    // Show price in VND (stored as USD * 15000, or already VND if > 1000)
+    const priceVND = p.price > 1000 ? p.price : Math.round(p.price * 15000);
+    document.getElementById('pPrice').value = priceVND || '';
+    document.getElementById('pCategory').value = p.category || 'pizza';
+    document.getElementById('pDescription').value = p.description || '';
+    document.getElementById('pImage').value = p.image || '';
+    document.getElementById('pPopular').checked = !!p.isPopular;
+    document.getElementById('pTopPage').checked = !!p.isTopPage;
+    // Show image preview
+    if (p.image) {
+        const preview = document.getElementById('pImagePreview');
+        const placeholder = document.getElementById('imageUploadPlaceholder');
+        if (preview) { preview.src = p.image; preview.style.display='block'; }
+        if (placeholder) placeholder.style.display='none';
+    }
+    document.getElementById('productModal').classList.add('open');
+}
+
+function closeProductModal() { document.getElementById('productModal').classList.remove('open'); }
+
+function previewProductImage(input) {
+    if (!input.files || !input.files[0]) return;
+    const file = input.files[0];
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        const preview = document.getElementById('pImagePreview');
+        const placeholder = document.getElementById('imageUploadPlaceholder');
+        if (preview) { preview.src = e.target.result; preview.style.display='block'; }
+        if (placeholder) placeholder.style.display='none';
+    };
+    reader.readAsDataURL(file);
+}
+async function saveProduct() {
+    const id       = document.getElementById('editProductId').value;
+    const name     = document.getElementById('pName').value.trim();
+    const priceVND = Number(document.getElementById('pPrice').value);
+    
+    if (!name || !priceVND) { 
+        showAdminToast('Vui lòng điền đầy đủ tên và giá.', 'error'); 
+        return; 
+    }
+
+    const priceStored = priceVND / 15000;
+    let imageUrl = document.getElementById('pImage').value || '/assets/images/Classic-Pizza.png';
+    
+    const fileInput = document.getElementById('pImageFile');
+    if (fileInput && fileInput.files && fileInput.files[0]) {
+        try {
+            const formData = new FormData();
+            formData.append('image', fileInput.files[0]);
+            const uploadRes = await fetch('/api/upload', { method: 'POST', body: formData });
+            const uploadData = await uploadRes.json();
+            if (uploadData.url) imageUrl = uploadData.url;
+        } catch(e) { 
+            showAdminToast('Lỗi upload ảnh, dùng ảnh mặc định.', 'warning'); 
+        }
+    }
+
+    const body = {
+        name: name,
+        price: priceStored,
+        category: document.getElementById('pCategory').value,
+        description: document.getElementById('pDescription').value,
+        image: imageUrl,
+        isPopular: document.getElementById('pPopular').checked,
+            isTopPage: document.getElementById('pTopPage').checked
+    };
+
+    const token = localStorage.getItem('token');
+    const headers = { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' };
+    
+    try {
+        if (id) {
+            const res = await fetch(`/api/products/${id}`, { method: 'PUT', headers, body: JSON.stringify(body) });
+            const updated = await res.json();
+            allProducts = allProducts.map(p => p._id === id ? updated : p);
+            showAdminToast('Đã cập nhật sản phẩm thành công!', 'success');
+        } else {
+            body.id = Date.now();
+            const res = await fetch('/api/products', { method: 'POST', headers, body: JSON.stringify(body) });
+            const created = await res.json();
+            allProducts.unshift(created);
+            showAdminToast('Đã thêm sản phẩm mới!', 'success');
+        }
+        closeProductModal();
+        renderProducts();
+        renderOverviewProducts();
+        renderDonutChart();
+        updateStats();
+    } catch(e) { 
+        showAdminToast('Lỗi khi lưu sản phẩm.', 'error'); 
+    }
+}
+
+
+// -----------------------------------
+function renderNews(list) {
+    const data = list || allArticles;
+    const tbody = document.getElementById('newsTable');
+    if (!data.length) {
+        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;padding:24px;color:var(--text-muted)">Chưa có bài viết nào.</td></tr>`;
+        return;
+    }
+    tbody.innerHTML = data.map(a => {
+        const date = a.createdAt ? new Date(a.createdAt).toLocaleDateString('vi-VN') : '-';
+        return `
+        <tr>
+            <td style="max-width:300px">
+                <div style="color:var(--text-primary);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${a.title}</div>
+                <div style="font-size:11px;color:var(--text-muted);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${a.summary || a.description || ''}</div>
+            </td>
+            <td><span class="status-badge" style="background:rgba(99,102,241,.1);color:#a5b4fc;border-color:rgba(99,102,241,.2)">${formatCategory(a.category)}</span></td>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted)">${date}</td>
+            <td style="text-align:right;display:flex;gap:6px;justify-content:flex-end">
+                <button class="btn-admin btn-admin-ghost" style="font-size:11px;padding:5px 10px" onclick="openEditNews('${a._id}')">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+                <button class="btn-admin btn-admin-danger" style="font-size:11px;padding:5px 10px" onclick="confirmDelete('news','${a._id}','${a.title}')">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </td>
+        </tr>`;
+    }).join('');
+}
+
+function filterNews() {
+    const q = document.getElementById('newsSearch').value.toLowerCase();
+    renderNews(allArticles.filter(a => (a.title||'').toLowerCase().includes(q)));
+}
+
+function openNewsModal() {
+    document.getElementById('newsModalTitle').textContent = 'Äăng Bài Viết Mới';
+    document.getElementById('editNewsId').value = '';
+    ['nTitle','nCategory','nTags','nImage','nSummary','nContent'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('newsModal').classList.add('open');
+}
+
+function openEditNews(id) {
+    const a = allArticles.find(x => x._id === id);
+    if (!a) return;
+    document.getElementById('newsModalTitle').textContent = 'Chỉnh Sửa Bài Viết';
+    document.getElementById('editNewsId').value = a._id;
+    document.getElementById('nTitle').value    = a.title    || '';
+    document.getElementById('nCategory').value = a.category || 'news';
+    document.getElementById('nTags').value     = (a.tags||[]).join(', ');
+    document.getElementById('nImage').value    = a.image    || '';
+    document.getElementById('nSummary').value  = a.summary  || a.description || '';
+    document.getElementById('nContent').value  = a.content  || '';
+    document.getElementById('newsModal').classList.add('open');
+}
+
+function closeNewsModal() { document.getElementById('newsModal').classList.remove('open'); }
+
+async function saveNews() {
+    const id = document.getElementById('editNewsId').value;
+    const title = document.getElementById('nTitle').value.trim();
+    if (!title) { showAdminToast('Vui lòng nhập tiêu đề bài viết.', 'error'); return; }
+    const body = {
+        title,
+        category: document.getElementById('nCategory').value || 'news',
+        tags: document.getElementById('nTags').value.split(',').map(t => t.trim()).filter(Boolean),
+        image: document.getElementById('nImage').value,
+        summary: document.getElementById('nSummary').value,
+        content: document.getElementById('nContent').value,
+        author: 'Admin PIZZAN'
+    };
+    const token = localStorage.getItem('token');
+    const headers = { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' };
+    try {
+        if (id) {
+            const res = await fetch(`/api/articles/${id}`, { method: 'PUT', headers, body: JSON.stringify(body) });
+            const updated = await res.json();
+            allArticles = allArticles.map(a => a._id === id ? updated : a);
+            showAdminToast('Đã cập nhật bài viết!', 'success');
+        } else {
+            const res = await fetch('/api/articles', { method: 'POST', headers, body: JSON.stringify(body) });
+            const created = await res.json();
+            allArticles.unshift(created);
+            showAdminToast('Đã đăng bài viết mới!', 'success');
+        }
+        closeNewsModal();
+        renderNews();
+        updateStats();
+    } catch(e) { showAdminToast('Lỗi khi lưu bài viết.', 'error'); }
+}
+
+// -----------------------------------
+async function loadMessages() {
+    const token = localStorage.getItem('token');
+    if(!token) return;
+    try {
+        const res = await fetch('/api/contacts', {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if(res.ok) {
+            allMessages = await res.json();
+            // Map _id to id for compatibility with existing UI
+            allMessages = allMessages.map(m => ({...m, id: m._id, date: new Date(m.createdAt).toLocaleString('vi-VN')}));
+            renderMessages();
+            updateContactDot();
+        }
+    } catch(e) {
+        console.error("Failed to load messages", e);
+    }
+}
+
+function renderMessages(list) {
+    const data = (list || allMessages).filter(m => {
+        if (msgFilter === 'unread') return m.status === 'unread';
+        if (msgFilter === 'read')   return m.status === 'read';
+        if (msgFilter === 'replied') return m.status === 'replied';
+        return true;
+    });
+    const q = (document.getElementById('msgSearch')?.value || '').toLowerCase();
+    const filtered = data.filter(m =>
+        !q ||
+        (m.name||'').toLowerCase().includes(q) ||
+        (m.subject||'').toLowerCase().includes(q) ||
+        (m.email||'').toLowerCase().includes(q)
+    );
+
+    const list_el = document.getElementById('msgList');
+    if (!filtered.length) {
+        list_el.innerHTML = `<div style="text-align:center;padding:40px;color:var(--text-muted);font-size:12px">
+            <i class="fa-solid fa-inbox fa-2x" style="display:block;margin-bottom:8px;opacity:.4"></i>Không có tin nhắn nào.
+        </div>`;
+        return;
+    }
+    list_el.innerHTML = filtered.map(m => {
+        const iconClass = m.status === 'replied' ? 'replied' : m.status === 'read' ? 'read' : 'unread';
+        const icon = m.status === 'replied' ? 'fa-check-double' : 'fa-envelope';
+        const isSelected = selectedMsg?.id === m.id;
+        return `
+        <div class="msg-card ${iconClass} ${isSelected ? 'selected' : ''}" onclick="readMessage('${m.id}')">
+            <div class="msg-icon ${iconClass}"><i class="fa-solid ${icon}"></i></div>
+            <div style="flex:1;min-width:0">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                    <span class="msg-name">${m.name}</span>
+                    <span class="msg-time">${m.date}</span>
+                </div>
+                <div class="msg-subject">${m.subject}</div>
+                <div class="msg-preview">${m.message}</div>
+                ${m.status === 'replied' ? '<div style="font-size:10px;color:#10b981;font-weight:700;margin-top:3px"><i class="fa-solid fa-check"></i> Đã phản hồi</div>' : ''}
+            </div>
+            <button onclick="deleteMessage('${m.id}',event)" style="background:none;border:none;color:var(--text-muted);cursor:pointer;padding:4px;border-radius:6px;transition:all .2s" onmouseover="this.style.color='#f43f5e'" onmouseout="this.style.color='var(--text-muted)'">
+                <i class="fa-solid fa-trash" style="font-size:11px"></i>
+            </button>
+        </div>`;
+    }).join('');
+}
+
+async function readMessage(id) {
+    selectedMsg = allMessages.find(m => m.id === id);
+    if (!selectedMsg) return;
+    
+    if (selectedMsg.status === 'unread') {
+        selectedMsg.status = 'read';
+        const token = localStorage.getItem('token');
+        try {
+            await fetch(`/api/contacts/${id}`, {
+                method: 'PUT',
+                headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: 'read' })
+            });
+            updateContactDot();
+        } catch(e) {}
+    }
+    renderMessages();
+
+    const pane = document.getElementById('readingPane');
+    pane.innerHTML = `
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--border-col);margin-bottom:16px">
+            <div>
+                <span style="display:inline-block;padding:2px 8px;background:rgba(99,102,241,.1);color:#818cf8;border-radius:6px;font-size:10px;font-family:'JetBrains Mono',monospace;margin-bottom:6px">${String(selectedMsg.id).slice(-6).toUpperCase()}</span>
+                <h3 style="font-size:15px;font-weight:800;color:white">${selectedMsg.subject}</h3>
+                <div style="font-size:11px;color:var(--text-muted);margin-top:8px;display:flex;flex-direction:column;gap:4px">
+                    <span><i class="fa-solid fa-user" style="width:14px;color:var(--text-muted)"></i> Người gửi: <b style="color:var(--text-primary)">${selectedMsg.name}</b></span>
+                    <span><i class="fa-solid fa-envelope" style="width:14px;color:var(--text-muted)"></i> Email: <b style="color:var(--text-primary);font-family:'JetBrains Mono',monospace">${selectedMsg.email}</b></span>
+                    <span><i class="fa-solid fa-clock" style="width:14px;color:var(--text-muted)"></i> Nhận lúc: <b style="color:var(--text-primary)">${selectedMsg.date}</b></span>
+                </div>
+            </div>
+            <button onclick="clearReading()" style="background:var(--bg-card-2);border:1px solid var(--border-col);color:var(--text-muted);border-radius:8px;width:30px;height:30px;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div style="background:var(--bg-card-2);border-left:3px solid var(--accent);padding:14px 16px;border-radius:0 10px 10px 0;margin-bottom:16px">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#818cf8;margin-bottom:8px">Nội dung tin nhắn:</div>
+            <p style="font-size:12px;color:var(--text-secondary);line-height:1.7">${selectedMsg.message}</p>
+        </div>
+        ${selectedMsg.reply ? `
+        <div style="background:rgba(16,185,129,.05);border-left:3px solid #10b981;padding:14px 16px;border-radius:0 10px 10px 0;margin-bottom:16px">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#10b981;margin-bottom:8px"><i class="fa-solid fa-check-circle"></i> Phản hồi đã gửi:</div>
+            <p style="font-size:12px;color:var(--text-secondary);line-height:1.7;font-style:italic">${selectedMsg.reply}</p>
+        </div>` : ''}
+        <div id="replyArea" style="margin-top:auto;padding-top:16px;border-top:1px solid var(--border-col)">
+            ${!selectedMsg.reply ? `
+            <button class="btn-admin btn-admin-primary" onclick="openReplyBox()" id="replyBtn" style="font-size:12px">
+                <i class="fa-solid fa-reply"></i> Viết phản hồi
+            </button>` : '<div style="font-size:11px;color:#10b981;font-weight:600"><i class="fa-solid fa-circle-check"></i> Đã phản hồi thành công</div>'}
+        </div>`;
+}
+
+function openReplyBox() {
+    document.getElementById('replyArea').innerHTML = `
+        <form onsubmit="sendReply(event)">
+            <label style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text-muted);display:block;margin-bottom:6px">Nội dung phản hồi email</label>
+            <textarea id="replyText" class="form-control-admin" rows="4" required placeholder="Chào ${selectedMsg?.name}, cảm ơn bạn đã liên hệ..."></textarea>
+            <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px">
+                <button type="button" class="btn-admin btn-admin-ghost" onclick="openReplyBox()" style="font-size:11px">Hủy</button>
+                <button type="submit" class="btn-admin btn-admin-success" style="font-size:11px"><i class="fa-solid fa-paper-plane"></i> Gửi phản hồi</button>
+            </div>
+        </form>`;
+}
+
+async function sendReply(e) {
+    e.preventDefault();
+    const reply = document.getElementById('replyText').value.trim();
+    if (!reply) return;
+    
+    const msg = allMessages.find(m => m.id === selectedMsg?.id);
+    if (msg) {
+        const token = localStorage.getItem('token');
+        try {
+            const res = await fetch(`/api/contacts/${msg.id}`, {
+                method: 'PUT',
+                headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: 'replied', reply })
+            });
+            if (res.ok) {
+                msg.status  = 'replied';
+                msg.reply   = reply;
+                selectedMsg = msg;
+                showAdminToast('Đã lưu trạng thái phản hồi!', 'success');
+                renderMessages();
+                readMessage(msg.id);
+            } else {
+                showAdminToast('Lỗi gửi phản hồi', 'error');
+            }
+        } catch(e) {
+            showAdminToast('Lỗi kết nối server', 'error');
+        }
+    }
+}
+
+async function deleteMessage(id, e) {
+    e.stopPropagation();
+    if(!confirm("Bạn có chắc muốn xóa tin nhắn này?")) return;
+    const token = localStorage.getItem('token');
+    try {
+        const res = await fetch(`/api/contacts/${id}`, {
+            method: 'DELETE',
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.ok) {
+            allMessages = allMessages.filter(m => m.id !== id);
+            if (selectedMsg?.id === id) clearReading();
+            renderMessages();
+            updateContactDot();
+            showAdminToast('Đã xóa tin nhắn.', 'success');
+        }
+    } catch(err) {
+        showAdminToast('Lỗi khi xóa', 'error');
+    }
+}
+
+function clearReading() {
+    selectedMsg = null;
+    document.getElementById('readingPane').innerHTML = `
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-muted);height:100%">
+            <i class="fa-regular fa-envelope-open fa-3x" style="margin-bottom:12px;opacity:.3"></i>
+            <div style="font-size:13px;font-weight:600;color:var(--text-secondary)">Chi tiết tin nhắn</div>
+            <div style="font-size:11px;margin-top:4px;text-align:center;max-width:260px">Chọn một tin nhắn bên trái để xem nội dung và soạn phản hồi.</div>
+        </div>`;
+    renderMessages();
+}
+
+function setMsgFilter(f, btn) {
+    msgFilter = f;
+    document.querySelectorAll('#tab-contact .filter-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderMessages();
+}
+
+function filterMessages() { renderMessages(); }
+
+function updateContactDot() {
+    const unread = allMessages.filter(m => m.status === 'unread').length;
+    const dot = document.getElementById('contactDot');
+    dot.style.display = unread > 0 ? 'block' : 'none';
+}
+
+// -----------------------------------
+let pendingDelete = null;
+function confirmDelete(type, id, name) {
+    pendingDelete = { type, id };
+    document.getElementById('confirmTitle').textContent = `Xóa "${name}"?`;
+    document.getElementById('confirmMsg').textContent = 'Hành động này không thể hoàn tác.';
+    document.getElementById('confirmOkBtn').onclick = execDelete;
+    document.getElementById('confirmModal').classList.add('open');
+}
+function closeConfirm() { document.getElementById('confirmModal').classList.remove('open'); }
+async function execDelete() {
+    if (!pendingDelete) return;
+    const { type, id } = pendingDelete;
+    const token = localStorage.getItem('token');
+    const headers = { 'Authorization': `Bearer ${token}` };
+    try {
+        const endpoint = type === 'user' ? '/api/users' : type === 'product' ? '/api/products' : '/api/articles';
+        await fetch(`${endpoint}/${id}`, { method: 'DELETE', headers });
+        if (type === 'user')    { allUsers    = allUsers.filter(u => u._id !== id); renderUsers(); }
+        if (type === 'product') { allProducts = allProducts.filter(p => p._id !== id); renderProducts(); renderDonutChart(); renderOverviewProducts(); }
+        if (type === 'news')    { allArticles = allArticles.filter(a => a._id !== id); renderNews(); }
+        updateStats();
+        showAdminToast('Đã xóa thành công!', 'success');
+    } catch(e) { showAdminToast('Lỗi khi xóa.', 'error'); }
+    closeConfirm();
+}
+
+// -----------------------------------
+function handleHeaderSearch(q) {
+    if (!q) return;
+    q = q.toLowerCase();
+    const matchedTab = [
+        { words: ['người dùng', 'user'], tab: 'users' },
+        { words: ['sản phẩm', 'product', 'kho'], tab: 'products' },
+                { words: ['tin tức', 'bài viết', 'news'], tab: 'news' },
+        { words: ['liên hệ', 'hộp thư', 'contact'], tab: 'contact' },
+    ].find(t => t.words.some(w => q.includes(w)));
+    if (matchedTab) switchTab(matchedTab.tab);
+}
+
+// -----------------------------------
+function showAdminToast(msg, type = 'info') {
+    const icons = { success: '✅', error: '❌', warning: '⚠️', info: 'ℹ️' };
+    const container = document.getElementById('adminToastContainer');
+    const toast = document.createElement('div');
+    toast.className = `admin-toast toast-${type}`;
+    toast.innerHTML = `<span style="font-size:16px">${icons[type]}</span><span>${msg}</span>`;
+    container.appendChild(toast);
+    setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateX(30px)'; setTimeout(() => toast.remove(), 300); }, 3000);
+}
+
+// -----------------------------------
+function openMobileSidebar() {
+    document.getElementById('adminSidebar').classList.add('mobile-open');
+    document.getElementById('sidebarOverlay').classList.add('open');
+}
+function closeMobileSidebar() {
+    document.getElementById('adminSidebar').classList.remove('mobile-open');
+    document.getElementById('sidebarOverlay').classList.remove('open');
+}
+
+async function deleteCategory(selectId) {
+    const select = document.getElementById(selectId);
+    const val = select.value;
+    if (!val || val === 'all' || val === 'pizza' || val === 'news' || val === 'drinks' || val === 'sides' || val === 'pasta' || val === 'dessert' || val === 'chicken' || val === 'combo' || val === 'veggie' || val === 'recipes' || val === 'tips' || val === 'events' || val === 'promotions' || val === 'community') {
+        showAdminToast("Không thể xóa danh mục mặc định.", "warning");
+        return;
+    }
+    if (!confirm(`Bạn có chắc muốn xóa danh mục '${val}'?\nCác mục đang dùng danh mục này sẽ chuyển về 'Tất Cả' (all).`)) return;
+
+    try {
+        const token = localStorage.getItem('token');
+        const headers = { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' };
+
+        if (selectId === 'pCategory') {
+            const toUpdate = allProducts.filter(p => p.category === val);
+            for (const p of toUpdate) {
+                p.category = 'all';
+                await fetch(`/api/products/${p._id}`, { method: 'PUT', headers, body: JSON.stringify(p) });
+            }
+        } else if (selectId === 'nCategory') {
+            const toUpdate = allArticles.filter(a => a.category === val);
+            for (const a of toUpdate) {
+                a.category = 'all';
+                await fetch(`/api/articles/${a._id}`, { method: 'PUT', headers, body: JSON.stringify(a) });
+            }
+        }
+
+        // Update local storage for custom categories
+        let customCategories = JSON.parse(localStorage.getItem('customCategories') || '[]');
+        customCategories = customCategories.filter(c => c !== val);
+        localStorage.setItem('customCategories', JSON.stringify(customCategories));
+
+        showAdminToast(`Đã xóa danh mục ${val}. Đang tải lại...`, "success");
+        setTimeout(() => location.reload(), 1500);
+    } catch(e) {
+        showAdminToast("Lỗi khi xóa danh mục.", "error");
+    }
+}
+</script>
+</body>
+</html>
+
+
+
+<div class="modal-overlay" id="productModal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeProductModal()"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-title" id="productModalTitle">Thêm Sản Phẩm Mới</div>
+        <input type="hidden" id="editProductId">
+        <div class="form-group">
+            <label class="form-label">Tên sản phẩm *</label>
+            <input type="text" class="form-control-admin" id="pName" placeholder="VD: Pizza Margherita">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="form-group">
+                <label class="form-label">Giá (VND) *</label>
+                <input type="number" class="form-control-admin" id="pPrice" placeholder="VD: 150000" min="0">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Danh mục *</label>
+                <select class="form-control-admin" id="pCategory">
+                    <option value="Pizza">Pizza</option>
+                    <option value="Đồ uống">Đồ uống</option>
+                    <option value="Món phụ">Món phụ</option>
+                    <option value="Tráng miệng">Tráng miệng</option>
+                    <option value="Gà">Gà</option>
+                    <option value="Combo">Combo</option>
+                    <option value="Chay">Chay</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Mô tả</label>
+            <textarea class="form-control-admin" id="pDescription" placeholder="Mô tả ngắn về sản phẩm..."></textarea>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Hình ảnh sản phẩm</label>
+            <div id="imageUploadArea" style="border:2px dashed var(--border-light);border-radius:10px;padding:16px;text-align:center;cursor:pointer;transition:border-color .2s" onclick="document.getElementById('pImageFile').click()" onmouseenter="this.style.borderColor='var(--accent)'" onmouseleave="this.style.borderColor='var(--border-light)'">
+                <img id="pImagePreview" src="" alt="" style="display:none;max-height:120px;border-radius:8px;margin-bottom:10px;max-width:100%;object-fit:contain">
+                <div id="imageUploadPlaceholder">
+                    <i class="fa-solid fa-cloud-arrow-up" style="font-size:24px;color:var(--text-muted);display:block;margin-bottom:6px"></i>
+                    <span style="font-size:12px;color:var(--text-muted)">Nhấn để chọn ảnh từ máy tính<br><span style="font-size:10px">PNG, JPG, WEBP - Tối đa 5MB</span></span>
+                </div>
+                <input type="file" id="pImageFile" accept="image/*" style="display:none" onchange="previewProductImage(this)">
+            </div>
+            <input type="hidden" id="pImage">
+        </div>
+        <div class="form-group" style="display:flex;align-items:center;gap:10px">
+            <input type="checkbox" id="pPopular" style="width:14px;height:14px;accent-color:var(--accent)">
+            <label for="pPopular" style="font-size:12px;color:var(--text-secondary);cursor:pointer">Đánh dấu là sản phẩm nổi bật</label>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;margin-top:8px">
+                    <input type="checkbox" id="pTopPage" style="width:14px;height:14px;accent-color:var(--accent)">
+                    <label for="pTopPage" style="font-size:12px;color:var(--text-secondary);cursor:pointer">Đánh dấu là sản phẩm đầu trang</label>
+        </div>
+        <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:18px">
+            <button class="btn-admin btn-admin-ghost" onclick="closeProductModal()">Hủy</button>
+            <button class="btn-admin btn-admin-primary" onclick="saveProduct()"><i class="fa-solid fa-floppy-disk"></i> Lưu</button>
+        </div>
+    </div>
+</div>
+
+
+

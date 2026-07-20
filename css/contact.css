@@ -1,0 +1,89 @@
+body {
+            background-color: #fcf9f4; /* Màu nền kem nhạt toàn hệ thống */
+        }
+  /* 1. Khối Hero Header - Sửa lại đường dẫn ảnh bánh chính xác */
+.contact-hero {
+    /* Mẹo: Nếu tên file ảnh của bạn là tên khác (ví dụ: homepage-4.png hoặc banner.png), hãy thay thế vào chữ 'pizza-bg.png' dưới đây */
+    background-image: linear-gradient(to bottom, rgba(0, 21, 41, 0.7) 0%, rgba(0, 21, 41, 0.5) 100%), url('assets/images/Hero-Background.png');
+    background-size: cover;
+    background-position: center 45%; /* Đẩy trọng tâm ảnh lên một chút để lộ rõ chiếc bánh ở cạnh dưới */
+    background-repeat: no-repeat;
+    height: 400px;
+    color: #ffffff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+        /* 2. Khối Form gửi tin nhắn */
+        .message-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 40px;
+            border: 1px solid rgba(0, 21, 41, 0.04);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+        }
+        .form-custom-input {
+            border: 1px solid rgba(0, 21, 41, 0.1) !important;
+            border-radius: 6px !important;
+            padding: 10px 14px;
+            background-color: #fffaf5 !important;
+            font-size: 14px;
+        }
+
+        /* 3. Khối thông tin cơ sở góc phải */
+        .info-card-box {
+            background-color: #eee9e4; /* Màu xám kem nhạt bám sát ảnh mẫu */
+            border-radius: 12px;
+            padding: 30px 25px;
+            margin-bottom: 25px;
+        }
+        .info-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+        .info-icon-wrapper {
+            color: #e3001b;
+            font-size: 18px;
+            margin-top: 3px;
+        }
+
+        /* 4. Khối Bản đồ */
+        .map-wrapper-box {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 21, 41, 0.05);
+            position: relative;
+        }
+
+        /* 5. Khối Banner Đỏ "Want Secret Deals?" */
+        .secret-deals-banner {
+            background-color: #cc0014; /* Màu đỏ rực theo thiết kế */
+            color: #ffffff;
+            padding: 50px 0;
+            text-align: center;
+            position: relative;
+        }
+        .deal-input {
+            border-radius: 30px 0 0 30px !important;
+            border: none !important;
+            padding: 12px 25px !important;
+            width: 320px;
+            max-width: 100%;
+            outline: none;
+        }
+        .deal-btn {
+            background-color: #001529 !important; /* Nút màu tối Navy */
+            color: #ffffff !important;
+            font-weight: bold;
+            border: none;
+            border-radius: 0 30px 30px 0 !important;
+            padding: 0 25px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIZZAN Restaurant - Trang Chủ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg pizzan-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-white fs-3" href="index.html"><span class="text-pizzan-red">PIZ</span>ZAN</a>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><i class="fa-solid fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto gap-2">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Trang Chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Giới Thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menu.html">Thực Đơn</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">Tin Tức</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Liên Hệ</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <form action="menu.html" method="get" class="position-relative d-none d-xl-block" style="width: 180px;">
+                        <input type="text" name="q" class="form-control bg-dark border-secondary text-white form-control-sm ps-4" placeholder="Tìm kiếm pizza..." style="border-radius: 20px !important;">
+                        <i onclick="this.closest('form').submit()" style="cursor: pointer;" class="fa-solid fa-magnifying-glass position-absolute start-0 top-50 translate-middle-y ms-2 text-white-50" style="font-size: 12px;"></i>
+                    </form>
+                    <a href="#" class="text-white fs-5 px-1 hover-pizzan-red"><i class="fa-regular fa-heart"></i></a>
+                    <a href="cart.html" class="text-white position-relative cart-icon-wrapper fs-5 px-1 me-2">
+                        <i class="fa-solid fa-basket-shopping"></i><span id="globalCartBadge" class="cart-badge">0</span>
+                    </a>
+                    <div id="globalAuthArea" class="me-2"><a href="login.html" class="text-white text-decoration-none small fw-bold">Đăng Nhập</a></div>
+                    <a href="menu.html" class="btn btn-pizzan-red btn-sm fw-bold px-3 py-2 text-uppercase text-white" style="border-radius: 20px !important; font-size: 13px;">ĐẶT HÀNG</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <h1 class="large-headline fw-bold mb-3" style="line-height: 1.4; padding-top: 10px;">TRẢI NGHIỆM <br><span class="text-pizzan-red">ẨM THỰC</span> ĐỈNH CAO</h1>
+                    <p class="body-large text-white-50 mb-4" style="max-width: 450px;">Khám phá hương vị ẩm thực Ý chuẩn vị, chế biến từ nguyên liệu tươi sạch thượng hạng mỗi ngày.</p>
+                    <a href="menu.html" class="btn btn-pizzan-red py-3 px-4 fw-bold text-white text-uppercase" style="border-radius: 25px !important; font-size: 13px;">Xem Menu →</a>
+                </div>
+                <div class="col-md-6 text-center position-relative mt-5 mt-md-0">
+                    <div class="discount-badge">-50%</div>
+                    <img src="../assets/images/Promo-Food.png" alt="Steak Hero" class="img-fluid rounded-circle shadow-lg floating-dish" style="max-width: 380px; border: 8px solid rgba(255,255,255,0.03);">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="container my-5 py-4">
+        <div class="row align-items-center g-5">
+            <div class="col-md-5 text-center">
+                <img src="../assets/images/Promo-Food.png" alt="Featured Steak" class="img-fluid rounded-circle shadow" style="max-width: 300px; border: 6px solid #ffffff;">
+            </div>
+            <div class="col-md-7">
+                <h2 class="fw-bold text-dark mb-3" style="font-size: 26px;">NƠI TIN CẬY CHO ĐỒ ĐỒ ĂN<br><span class="text-pizzan-red">NHANH CHẤT LƯỢNG</span></h2>
+                <p class="text-muted small mb-4">Chúng tôi tin rằng món ăn ngon phải đi đôi với sự an tâm về sức khỏe. Từng thớ thịt bò nhập khẩu, từng lá rau xanh hữu cơ đều trải qua quy trình kiểm định nghiêm ngặt.</p>
+                
+                <div class="about-features-box mb-4">
+                    <div class="about-feature-item"><i class="fa-solid fa-utensils"></i>Sạch Sẽ</div>
+                    <div class="about-feature-item"><i class="fa-solid fa-leaf"></i>Tươi Ngon</div>
+                    <div class="about-feature-item"><i class="fa-solid fa-truck"></i>Giao Nhanh</div>
+                </div>
+                <a href="about.html" class="btn btn-pizzan-red btn-sm px-4 py-2" style="border-radius: 20px !important;">XEM THÊM</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="container my-5 text-center">
+        <span class="text-pizzan-red small text-uppercase fw-bold">Nhìn Là Mê</span>
+        <h2 class="fw-bold text-dark mt-1 mb-5" style="font-size: 26px;">KHÁM PHÁ NHỮNG MÓN ĂN ĐƯỢC YÊU THÍCH NHẤT!</h2>
+        
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+            <div class="col">
+                <div class="card popular-round-card">
+                    <img src="../assets/images/steak-hero.png" alt="Steak Bò Nướng">
+                    <h6 class="fw-bold text-dark mb-1">Steak Bò Nướng</h6>
+                    <div class="text-danger fw-bold mb-3">270,000đ</div>
+                    <button class="btn btn-pizzan-red btn-sm px-3" style="border-radius: 15px !important;" onclick="addHomeProductToCart('101', 'Steak Bò Nướng', 18, '/assets/images/steak-hero.png')">Đặt mua nhanh</button>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card popular-round-card">
+                    <img src="../assets/images/shrimp-ramen.png" alt="Mì Tôm Ramen">
+                    <h6 class="fw-bold text-dark mb-1">Mì Tôm Ramen</h6>
+                    <div class="text-danger fw-bold mb-3">270,000đ</div>
+                    <button class="btn btn-pizzan-red btn-sm px-3" style="border-radius: 15px !important;" onclick="addHomeProductToCart('102', 'Mì Tôm Ramen', 18, '/assets/images/shrimp-ramen.png')">Đặt mua nhanh</button>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card popular-round-card">
+                    <img src="../assets/images/Pizza Mini Vị Đậm.png" alt="Pizza Vị Nguyên Bản">
+                    <h6 class="fw-bold text-dark mb-1">Pizza Vị Nguyên Bản</h6>
+                    <div class="text-danger fw-bold mb-3">270,000đ</div>
+                    <button class="btn btn-pizzan-red btn-sm px-3" style="border-radius: 15px !important;" onclick="addHomeProductToCart('103', 'Pizza Vị Nguyên Bản', 18, '/assets/images/Pizza Mini Vị Đậm.png')">Đặt mua nhanh</button>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card popular-round-card">
+                    <img src="../assets/images/mixed-grilled-dishes.png" alt="Các Món Nướng Thập Cẩm">
+                    <h6 class="fw-bold text-dark mb-1">Các Món Nướng Thập Cẩm</h6>
+                    <div class="text-danger fw-bold mb-3">270,000đ</div>
+                    <button class="btn btn-pizzan-red btn-sm px-3" style="border-radius: 15px !important;" onclick="addHomeProductToCart('104', 'Các Món Nướng Thập Cẩm', 18, '/assets/images/mixed-grilled-dishes.png')">Đặt mua nhanh</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container my-5 py-2">
+        <div class="row g-4">
+            <div class="col-12 col-md-4">
+                <a href="menu.html" class="d-block shadow-sm position-relative" style="background-image: url('/assets/images/home-4.png'); background-size: cover; background-position: center; height: 220px; border-radius: 16px; text-decoration: none;">
+                    <div class="position-absolute top-50 translate-middle-y text-white" style="left: 25px; max-width: 180px; z-index: 2;">
+                        <h5 class="fw-bold mb-1" style="font-size: 15px; line-height: 1.3; text-shadow: 0 1px 3px rgba(0,0,0,0.2);">Thưởng Thức Vị Burger Đỉnh Cao</h5>
+                        <p class="text-white-50 m-0 mb-3" style="font-size: 11px;">Giảm ngay 20% cho tuần này</p>
+                        <span class="d-inline-block bg-white text-danger fw-bold text-uppercase text-center small" style="font-size: 10px; padding: 5px 15px; border-radius: 15px;">MUA NGAY</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-md-4">
+                <a href="menu.html" class="d-block shadow-sm position-relative" style="background-image: url('/assets/images/homepage-3.png'); background-size: cover; background-position: center; height: 220px; border-radius: 16px; text-decoration: none;">
+                    <div class="position-absolute top-50 translate-middle-y text-white" style="left: 25px; max-width: 180px; z-index: 2;">
+                        <h5 class="fw-bold mb-1" style="font-size: 15px; line-height: 1.3; text-shadow: 0 1px 3px rgba(0,0,0,0.2);">Khoai Tây Chiên Giòn Rụm</h5>
+                        <p class="text-white-50 m-0 mb-3" style="font-size: 11px;">Ưu đãi 30%</p>
+                        <span class="d-inline-block bg-white text-warning fw-bold text-uppercase text-center small" style="font-size: 10px; padding: 5px 15px; border-radius: 15px; color: #b37400 !important;">MUA NGAY</span>
+                    </div>
+                </a>
+            </div>
+           <div class="col-12 col-md-4">
+                <a href="menu.html" class="d-block shadow-sm position-relative" style="background-image: url('/assets/images/Pasta-Promo.png'); background-size: cover; background-position: center; height: 220px; border-radius: 16px; text-decoration: none;">
+                    <div class="position-absolute top-50 translate-middle-y text-white" style="left: 25px; max-width: 180px; z-index: 2;">
+                        <h5 class="fw-bold mb-1" style="font-size: 15px; line-height: 1.3; text-shadow: 0 1px 3px rgba(0,0,0,0.2);">Salad Mì Ống</h5>
+                        <p class="text-white-50 m-0 mb-3" style="font-size: 11px;">Ưu đãi 30%</p>
+                        <span class="d-inline-block bg-white text-warning fw-bold text-uppercase text-center small" style="font-size: 10px; padding: 5px 15px; border-radius: 15px; color: #b37400 !important;">MUA NGAY</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid p-0 my-5">
+        <div class="position-relative w-100" style="background-image: url('/assets/images/homepage-2.png'); background-size: cover; background-position: center; height: 400px;">
+            <div class="container h-100 position-relative">
+                <div class="position-absolute top-50 translate-middle-y text-white text-center text-md-start" style="left: 15px; max-width: 500px; padding-left: 50px;">
+                    <p style="margin: 0 0 5px 0; color: #a4a19c; font-size: 13px; text-transform: uppercase; font-weight: 500; letter-spacing: 1px;">ƯU ĐÃI ĐẶC BIỆT HÔM NAY</p>
+                    <h2 style="margin: 0 0 12px 0; font-size: 32px; font-weight: 700; text-transform: uppercase; line-height: 1.25; letter-spacing: 0.5px;">BÙNG NỔ VỊ NGON<br>BURGER <span style="color: #e3001b;">SIÊU HOT</span></h2>
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-3 mt-2">
+                        <span style="color: #ffc107; font-size: 18px; font-weight: 700; text-transform: uppercase;">GIẢM GIÁ 32%</span>
+                        <a href="menu.html" class="btn btn-danger text-uppercase fw-bold" style="background-color: #e3001b; border: none; font-size: 11px; padding: 8px 18px; border-radius: 20px !important;">ĐẶT HÀNG NGAY</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid py-5" style="background-color: #fcf9f4;">
+        <div class="container" style="max-width: 1240px;">
+            <div class="text-center mb-4">
+                <span class="text-pizzan-red small text-uppercase fw-bold" style="font-size: 11px; letter-spacing: 1.5px; color: #e3001b !important;">THỰC ĐƠN HÔM NAY</span>
+                <h2 class="fw-bold text-dark mt-1" style="font-size: 26px; letter-spacing: 0.5px;">THỰC ĐƠN NỔI BẬT</h2>
+            </div>
+            <div class="d-flex justify-content-center flex-wrap gap-2 mb-4" id="featuredTabsContainer">
+                <button class="btn btn-sm fw-bold px-3 py-2 tab-item active-tab" onclick="filterFeaturedMenu('all', this)" style="border-radius: 20px !important; font-size: 12px; border: none;">TẤT CẢ</button>
+            </div>
+            <div class="row g-4 justify-content-center" id="featuredCardsContainer"></div>
+            <div class="text-center mt-4">
+                <a href="menu.html" class="btn text-white fw-bold px-4 py-2 text-uppercase" style="background-color: #e3001b; border-radius: 20px !important; font-size: 12px; letter-spacing: 0.5px; border: none;">XEM TẤT CẢ</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid p-0 my-5">
+        <div class="position-relative w-100" style="background-image: url('/assets/images/homepage-1.png'); background-size: cover; background-position: center; height: 576px;">
+            <div class="container h-100 position-relative">
+                <div class="position-absolute top-50 translate-middle-y" style="left: 60px; max-width: 500px; z-index: 10;">
+                    <h5 style="margin: 0; color: #7f7f7f; font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">TẢI XUỐNG ỨNG DỤNG</h5>
+                    <h2 style="margin: 6px 0 15px 0; color: #ff9800; font-size: 32px; font-weight: 800; text-transform: uppercase; line-height: 1.2;">ĐẶT HÀNG NGAY HÔM NAY</h2>
+                    <p style="margin: 0 0 30px 0; color: #5a5a5a; font-size: 14px; line-height: 1.5; max-width: 400px;">Nhận ưu đãi độc quyền khi tải app PIZZAN ngay hôm nay.<br>Nhanh hơn, tiện lợi hơn!</p>
+                    <div class="d-flex gap-3">
+                        <a href="https://play.google.com" target="_blank" class="btn btn-dark d-flex align-items-center gap-2 px-3 py-2 text-start text-white" style="border-radius: 8px !important; background-color: #000000; border: 1px solid #333; min-width: 150px; text-decoration: none;">
+                            <i class="fa-brands fa-google-play fs-4"></i>
+                            <div>
+                                <span class="d-block text-white-50" style="font-size: 9px; line-height: 1;">TẢI TRÊN</span>
+                                <span class="fw-bold" style="font-size: 14px; line-height: 1;">Google Play</span>
+                            </div>
+                        </a>
+                        <a href="https://www.apple.com/app-store/" target="_blank" class="btn btn-dark d-flex align-items-center gap-2 px-3 py-2 text-start text-white" style="border-radius: 8px !important; background-color: #000000; border: 1px solid #333; min-width: 150px; text-decoration: none;">
+                            <i class="fa-brands fa-apple fs-4"></i>
+                            <div>
+                                <span class="d-block text-white-50" style="font-size: 9px; line-height: 1;">TẢI XUỐNG TRÊN</span>
+                                <span class="fw-bold" style="font-size: 14px; line-height: 1;">App Store</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid p-0" style="background-color: #FCF9F4; padding-top: 80px; padding-bottom: 80px;">
+        <div class="container" style="max-width: 1200px;">
+            <div class="text-center mb-5">
+                <span class="text-danger small text-uppercase fw-bold" style="font-size: 11px; letter-spacing: 1.5px; color: #e3001b !important;">TIN TỨC</span>
+                <h2 class="fw-bold text-dark mt-1" style="font-size: 26px; letter-spacing: 0.5px;">TIN TỨC ĐỒ ĂN NHANH</h2>
+            </div>
+            <div class="row g-4 justify-content-center" id="homeNewsContainer">
+                <div class="text-center py-4 text-muted small">Đang tải tin tức...</div>
+            </div>
+        </div>
+    </section>
+
+    <div id="customToast" class="position-fixed bottom-0 end-0 m-4 p-3 rounded-3 shadow text-white fw-bold d-none animate-toast" style="z-index: 9999; background-color: #e3001b; min-width: 250px;">
+        <div class="d-flex align-items-center gap-2"><i class="fa-solid fa-circle-check fs-5"></i><span id="toastNội Dung Tin Nhắn">Thêm vào giỏ hàng thành công!</span></div>
+    </div>
+
+    <footer class="pizzan-footer py-5 mt-5">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">PIZZAN</h5>
+                    <p class="text-white-50 small">Chế tác những chiếc pizza tuyệt hảo nhất thế giới từ 1995. Nguyên liệu tươi mới, đầu bếp đam mê và tình yêu với truyền thống nước Ý.</p>
+                    <div class="d-flex gap-3 fs-5 mt-3">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Liên Kết Nhanh</h5>
+                    <ul class="list-unstyled d-grid gap-2">
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">Câu Chuyện</a></li>
+                        <li><a href="news.html">News & Blog</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Hỗ Trợ</h5>
+                    <ul class="list-unstyled d-grid gap-2">
+                        <li><a href="#">Chính Sách Bảo Mật</a></li>
+                        <li><a href="#">Điều Khoản Dịch Vụ</a></li>
+                        <li><a href="#">Thông Tin Giao Hàng</a></li>
+                        <li><a href="#">Câu Hỏi Thường Gặp</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-white mb-3">Vị Trí</h5>
+                    <p class="text-white-50 m-0"><i class="fa-solid fa-location-dot me-2 text-pizzan-red"></i>123 Đường Pepperoni,<br>Thung Lũng Pizza, CA 90210</p>
+                    <p class="text-white-50 mt-2"><i class="fa-solid fa-phone me-2 text-pizzan-red"></i>+1 (555) PIZZAN-0</p>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25">
+            <div class="text-center text-white-50 small mt-3">
+                © 2026 PIZZAN Restaurant. Đã đăng ký bản quyền.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/global.js"></script>
+    <script>
+        // Mảng sản phẩm và hàm xử lý giỏ hàng đồng bộ
+        let FEATURED_PRODUCTS = [];
+
+        async function fetchFeaturedProducts() {
+            try {
+                const res = await fetch('/api/products');
+                if (res.ok) {
+                    const allProducts = await res.json();
+                    FEATURED_PRODUCTS = allProducts.filter(p => p.isPopular).reverse();
+                    
+                    const tabsContainer = document.getElementById('featuredTabsContainer');
+                    if(tabsContainer) {
+                        const uniqueCats = [...new Set(FEATURED_PRODUCTS.map(p => p.category))].filter(Boolean);
+                        let html = `<button class="btn btn-sm fw-bold px-3 py-2 tab-item active-tab" onclick="filterFeaturedMenu('all', this)" style="border-radius: 20px !important; font-size: 12px; border: none;">TẤT CẢ</button>`;
+                        uniqueCats.forEach(c => {
+                            const cName = formatCategoryGlobal(c).toUpperCase();
+                            html += `<button class="btn btn-sm btn-light fw-semibold text-muted px-3 py-2 tab-item" onclick="filterFeaturedMenu('${c}', this)" style="border-radius: 20px !important; font-size: 12px; background-color: #ffffff; border: none;">${cName}</button>`;
+                        });
+                        tabsContainer.innerHTML = html;
+                    }
+                }
+            } catch (err) {
+                console.error("Lỗi khi tải sản phẩm nổi bật:", err);
+            }
+        }
+
+        function filterFeaturedMenu(category, element) {
+            const tabs = document.querySelectorAll('#featuredTabsContainer .tab-item');
+            tabs.forEach(tab => {
+                tab.classList.remove('active-tab');
+                tab.classList.add('btn-light', 'text-muted');
+            });
+            if (element) {
+                element.classList.add('active-tab');
+                element.classList.remove('btn-light', 'text-muted');
+            }
+
+            // Nếu danh mục là all, lấy một số sản phẩm tiêu biểu
+            const filtered = category === 'all' ? FEATURED_PRODUCTS.slice(0, 4) : FEATURED_PRODUCTS.filter(p => p.category === category).slice(0, 4);
+            const container = document.getElementById('featuredCardsContainer');
+            container.innerHTML = '';
+
+            if(filtered.length === 0) {
+                container.innerHTML = `<div class="text-center py-4 text-muted small">Món ăn thuộc danh mục này đang được cập nhật...</div>`;
+                return;
+            }
+
+            filtered.forEach(item => {
+                const cardHTML = `
+                    <div class="col-12 col-xl-6 d-flex justify-content-center">
+                        <div class="shadow-sm d-flex align-items-center justify-content-between p-3 position-relative" style="background-color: #ffffff; border-radius: 12px; border: 1px solid rgba(0,21,41,0.03); width: 596px; height: 162px; box-sizing: border-box;">
+                            <div class="d-flex align-items-center gap-3 h-100" style="flex: 1; padding-right: 15px;">
+                                <img src="${item.image || item.img}" alt="${item.name}" onerror="this.src='/assets/images/Classic-Pizza.png'" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%; flex-shrink: 0;">
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="fw-bold text-dark m-0 mb-1" style="font-size: 15px; letter-spacing: 0.3px;">${item.name}</h6>
+                                    <p class="text-muted m-0 lh-sm mb-1" style="font-size: 12px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${item.description || item.desc}</p>
+                                    <div class="text-warning" style="font-size: 10px; opacity: 0.9;">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column justify-content-between align-items-end h-100" style="width: 110px; flex-shrink: 0; padding-top: 5px; padding-bottom: 5px;">
+                                <span class="fw-bold text-danger" style="font-size: 18px; color: #e3001b !important;">${(Number(item.price) * 15000).toLocaleString('vi-VN')}đ</span>
+                                <div class="d-flex gap-3 align-items-center" style="margin-bottom: 2px;">
+                                    <button class="btn p-0 border-0 text-muted" style="background: none;" onclick="addHomeProductToCart('${item._id || item.id}', '${item.name}', ${item.price}, '${item.image || item.img}')">
+                                        <i class="fa-solid fa-basket-shopping fs-5 text-dark" style="opacity: 0.75;"></i>
+                                    </button>
+                                    <button class="btn p-0 border-0 text-muted" style="background: none;">
+                                        <i class="fa-regular fa-heart fs-5"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHTML);
+            });
+        }
+
+        function addHomeProductToCart(id, name, price, img) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const existingIndex = cart.findIndex(item => item.id === id);
+            if (existingIndex !== -1) {
+                cart[existingIndex].quantity += 1;
+            } else {
+                cart.push({ id: id, name: name, price: price / 15000, img: img, quantity: 1 });
+            }
+            localStorage.setItem("cart", JSON.stringify(cart));
+            if (typeof updateGlobalCartBadge === "function") updateGlobalCartBadge();
+
+            const toast = document.getElementById("customToast");
+            const toastMsg = document.getElementById("toastNội Dung Tin Nhắn");
+            if (toast && toastMsg) {
+                toastMsg.innerText = `🛒 Đã thêm món "${name}" vào giỏ!`;
+                toast.classList.remove("d-none");
+                setTimeout(() => { toast.classList.add("d-none"); }, 2000);
+            }
+        }
+
+        async function fetchHomeNews() {
+            try {
+                const res = await fetch('/api/articles');
+                if (res.ok) {
+                    const articles = await res.json();
+                    const container = document.getElementById('homeNewsContainer');
+                    container.innerHTML = '';
+                    
+                    // Lấy 3 bài mới nhất
+                    const top3 = articles.slice(0, 3);
+                    
+                    top3.forEach(item => {
+                        let badgeStyle = item.badge === 'LIVE' || item.badge === 'HOT' ? 'background-color: #e3001b;' : 'background-color: #ff9800;';
+                        if(item.badge === 'ECO') badgeStyle = 'background-color: #0b6623;';
+
+                        const cardHTML = `
+                            <div class="col-12 col-md-4">
+                                <div class="card h-100 border-0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                                    <div class="position-relative">
+                                        <img src="${item.image || item.img}" alt="${item.title}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                                        ${item.badge ? `<span class="position-absolute top-0 start-0 m-3 badge text-uppercase fw-bold" style="font-size: 9px; padding: 5px 10px; ${badgeStyle}">${item.badge}</span>` : ''}
+                                    </div>
+                                    <div class="card-body p-4 d-flex flex-column justify-content-between">
+                                        <div>
+                                            <div class="text-muted mb-2" style="font-size: 11px;">
+                                                <i class="fa-regular fa-user me-1"></i> Bởi PIZZAN Chef <span class="mx-2">|</span> <i class="fa-regular fa-calendar me-1"></i> ${item.date}
+                                            </div>
+                                            <h6 class="fw-bold text-dark lh-base mb-2" style="font-size: 15px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 44px;">${item.title}</h6>
+                                            <p class="text-muted small mb-4" style="font-size: 12px; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">${item.excerpt}</p>
+                                        </div>
+                                        <a href="news-detail.html?id=${item._id || item.id}" class="text-danger fw-bold text-decoration-none text-uppercase" style="font-size: 11px; color: #e3001b !important;">CHI TIẾT <i class="fa-solid fa-arrow-right ms-1" style="font-size: 9px;"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        container.insertAdjacentHTML('beforeend', cardHTML);
+                    });
+                }
+            } catch (err) {
+                console.error("Lỗi khi tải tin tức:", err);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", async function() {
+            await fetchFeaturedProducts();
+            await fetchHomeNews();
+            filterFeaturedMenu('all', document.querySelector('#featuredTabsContainer .active-tab'));
+        });
+    </script>
+</body>
+</html>

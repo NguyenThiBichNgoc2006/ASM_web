@@ -1,0 +1,207 @@
+/* Import Font chữ Plus Jakarta Sans từ Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    /* Khai báo các biến màu và thông số theo PRD hệ thống thiết kế */
+    --primary-red: #e3001b;
+    --surface-dark: #001529;
+    --surface-light: #fcf9f4;
+    --success-green: #28a745;
+    --warning-gold: #ffc107;
+    --font-main: 'Plus Jakarta Sans', sans-serif;
+    --border-radius-standard: 8px;
+}
+
+/* Toàn bộ cấu trúc trang */
+body {
+    font-family: var(--font-main);
+    background-color: var(--surface-light);
+    color: var(--surface-dark);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Quy chuẩn Typography (Hệ thống kiểu chữ) */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-main);
+    font-weight: 700;
+}
+
+.large-headline {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.medium-headline {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.body-large {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.body-standard {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* Bo góc chuẩn 8px cho các phần tử nút, thẻ và ô nhập liệu */
+.btn, .card, .form-control, .badge {
+    border-radius: var(--border-radius-standard) !important;
+}
+
+/* GHI ĐÈ STYLE CỦA BOOTSTRAP THEO NHẬN DIỆN PIZZAN */
+.bg-pizzan-dark {
+    background-color: var(--surface-dark) !important;
+}
+
+.text-pizzan-red {
+    color: var(--primary-red) !important;
+}
+
+/* Định dạng Nút bấm Primary (Màu đỏ đô hành động) */
+.btn-pizzan-red {
+    background-color: var(--primary-red) !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    padding: 10px 24px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-pizzan-red:hover {
+    background-color: #b80014 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(227, 0, 27, 0.3);
+}
+
+/* Định dạng Nút bấm Outline (View Menu) */
+.btn-pizzan-outline {
+    background-color: transparent !important;
+    color: var(--primary-red) !important;
+    border: 2px solid var(--primary-red) !important;
+    font-weight: 600;
+    padding: 8px 22px;
+    transition: all 0.3s ease;
+}
+
+.btn-pizzan-outline:hover {
+    background-color: var(--primary-red) !important;
+    color: #ffffff !important;
+}
+
+/* CUSTOM NAVBAR (HEADER DÙNG CHUNG) */
+.pizzan-navbar {
+    background-color: var(--surface-dark);
+    padding: 15px 0;
+}
+
+.pizzan-navbar .nav-link {
+    color: #ffffff50;
+    font-weight: 500;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.pizzan-navbar .nav-link:hover,
+.pizzan-navbar .nav-link.active {
+    color: #ffffff !important;
+}
+
+/* Biểu tượng số lượng giỏ hàng trên Header */
+.cart-icon-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: var(--primary-red);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 50% !important;
+}
+
+/* FOOTER DÙNG CHUNG */
+.pizzan-footer {
+    background-color: #000f1e; /* Tối hơn surface dark một chút để tạo chiều sâu */
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.pizzan-footer a {
+   color: #ffffff50;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.pizzan-footer a:hover {
+    color: var(--primary-red);
+}
+
+
+/* ==========================================================================
+   BỔ SUNG CHO HEADER (ICON TRÁI TIM & HIỆU ỨNG HOVER)
+   ========================================================================== */
+
+/* Hiệu ứng hover cho các icon trên header mượt mà hơn */
+.hover-pizzan-red {
+    transition: color 0.3s ease;
+}
+.hover-pizzan-red:hover {
+    color: var(--primary-red) !important;
+}
+
+/* Tùy chỉnh màu chữ gợi ý (placeholder) trong ô tìm kiếm cho đúng độ mờ thiết kế */
+.pizzan-navbar .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 13px;
+}
+
+/* ==========================================================================
+   HIỆU ỨNG NHẢY NHẸ (FLOATING) CHO ĐĨA MÌ BANNER KHUYẾN MÃI
+   ========================================================================== */
+
+.floating-dish {
+    /* Khai báo chuyển động có tên là 'noodleJump', chạy trong 3 giây, 
+       nhịp điệu mượt mà (ease-in-out) và lặp lại vô tận (infinite) */
+    animation: noodleJump 3s ease-in-out infinite;
+}
+
+@keyframes noodleJump {
+    0% {
+        transform: translateY(0); /* Vị trí ban đầu */
+    }
+    50% {
+        transform: translateY(-15px); /* Nhảy lên trên 15px ở giữa chu kỳ */
+    }
+    100% {
+        transform: translateY(0); /* Trở về vị trí ban đầu */
+    }
+}
+
+/* ==========================================================================
+   HIỆU ỨNG TOAST THÔNG BÁO TỰ ĐỘNG ẨN
+   ========================================================================== */
+.animate-toast {
+    animation: slideInRight 0.3s ease-in-out forwards;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

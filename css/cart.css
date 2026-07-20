@@ -1,0 +1,75 @@
+body {
+            background-color: #fcf9f4; /* Surface Light */
+        }
+        .cart-item-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 21, 41, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        .cart-item-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px; /* Khối vuông bo góc nhẹ theo thiết kế */
+        }
+        .qty-control {
+            border: 1px solid rgba(0, 21, 41, 0.15);
+            border-radius: 20px;
+            padding: 2px 8px;
+            display: inline-flex;
+            align-items: center;
+            background-color: #ffffff;
+        }
+        .qty-btn {
+            background: none;
+            border: none;
+            color: #001529;
+            font-weight: bold;
+            padding: 4px 10px;
+            cursor: pointer;
+        }
+        .qty-input {
+            width: 35px;
+            text-align: center;
+            border: none;
+            font-weight: 600;
+            outline: none;
+        }
+        /* Khối Tóm tắt đơn hàng bên phải */
+        .summary-card {
+            background-color: #001529; /* Surface Dark */
+            color: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
+        }
+        .summary-divider {
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            margin: 20px 0;
+        }
+        .promo-input {
+            background-color: rgba(255, 255, 255, 0.08) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            color: #ffffff !important;
+            border-radius: 20px 0 0 20px !important;
+        }
+        .promo-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .promo-btn {
+            background-color: #e3001b !important;
+            border: none;
+            color: #ffffff;
+            font-weight: bold;
+            border-radius: 0 20px 20px 0 !important;
+            padding: 0 20px;
+        }
+        /* Khối cần trợ giúp */
+        .help-box {
+            background-color: rgba(223, 0, 27, 0.03);
+            border: 1px dashed rgba(223, 0, 27, 0.2);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+        }
